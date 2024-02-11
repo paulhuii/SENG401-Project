@@ -1,0 +1,25 @@
+version: '3.8'  # Specifies the Docker Compose file format version.
+
+services:  # Defines the different services (containers) that make up your application.
+
+  client:  # The first service, named 'client'.
+    container_name: client-c  # Sets a custom name for the Docker container.
+    build:  # Instructions for building the Docker image for this service.
+      context: ./client  # The build context (directory containing the Dockerfile and source code).
+      dockerfile: Dockerfile  # The Dockerfile to use for building the image.
+    ports:
+      - "3000:3000"  # Maps port 5173 on the host to port 5173 in the container.
+
+  backend:  # The second service, named 'backend'.
+    container_name: backend-c  # Sets a custom name for the Docker container.
+    build:
+      context: ./backend  # The build context for the backend service.
+      dockerfile: Dockerfile  # The Dockerfile to use for the backend service.
+    ports:
+      - "5000:5000"  # Maps port 5000 on the host to port 5000 in the container.
+
+
+# This is how to run the application:
+# 1. Open a terminal in the root directory of the project.
+# 2. Run 'docker-compose up --build' to build the images and start the containers. (you need to have docker installed)
+# 3. Open a browser and navigate to 'http://localhost:5173'.
