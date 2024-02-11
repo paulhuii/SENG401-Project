@@ -1,4 +1,4 @@
-# My Awesome App
+# JobHub App
 
 Welcome to our project! This is a web application built with React.js on the frontend and Node.js with Express.js on the backend. It provides registration and login functionality using MongoDB as the database.
 
@@ -28,7 +28,11 @@ git clone git@github.com:paulhuii/SENG401-Project.git
 ```
 npm install
 ```
-4. Start up the application
+4. Start up the application (run this in the root directory):
 ```
 npm run dev
+```
+5. To exit the application: 
+```
+control + c
 ```
