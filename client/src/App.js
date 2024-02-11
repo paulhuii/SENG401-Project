@@ -1,8 +1,9 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import Home from './Home';
+import Login from './Login';
 import Signup from './Signup';
-import Dashboard from './dashboard'; // Make sure to import Dashboard
+import Dashboard from './Dashboard'; // Correct import for Dashboard
 import './App.css';
 
 function App() {
@@ -11,20 +12,24 @@ function App() {
       <div className="App">
         {/* Header for the entire application */}
         <header className="App-header">
-          <p>JobHub</p>
+          <h1 className="app-title">JobHub</h1>
           <nav>
-            <Link to="/">Home</Link>{' '}
-            <Link to="/signup">Signup</Link>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/signup" className="nav-link">Signup</Link>
+            <Link to="/login" className="nav-link">Login</Link>
+            <Link to="/dashboard" className="nav-link">Dashboard</Link>
           </nav>
         </header>
         
         {/* Routes for different pages */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} /> {/* Utilize the Dashboard component */}
-        </Routes>
+        <div className="page-container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );
