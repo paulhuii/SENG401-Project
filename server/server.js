@@ -19,7 +19,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
     console.log('Connected to MongoDB');
 });
 
@@ -27,7 +27,7 @@ db.once('open', function() {
 app.post('/api/signup', async (req, res) => {
     try {
         console.log('Received signup request:', req.body); // Log the received request body
-        
+
         // Check if user already exists
         const existingUser = await User.findOne({ email: req.body.email });
         if (existingUser) {
@@ -46,9 +46,20 @@ app.post('/api/signup', async (req, res) => {
         });
 
         await newUser.save();
-
         console.log('User registered successfully:', newUser); // Log the newly registered user
-        res.status(201).json({ message: 'User registered successfully' });
+
+        // Generate JWT token for the new user
+        const token = jwt.sign(
+            { userId: newUser._id.toString() }, // Ensure to convert _id to string
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        // Send the token along with the success message
+        res.status(201).json({
+            message: 'User registered successfully',
+            token: token // Include the generated token in the response
+        });
     } catch (error) {
         console.error('Error registering user:', error); // Log any errors that occur
         res.status(500).json({ message: 'Internal server error' });
@@ -80,12 +91,24 @@ app.post('/api/login', async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign(
+            { userId: user._id.toString() }, // Convert ObjectId to string
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
 
         // Log successful token generation
         console.log('Generated token:', token);
 
-        res.json({ token });
+        res.json({
+            message: "User registered successfully",
+            user: {
+                username: user.username,
+                email: user.email,
+                // Include any other user details you wish to return, but exclude the password
+            },
+            token: token // Include the token here
+        });
     } catch (error) {
         // Log the error object
         console.error('Internal server error:', error);
