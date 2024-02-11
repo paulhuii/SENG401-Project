@@ -1,14 +1,34 @@
+/**
+ * Express Server Setup
+ * 
+ * This file sets up an Express server with middleware, routes, and MongoDB connection.
+ * 
+ * @requires express
+ * @requires mongoose
+ * @requires cors
+ * @requires authRoutes
+ * @requires dotenv
+ */
+
+// Import required modules
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes'); // Import the authentication routes
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
+// Create an Express application
 const app = express();
 
 // Configure middleware
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
+app.use(express.json()); // Parse incoming request bodies as JSON
+
+// Middleware to log each incoming request
+app.use((req, res, next) => {
+  console.log(`Received ${req.method} request for ${req.url}`);
+  next(); // Call the next middleware in the chain
+});
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -26,5 +46,5 @@ db.once('open', () => {
 app.use('/api', authRoutes);
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000; // Default port is 5000 if not specified in environment
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

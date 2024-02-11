@@ -1,33 +1,44 @@
+/**
+ * Login Component
+ * 
+ * This component provides functionality for user login.
+ * 
+ * @param {function} setIsLoggedIn - Function to set the authentication status
+ * @returns {JSX.Element} - Login form and redirecting message
+ */
+
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import './Login.css';
 
-function Login() {
+function Login({ setIsLoggedIn }) {
+  // State variables
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     token: ''
   });
-
   const [error, setError] = useState('');
-  const [redirecting, setRedirecting] = useState(false); // State to track redirecting status
+  const [redirecting, setRedirecting] = useState(false);
 
   // Check for token at component initialization
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setRedirecting(true); // Set redirecting to true
+      setRedirecting(true); // Set redirecting to true if token exists
       setTimeout(() => {
         window.location.href = '/dashboard';
-      }, 1500); // Delay for 2 seconds before redirecting
+      }, 1500); // Delay for 1.5 seconds before redirecting
     }
   }, []);
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -42,12 +53,11 @@ function Login() {
         throw new Error('Failed to login. Please try again.');
       }
       const data = await response.json(); // Parse JSON response
-      // Print the parsed JSON response to the console
-      console.log('Response data:', data);
 
       // Assuming the token is sent back in the response under a property named 'token'
       if (data.token) {
         localStorage.setItem('token', data.token); // Save the token to localStorage
+        setIsLoggedIn(true); // Update isLoggedIn state to true
         window.location.href = '/dashboard'; // Redirect to dashboard after login
       } else {
         throw new Error('Token not found in response');
@@ -58,8 +68,8 @@ function Login() {
     }
   };
   
+  // Display redirecting message if redirecting
   if (redirecting) {
-    // Display redirecting message
     return (
       <div className="login-container">
         <h1 className="login-title">Redirecting...</h1>
@@ -70,6 +80,7 @@ function Login() {
     );
   }
 
+  // Render login form
   return (
     <div className="login-container">
       <h1 className="login-title">Login Page</h1>

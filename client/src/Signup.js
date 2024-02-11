@@ -1,3 +1,33 @@
+/**
+ * Signup Component
+ * 
+ * This component provides a form for user registration.
+ * Users can input their email, name, username, password, and role (recruiter or job seeker).
+ * Upon successful registration, users are redirected to the dashboard.
+ * 
+ * State Variables:
+ * - formData: Stores form data including email, name, username, password, and role.
+ * - error: Stores error messages.
+ * - redirecting: Tracks whether the user is being redirected to the dashboard.
+ * 
+ * Effects:
+ * - useEffect: Checks for an existing token in local storage to determine if the user is already logged in.
+ * 
+ * Event Handlers:
+ * - handleChange: Updates the formData state when input values change.
+ * - handleSubmit: Handles form submission, sending a POST request to the server with form data.
+ * 
+ * Rendering:
+ * - Displays a signup form with input fields for user information.
+ * - Provides feedback on successful registration or displays errors if registration fails.
+ * 
+ * CSS:
+ * - Styling for the signup form is defined in a separate CSS file (Signup.css).
+ * 
+ * @returns JSX Element
+ */
+
+
 import React, { useState, useEffect } from 'react';
 import './Signup.css';
 
@@ -7,7 +37,7 @@ function Signup() {
     name: '',
     username: '',
     password: '',
-    token: ''
+    role: ''
   });
 
   const [error, setError] = useState('');
@@ -20,7 +50,7 @@ function Signup() {
       setRedirecting(true); // Set redirecting to true
       setTimeout(() => {
         window.location.href = '/dashboard';
-      }, 1500); // Delay for 2 seconds before redirecting
+      }, 1500); // Delay for 1.5 seconds before redirecting
     }
   }, []);
 
@@ -119,6 +149,20 @@ function Signup() {
               onChange={handleChange}
               required
             />
+          </div>
+          <div className="form-group">
+            <label htmlFor="role">Role:</label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select role</option>
+              <option value="recruiter">Recruiter</option>
+              <option value="jobseeker">Job Seeker</option>
+            </select>
           </div>
           <button type="submit">Signup</button>
           {error && <div className="error-message">{error}</div>}

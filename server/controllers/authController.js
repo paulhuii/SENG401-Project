@@ -1,3 +1,14 @@
+/**
+ * Authentication Controller
+ * 
+ * This controller handles user registration and login.
+ * 
+ * @requires bcrypt
+ * @requires jwt
+ * @requires User
+ */
+
+// Import required modules
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -16,7 +27,8 @@ exports.register = async (req, res) => {
         const newUser = new User({
             username: req.body.username,
             email: req.body.email,
-            password: hashedPassword
+            password: hashedPassword,
+            role: req.body.role
         });
 
         await newUser.save();
@@ -31,6 +43,11 @@ exports.register = async (req, res) => {
         // Send the token along with the success message
         res.status(201).json({
             message: 'User registered successfully',
+            user: {
+                username: newUser.username,
+                email: newUser.email,
+                role: newUser.role 
+            },
             token: token
         });
     } catch (error) {
@@ -60,11 +77,13 @@ exports.login = async (req, res) => {
             { expiresIn: '1h' }
         );
 
+        // Include the role in the login response
         res.json({
             message: "Login successful",
             user: {
                 username: user.username,
-                email: user.email
+                email: user.email,
+                role: user.role
             },
             token: token
         });
