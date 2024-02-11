@@ -26,9 +26,12 @@ db.once('open', function() {
 // Signup endpoint
 app.post('/api/signup', async (req, res) => {
     try {
+        console.log('Received signup request:', req.body); // Log the received request body
+        
         // Check if user already exists
         const existingUser = await User.findOne({ email: req.body.email });
         if (existingUser) {
+            console.log('User already exists:', existingUser); // Log the existing user
             return res.status(400).json({ message: 'User already exists' });
         }
 
@@ -44,11 +47,14 @@ app.post('/api/signup', async (req, res) => {
 
         await newUser.save();
 
+        console.log('User registered successfully:', newUser); // Log the newly registered user
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
+        console.error('Error registering user:', error); // Log any errors that occur
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 // Login endpoint
 app.post('/api/login', async (req, res) => {
