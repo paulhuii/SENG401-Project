@@ -12,6 +12,14 @@ body {
   background-color: #333;
   color: white;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 24px;
 }
 
 /* Navigation styles */
@@ -19,33 +27,24 @@ nav {
   display: flex;
 }
 
-nav a {
+.nav-link {
   color: white;
   text-decoration: none;
   margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-nav a:hover {
-  text-decoration: underline;
+.nav-link:hover {
+  background-color: #555;
 }
 
 /* Page container styles */
 .page-container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
-}
-
-/* Page title styles */
-.page-title {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-/* Content styles */
-.content {
   background-color: #f9f9f9;
-  padding: 20px;
   border-radius: 5px;
 }
 
