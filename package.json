@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "server": "cd server && node server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "concurrently": "^8.2.2"
+  }
+}

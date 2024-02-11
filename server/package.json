@@ -17,7 +17,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "../node_modules/.bin/react-scripts start",
+    "start": "node server.js",
     "build": "../node_modules/.bin/react-scripts build",
     "test": "../node_modules/.bin/react-scripts test",
     "eject": "../node_modules/.bin/react-scripts eject"
@@ -39,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
