@@ -25,14 +25,16 @@ body {
 /* Navigation styles */
 nav {
   display: flex;
+  align-items: center; /* Center align navigation items */
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
   margin-right: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .nav-link:hover {
@@ -49,15 +51,18 @@ nav {
 }
 
 /* Button styles */
-.button {
-  background-color: #007bff;
+.button,
+.nav-link {
+  background-color: transparent;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
 }
 
-.button:hover {
-  background-color: #0056b3;
+.button:hover,
+.nav-link:hover {
+  background-color: #555;
 }

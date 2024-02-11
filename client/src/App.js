@@ -1,12 +1,70 @@
-import React from 'react';
+/**
+ * App Component
+ * 
+ * This component serves as the main entry point for the JobHub application.
+ * It provides routing functionality using React Router to navigate between different pages.
+ * The header includes links to the Home page, Dashboard, and Login/Logout functionality.
+ * 
+ * State Variables:
+ * - isLoggedIn: Tracks the authentication status of the user.
+ * 
+ * Functions:
+ * - checkAuthToken: Checks if a token exists in local storage to determine the user's authentication status.
+ * - handleLogout: Clears the authentication token and updates the isLoggedIn state when the user logs out.
+ * - clearAuthToken: Removes the authentication token from local storage.
+ * 
+ * Rendering:
+ * - Displays a header with navigation links and conditionally renders Login or Logout button based on authentication status.
+ * - Utilizes React Router to handle routing and rendering of different components based on the URL.
+ * 
+ * Components:
+ * - Home: Renders the home page.
+ * - Login: Renders the login page and handles user authentication.
+ * - Signup: Renders the signup page for user registration.
+ * - Dashboard: Renders the dashboard page with user-specific content.
+ * 
+ * CSS:
+ * - Styling for the application is defined in a separate CSS file (App.css).
+ * 
+ * @returns JSX Element
+ */
+
+
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
-import Dashboard from './Dashboard'; // Correct import for Dashboard
+import Dashboard from './Dashboard'; 
 import './App.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
+
+  // Function to check if a token exists in local storage
+  const checkAuthToken = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true); // Set isLoggedIn to true if token exists
+    }
+  };
+
+  // Call checkAuthToken when the component mounts
+  useEffect(() => {
+    checkAuthToken();
+  }, []);
+
+  // Function to clear the authentication token and handle logout
+  const handleLogout = () => {
+    clearAuthToken(); // Clear the authentication token
+    setIsLoggedIn(false); // Update the authentication status
+  };
+
+  // Function to clear the authentication token from localStorage
+  const clearAuthToken = () => {
+    localStorage.removeItem('token');
+  };
+
   return (
     <Router>
       <div className="App">
@@ -15,9 +73,14 @@ function App() {
           <h1 className="app-title">JobHub</h1>
           <nav>
             <Link to="/" className="nav-link">Home</Link>
-            <Link to="/signup" className="nav-link">Signup</Link>
-            <Link to="/login" className="nav-link">Login</Link>
+            {/* <Link to="/signup" className="nav-link">Signup</Link> */}
             <Link to="/dashboard" className="nav-link">Dashboard</Link>
+            {/* Conditionally render login or logout button based on authentication status */}
+            {isLoggedIn ? (
+              <button className="nav-link" onClick={handleLogout}>Logout</button>
+            ) : (
+              <Link to="/login" className="nav-link">Login</Link>
+            )}
           </nav>
         </header>
         
@@ -27,7 +90,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
+            {/* Pass setIsLoggedIn to Login component */}
+            <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           </Routes>
         </div>
       </div>
