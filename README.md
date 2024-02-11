@@ -2,6 +2,48 @@
 
 Welcome to our project! This is a web application built with React.js on the frontend and Node.js with Express.js on the backend. It provides registration and login functionality using MongoDB as the database.
 
+```
+JOBHUB/
+├── client/
+│   ├── node_modules/
+│   ├── public/
+│   └── src/
+│       ├── App.css
+│       ├── App.js
+│       ├── Dashboard.js
+│       ├── Home.css
+│       ├── Home.js
+│       ├── index.css
+│       ├── index.js
+│       ├── Login.css
+│       ├── Login.js
+│       ├── Profile.css
+│       ├── Profile.js
+│       ├── setupProxy.js
+│       ├── setupTests.js
+│       ├── Signup.css
+│       └── Signup.js
+│   ├── package-lock.json
+│   └── package.json
+├── server/
+│   ├── controllers/
+│   │   └── authController.js
+│   ├── middleware/
+│   ├── models/
+│   │   └── User.js
+│   ├── node_modules/
+│   ├── routes/
+│   │   └── authRoutes.js
+│   ├── server.js
+│   ├── package-lock.json
+│   └── package.json
+├── .env
+├── .gitignore
+├── package-lock.json
+└── package.json
+└── README.md
+```
+
 ## Getting Started
 
 To get started with the project, follow these steps:
