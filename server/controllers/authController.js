@@ -28,7 +28,8 @@ exports.register = async (req, res) => {
             username: req.body.username,
             email: req.body.email,
             password: hashedPassword,
-            role: req.body.role
+            role: req.body.role,
+            name: req.body.name
         });
 
         await newUser.save();
@@ -46,7 +47,9 @@ exports.register = async (req, res) => {
             user: {
                 username: newUser.username,
                 email: newUser.email,
-                role: newUser.role 
+                role: newUser.role, 
+                name: newUser.name,
+                description: newUser.description
             },
             token: token
         });
@@ -83,7 +86,9 @@ exports.login = async (req, res) => {
             user: {
                 username: user.username,
                 email: user.email,
-                role: user.role
+                role: user.role,
+                name: user.name,
+                description: user.description
             },
             token: token
         });
