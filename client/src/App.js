@@ -22,6 +22,7 @@
  * - Login: Renders the login page and handles user authentication.
  * - Signup: Renders the signup page for user registration.
  * - Dashboard: Renders the dashboard page with user-specific content.
+ * - Profile: Renders the user profile when logged in.
  * 
  * CSS:
  * - Styling for the application is defined in a separate CSS file (App.css).
@@ -29,13 +30,13 @@
  * @returns JSX Element
  */
 
-
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import Dashboard from './Dashboard'; 
+import Profile from './Profile'; // Import the Profile component
 import './App.css';
 
 function App() {
@@ -77,7 +78,10 @@ function App() {
             <Link to="/dashboard" className="nav-link">Dashboard</Link>
             {/* Conditionally render login or logout button based on authentication status */}
             {isLoggedIn ? (
-              <button className="nav-link" onClick={handleLogout}>Logout</button>
+              <>
+                <Link to="/profile" className="nav-link">Profile</Link>
+                <button className="nav-link" onClick={handleLogout}>Logout</button>
+              </>
             ) : (
               <Link to="/login" className="nav-link">Login</Link>
             )}
@@ -92,6 +96,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             {/* Pass setIsLoggedIn to Login component */}
             <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+            {/* Render the Profile component only when logged in */}
+            {isLoggedIn && <Route path="/profile" element={<Profile />} />}
           </Routes>
         </div>
       </div>

@@ -69,6 +69,7 @@ function Signup() {
         },
         body: JSON.stringify(formData)
       });
+      console.log('Response:', response);
       if (!response.ok) {
         throw new Error('Failed to register. Please try again.');
       }
@@ -78,8 +79,9 @@ function Signup() {
 
       // Assuming the token is sent back in the response under a property named 'token'
       if (data.token) {
-        localStorage.setItem('token', data.token); // Save the token to localStorage
-        window.location.href = '/dashboard'; // Redirect to dashboard after signup
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user)); // Save user data to localStorage
+        window.location.href = '/dashboard';
       } else {
         throw new Error('Token not found in response');
       }
