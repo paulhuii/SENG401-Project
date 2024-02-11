@@ -2,6 +2,7 @@
 
 Welcome to our project! This is a web application built with React.js on the frontend and Node.js with Express.js on the backend. It provides registration and login functionality using MongoDB as the database.
 
+```
 JOBHUB/
 ├── client/
 │   ├── node_modules/
@@ -41,7 +42,7 @@ JOBHUB/
 ├── package-lock.json
 └── package.json
 └── README.md
-
+```
 
 ## Getting Started
 
