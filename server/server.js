@@ -14,6 +14,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const User = require("./models/User");
 const authRoutes = require('./routes/authRoutes'); // Import the authentication routes
 require('dotenv').config({ path: '../.env' });
 
