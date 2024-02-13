@@ -48,6 +48,8 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const originalData = {...profileData};
+    setProfileData({...profileData, ...formData});
     try {
       const response = await fetch('/api/profile', {
         method: 'PUT',
@@ -59,11 +61,18 @@ function Profile() {
       if (!response.ok) {
         throw new Error('Failed to update profile');
       }
+
       setEditing(false);
       fetchProfileData();
     } catch (error) {
       setError(error.message);
-    }
+      
+      setTimeout(()=>{
+        setError(null); //Remove the error message 
+        setEditing(false); //Remove editting mode
+        setProfileData(originalData); //Revert to the original data if update fails
+      }, 5000); //Wait 5 seconds
+    } 
   };
 
   if (error) {
