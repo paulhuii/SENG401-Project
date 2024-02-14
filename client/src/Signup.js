@@ -37,7 +37,8 @@ function Signup() {
     name: '',
     username: '',
     password: '',
-    role: ''
+    role: '',
+    gender: ''
   });
 
   const [error, setError] = useState('');
@@ -164,6 +165,22 @@ function Signup() {
               <option value="">Select role</option>
               <option value="recruiter">Recruiter</option>
               <option value="jobseeker">Job Seeker</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="gender">Gender:</label>
+            <select
+              id="gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select gender</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="non-binary">Non-binary</option>
+
             </select>
           </div>
           <button type="submit">Signup</button>

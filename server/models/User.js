@@ -17,6 +17,7 @@
  * @property {string} email - The email address of the user.
  * @property {string} password - The password of the user.
  * @property {string} role - The role of the user ('recruiter' or 'jobseeker').
+ * @property {string} gender - The gender the user wishes to idenfiy. 
  * 
  * @typedef {import('mongoose').Model<User>} User
  */
@@ -48,7 +49,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['recruiter', 'jobseeker'], // Define possible roles
     required: true
-  }
+  },
+
+  gender: {
+    type: String, 
+    enum: ['female', 'male', 'non-binary'],
+    required: true
+  },
+
 });
 
 // Create and export the User model

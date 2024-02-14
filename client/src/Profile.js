@@ -127,6 +127,7 @@ function Profile() {
           <p>Username: {profileData.username}</p>
           <p>Email: {profileData.email}</p>
           <p>Role: {profileData.role}</p>
+          <p>Gender: {profileData.gender}</p>
           <p>Description: {profileData.description || 'Add a description to attract recruiters!'}</p>
           <button onClick={handleEdit}>Edit</button>
         </div>
