@@ -34,6 +34,12 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# ESLint cache
+.eslintcache
+
+# Cache from build tools
+node_modules/.cache/
+
 # Editor directories and files
 .idea
 .vscode

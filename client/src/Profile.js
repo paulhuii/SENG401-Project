@@ -48,7 +48,7 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const originalData = {...profileData};
+    const originalData = { ...profileData };
     setProfileData({...profileData, ...formData});
     try {
       const response = await fetch('/api/profile', {
@@ -59,17 +59,28 @@ function Profile() {
         body: JSON.stringify(formData)
       });
       if (!response.ok) {
+        console.log(`Failed to update profile. Status:${response.status}`);
         throw new Error('Failed to update profile');
       }
+      const updatedData = await response.json(); // Assume the response includes the updated profile data
 
-      setEditing(false);
-      fetchProfileData();
+      // Update profileData state with the response from the server
+      setProfileData(updatedData);
+      setEditing(false); // Exit editing mode after successful update
+  
+      // Optionally, clear formData or update it to reflect the updated profile
+      setFormData({
+        name: updatedData.name,
+        description: updatedData.description,
+      });
+
+      // setEditing(false);
+      // fetchProfileData();
     } catch (error) {
       setError(error.message);
-      
       setTimeout(()=>{
         setError(null); //Remove the error message 
-        setEditing(false); //Remove editting mode
+        setEditing(false); //Remove editing mode
         setProfileData(originalData); //Revert to the original data if update fails
       }, 5000); //Wait 5 seconds
     } 
