@@ -35,7 +35,7 @@ import { Routes, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
-import Dashboard from './Dashboard'; 
+import Dashboard from './Dashboard';
 import Profile from './Profile'; // Import the Profile component
 import './App.css';
 
