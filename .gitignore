@@ -43,6 +43,12 @@ lerna-debug.log*
 *.sln
 *.sw?
 
+#ignore cache and package_lock.json
+node_modules/.cache/
+package-lock.json
+
+
+
 # OS-specific files
 .DS_Store
 Thumbs.db
