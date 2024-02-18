@@ -7,15 +7,12 @@ const CompanyPost = () => {
 
     return (
         <div className="container company-post-page">
-            <form>
-                <h1>Create A New Job Listing</h1>
-                <p className="instruction-text">Fill the form below then click submit</p>
+            <form className="row">
+                <div className="col">
 
-                <div>
-                    <label htmlFor="companyName" className="form-label">Company Name</label>
-                    {/* Disable input field, should pull name from database */}
-                    <input type="text" className="form-control" id="companyName" disabled/>
                 </div>
+                <h1 className="post-heading">Create A New Job Listing</h1>
+                <p className="instruction-text">Fill the form below then click submit</p>
 
                 <div>
                     <label htmlFor="job-title" className="form-label">Job Title</label>
@@ -26,7 +23,6 @@ const CompanyPost = () => {
                     <label htmlFor="job-type" className="form-label">Job Type</label>
                     <input type="text" className="form-control" id="job-type" placeholder="Part-time, Full-time"/>
                 </div>
-
 
                 <div>
                     <label htmlFor="location" className="form-label">Location</label>
@@ -44,9 +40,11 @@ const CompanyPost = () => {
                 </div>
 
                 <label className="description-label">Description</label>
+
                 <RichTextEditor/>
+
+                <button type="button" className="btn btn-primary submit-btn">Submit</button>
             </form>
-            <button type="button" className="btn btn-primary submit-btn">Submit</button>
         </div>
         )
 }

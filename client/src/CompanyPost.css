@@ -1,4 +1,6 @@
-.company-post-page h1, .instruction-text{
+/* CompanyPost style sheet */
+
+.post-heading, .instruction-text{
     text-align: center;
 }
 
@@ -9,5 +11,5 @@
 .submit-btn {
     display: block;
     width: 10rem;
-    margin: 20px auto 0;
+    margin: 5px auto 0;
 }
