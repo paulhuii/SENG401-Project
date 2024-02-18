@@ -92,19 +92,26 @@ function App() {
                 </form>
               </ul>
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link to="/login" className="nav-link">
-                    <button className="btn btn-primary me-2" onClick={handleLogout}>{isLoggedIn ? 'Logout' : 'Login'}</button>
-                  </Link>
-                </li>
-                {!isLoggedIn && (
-                    <li className="navbar-nav ml-auto">
-                      <Link to="/signup" className="nav-link">
-                        <button className="btn btn-primary">Signup</button>
-                      </Link>
-                    </li>
-                )}
-              </ul>
+  <li className="nav-item">
+    <Link to="/login" className="nav-link">
+      <button className="btn btn-primary me-2" onClick={handleLogout}>{isLoggedIn ? 'Logout' : 'Login'}</button>
+    </Link>
+  </li>
+  {isLoggedIn && (
+    <li className="nav-item">
+      <Link to="/profile" className="nav-link">
+        <button className="btn btn-primary me-2">Profile</button>
+      </Link>
+    </li>
+  )}
+  {!isLoggedIn && (
+    <li className="nav-item">
+      <Link to="/signup" className="nav-link">
+        <button className="btn btn-primary">Signup</button>
+      </Link>
+    </li>
+  )}
+</ul>
             </div>
           </div>
         </nav>
