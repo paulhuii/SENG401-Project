@@ -2,7 +2,7 @@
   "scripts": {
     "server": "cd server && node server.js",
     "client": "cd client && npm start",
-    "dev": "npm run server & npm run client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "postinstall": "cd client && npm install && cd ../server && npm install"
   },
   "devDependencies": {
