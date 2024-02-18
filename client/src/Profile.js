@@ -16,31 +16,53 @@ function Profile() {
     }
   }, []);
 
+  useEffect(() => {
+    if (profileData) {
+      localStorage.setItem('user', JSON.stringify(profileData));
+    }
+  }, [profileData]); // Sync with local storage on profileData change
+
+  // const fetchProfileData = async () => {
+  //   try {
+  //     const response = await fetch('/api/profile');
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch profile data');
+  //     }
+  //     const data = await response.json();
+  //     setProfileData(data);
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  // };
   const fetchProfileData = async () => {
     try {
       const response = await fetch('/api/profile');
-      if (!response.ok) {
-        throw new Error('Failed to fetch profile data');
-      }
+      if (!response.ok) throw new Error('Failed to fetch profile data');
       const data = await response.json();
       setProfileData(data);
     } catch (error) {
-      setError(error.message);
+      console.error("Fetch error:", error.message);
     }
   };
+
+  useEffect(() => {
+    fetchProfileData();
+  }, []); // D
 
   const handleEdit = () => {
     setEditing(true);
   };
 
-  // Implementation of handleSave
   const handleSave = async (updatedData) => {
-    // Here, you would ideally send `updatedData` to your backend
     try {
+      const token = localStorage.getItem('token');
+      console.log('Sending request to /api/profile with data:', updatedData);
+      console.log('Authorization Token:', token);
       const response = await fetch('/api/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(updatedData),
       });
@@ -48,16 +70,13 @@ function Profile() {
         throw new Error('Failed to update profile data');
       }
       const data = await response.json();
-      setProfileData(data); // Update state with the updated profile data
+      setProfileData(data.user); // Update state with the updated profile data
+      setEditing(false); // Close the editing form
+      fetchProfileData();
     } catch (error) {
       setError(error.message);
       return; // Exit the function if there's an error
     }
-
-    setEditing(false); // Close the editing form
-
-    // Optionally, update local storage or other persistent storage
-    localStorage.setItem('user', JSON.stringify(updatedData));
   };
 
   if (error) {
