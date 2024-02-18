@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
+import EditProfile from './components/EditProfile';
 
 function Profile() {
   const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState(null);
   const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    description: ''
-  });
 
   useEffect(() => {
-    // Retrieve user data from local storage
     const userData = localStorage.getItem('user');
     if (userData) {
       setProfileData(JSON.parse(userData));
@@ -20,49 +16,66 @@ function Profile() {
     }
   }, []);
 
+  useEffect(() => {
+    if (profileData) {
+      localStorage.setItem('user', JSON.stringify(profileData));
+    }
+  }, [profileData]); // Sync with local storage on profileData change
+
+  // const fetchProfileData = async () => {
+  //   try {
+  //     const response = await fetch('/api/profile');
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch profile data');
+  //     }
+  //     const data = await response.json();
+  //     setProfileData(data);
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  // };
   const fetchProfileData = async () => {
     try {
-      const response = await fetch('/api/profile'); // Adjust the endpoint as per your backend setup
-      if (!response.ok) {
-        throw new Error('Failed to fetch profile data');
-      }
+      const response = await fetch('/api/profile');
+      if (!response.ok) throw new Error('Failed to fetch profile data');
       const data = await response.json();
       setProfileData(data);
-      setFormData({
-        name: data.name,
-        description: data.description || ''
-      });
     } catch (error) {
-      setError(error.message);
+      console.error("Fetch error:", error.message);
     }
   };
+
+  useEffect(() => {
+    fetchProfileData();
+  }, []); // D
 
   const handleEdit = () => {
     setEditing(true);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSave = async (updatedData) => {
     try {
+      const token = localStorage.getItem('token');
+      console.log('Sending request to /api/profile with data:', updatedData);
+      console.log('Authorization Token:', token);
       const response = await fetch('/api/profile', {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(updatedData),
       });
       if (!response.ok) {
-        throw new Error('Failed to update profile');
+        throw new Error('Failed to update profile data');
       }
-      setEditing(false);
+      const data = await response.json();
+      setProfileData(data.user); // Update state with the updated profile data
+      setEditing(false); // Close the editing form
       fetchProfileData();
     } catch (error) {
       setError(error.message);
+      return; // Exit the function if there's an error
     }
   };
 
@@ -78,37 +91,17 @@ function Profile() {
     <div className="profile-container">
       <h2 className="profile-title">User Profile</h2>
       {editing ? (
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="description">Description:</label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            ></textarea>
-          </div>
-          <button type="submit">Save</button>
-        </form>
+        <EditProfile profileData={profileData} onSave={handleSave} setEditing={setEditing} />
       ) : (
         <div className="profile-content">
+          {/* Display profile data */}
           <p>Name: {profileData.name}</p>
           <p>Username: {profileData.username}</p>
           <p>Email: {profileData.email}</p>
           <p>Role: {profileData.role}</p>
+          <p>Gender: {profileData.gender}</p>
           <p>Description: {profileData.description || 'Add a description to attract recruiters!'}</p>
-          <button onClick={handleEdit}>Edit</button>
+          <button onClick={handleEdit}>Edit Profile</button>
         </div>
       )}
     </div>

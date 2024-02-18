@@ -34,6 +34,12 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# ESLint cache
+.eslintcache
+
+# Cache from build tools
+node_modules/.cache/
+
 # Editor directories and files
 .idea
 .vscode
@@ -42,6 +48,12 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+#ignore cache and package_lock.json
+node_modules/.cache/
+package-lock.json
+
+
 
 # OS-specific files
 .DS_Store

@@ -15,6 +15,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes'); // Import the authentication routes
+const userRoutes = require('./routes/userRoutes'); // Import the user routes
+
 require('dotenv').config({ path: '../.env' });
 
 // Create an Express application
@@ -44,6 +46,12 @@ db.once('open', () => {
 
 // Use the authentication routes
 app.use('/api', authRoutes);
+app.use('/api', userRoutes); // Use user routes
+// app.put('/api/profile', (req, res) => {
+//   console.log('Hello');
+//   res.status(200).json({ message: 'Profile endpoint hit successfully' });
+// });
+
 
 // Start the server
 const PORT = process.env.PORT || 5000; // Default port is 5000 if not specified in environment
