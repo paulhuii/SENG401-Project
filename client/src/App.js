@@ -38,6 +38,8 @@ import Signup from './Signup';
 import Dashboard from './Dashboard'; 
 import Profile from './Profile'; // Import the Profile component
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
@@ -70,23 +72,38 @@ function App() {
     <Router>
       <div className="App">
         {/* Header for the entire application */}
-        <header className="App-header">
-          <h1 className="app-title">JobHub</h1>
-          <nav>
-            <Link to="/" className="nav-link">Home</Link>
-            {/* <Link to="/signup" className="nav-link">Signup</Link> */}
-            <Link to="/dashboard" className="nav-link">Dashboard</Link>
-            {/* Conditionally render login or logout button based on authentication status */}
-            {isLoggedIn ? (
-              <>
-                <Link to="/profile" className="nav-link">Profile</Link>
-                <button className="nav-link" onClick={handleLogout}>Logout</button>
-              </>
-            ) : (
-              <Link to="/login" className="nav-link">Login</Link>
-            )}
-          </nav>
-        </header>
+
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+          <div className="container-fluid">
+            <Link className="navbar-brand" to="/">JobHub</Link>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signup">Signup</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                </li>
+                {isLoggedIn &&
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/profile">Profile</Link>
+                    </li>
+                }
+              </ul>
+              <form className="d-flex" role="search">
+                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button className="btn btn-outline-success" type="submit">Search</button>
+              </form>
+              <button className="btn btn-outline-primary" onClick={handleLogout}>{isLoggedIn ? 'Logout' : 'Login'}</button>
+            </div>
+          </div>
+        </nav>
         
         {/* Routes for different pages */}
         <div className="page-container">
