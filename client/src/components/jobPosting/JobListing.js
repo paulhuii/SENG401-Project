@@ -8,9 +8,14 @@ const JobListing = () => {
         <div class="card w-100">
         <div class="card-body">
             <h3 class="card-title">Job Position</h3> 
-            <h5>Company | Location</h5>
+            <h5>Company | <span class="text-muted">Location</span> </h5>
             <div class="description">
-                <p class="card-text">Summary of Job Application</p>
+                <p class="card-text">
+                    First Few Lines of Job Application Description
+                    <p></p> 
+                    Strong understanding or Snowflake on Azure Architecture, design, implementation and operationalization of large-scale data and analytics solutions on Snowflake Cloud Data Warehouse.
+                    Hands-on development experience with Snowflake features such as Snow SQL; Snow Pipe; Python; Tasks; Streams; Time travel; Zero Copy Cloning; Optimizer; Metadata Manager; data sharing; and stored procedures.
+                </p>
                 <p class="card-hover-text">
                     Full Job Application Example:
                     <p></p> 
@@ -26,7 +31,7 @@ const JobListing = () => {
                     Perform code reviews to ensure fit to requirements, optimal execution patterns and adherence to established standards.
                 </p>
             </div>
-            <button class="btn btn-primary" type="submit">Apply</button>
+            <button class="btn btn-primary p-2" type="submit">Apply</button> <span class="p-2 text-secondary"> Posted _ Days Ago</span>
         </div>
         </div>
     </div>

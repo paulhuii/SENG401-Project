@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import JobListing from "./components/jobPosting/JobListing";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import JobListing from "./components/jobPosting/JobListing";
 
 
 function JobBoard() {
