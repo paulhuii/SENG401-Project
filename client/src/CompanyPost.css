@@ -1,3 +1,13 @@
+.company-post-page h1, .instruction-text{
+    text-align: center;
+}
+
 .description-label{
     margin-bottom: 8px;
+}
+
+.submit-btn {
+    display: block;
+    width: 10rem;
+    margin: 20px auto 0;
 }
