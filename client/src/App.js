@@ -39,6 +39,8 @@ import Dashboard from './Dashboard';
 import Profile from './Profile'; // Import the Profile component
 import './App.css';
 
+import CompanyPost from "./CompanyPost";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
 
@@ -98,6 +100,7 @@ function App() {
             <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
             {/* Render the Profile component only when logged in */}
             {isLoggedIn && <Route path="/profile" element={<Profile />} />}
+            <Route path="/CompanyPost" element={<CompanyPost/>}/>
           </Routes>
         </div>
       </div>
