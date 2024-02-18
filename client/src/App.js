@@ -73,7 +73,7 @@ function App() {
       <div className="App">
         {/* Header for the entire application */}
 
-        <nav className="navbar navbar-expand-sm bg-body-tertiary">
+        <nav className="navbar navbar-expand-sm bg-body-tertiary border-bottom">
         <div className="container-fluid">
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <img src="/BxRocket.png" alt="Logo" width="35" height="35" className="d-inline-block align-text-top me-2"/>
