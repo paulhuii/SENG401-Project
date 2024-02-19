@@ -22,29 +22,29 @@ function Home() {
                                     <Card.Text className="home-card-text">
                                         Job 1 and some info about the jobs
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
+                                    <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Job Applicant 2</Card.Title>
+                                    <Card.Title className="home-card-title">Job 2</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Job Applicant 2 and some info about then
+                                        Job 2 and some info about the jobs
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
+                                    <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Job Applicant 3</Card.Title>
+                                    <Card.Title className="home-card-title">Job 3</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Job Applicant 3 and some info about then
+                                        Job 3 and some info about the jobs
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
+                                    <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
                                 </Card.Body>
                             </Card>
                         </div>

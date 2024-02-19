@@ -7,8 +7,8 @@
 
 .home-page-slogan{
     color: white;
-    padding-top: 2vw;
-    font-size: clamp(10px, 6vw, 50px);
+    padding-top: 3vw;
+    font-size: clamp(15px, 6vw, 50px);
     text-align: center;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .home-carousel{
-    margin-top: 2vw;
+    margin-top: 5vw;
 }
 
 .home-carousel-card-container{
@@ -32,9 +32,9 @@
 }
 
 .home-carousel-card-container .card {
-    margin: 1vw; /* Adjust margins between cards */
-    flex: 1 0 15rem; /* Allow cards to grow and shrink, with a minimum width of 15rem */
-    max-width: 18rem; /* Limit the maximum width of the cards */
+    margin: 1vw;
+    min-height: 10vw;
+    max-width: 25vw;
 }
 
 .home-card-title{
