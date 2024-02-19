@@ -126,6 +126,45 @@ function Home() {
                 </Carousel>
             </div>
 
+            <div className="home-stats">
+                <Card>
+                    <Card.Img variant="top"  src="/briefcase.png" style={{ height: "50px", width: "50px",  margin: "0 auto" }}/>
+                    <Card.Body>
+                        <Card.Title className="home-card-title">Jobs</Card.Title>
+                        <Card.Text className="home-card-text">
+                           List number of jobs available
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+
+                <Card>
+                    <Card.Img variant="top" src="/building.png" style={{ height: "50px", width: "50px",  margin: "0 auto"}}/>
+                    <Card.Body>
+                        <Card.Title className="home-card-title">Companies</Card.Title>
+                        <Card.Text className="home-card-text">
+                            List number of companies hiring on job hub
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+
+                <Card>
+                    <Card.Img variant="top" src="/group.png"  style={{ height: "50px", width: "50px",  margin: "0 auto"}}/>
+                    <Card.Body>
+                        <Card.Title className="home-card-title">Applicants</Card.Title>
+                        <Card.Text className="home-card-text">
+                            List number of applicants on job hub
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </div>
+
+            <footer className="home-footer">
+                <a href="https://www.flaticon.com/free-icons/briefcase" title="briefcase icons" style={{ color: "black", marginRight: "30px" }}>Briefcase icons created by Those Icons - Flaticon</a>
+                <a href="https://www.flaticon.com/free-icons/people" title="people icons" style={{ color: "black", marginRight: "30px" }}>People icons created by Freepik - Flaticon</a>
+                <a href="https://www.flaticon.com/free-icons/company" title="company icons" style={{ color: "black" }}>Company icons created by Freepik - Flaticon</a>
+            </footer>
+
+
         </div>
     );
 }
