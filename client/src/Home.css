@@ -1,10 +1,6 @@
-/* Home.css */
-
 .home-page-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: #2D81FF;
     min-height: 100vh;
 }
@@ -13,8 +9,8 @@
     color: white;
     padding-top: 2vw;
     font-size: clamp(10px, 6vw, 50px);
+    text-align: center;
 }
-
 
 .Home-Page-Footer {
     background-color: #333;
@@ -22,6 +18,10 @@
     padding: 20px;
     text-align: center;
     margin-top: auto; /* Push the footer to the bottom */
+}
+
+.home-carousel{
+    margin-top: 2vw;
 }
 
 .home-carousel-card-container{
@@ -44,3 +44,8 @@
 .home-card-text{
     font-size: clamp(3px, 2vw, 16px);
 }
+
+.home-card-button{
+    font-size: clamp(3px, 2vw, 16px);
+}
+
