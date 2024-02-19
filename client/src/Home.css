@@ -1,0 +1,46 @@
+/* Home.css */
+
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #2D81FF;
+    min-height: 100vh;
+}
+
+.home-page-slogan{
+    color: white;
+    padding-top: 2vw;
+    font-size: clamp(10px, 6vw, 50px);
+}
+
+
+.Home-Page-Footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+.home-carousel-card-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.home-carousel-card-container .card {
+    margin: 1vw; /* Adjust margins between cards */
+    flex: 1 0 15rem; /* Allow cards to grow and shrink, with a minimum width of 15rem */
+    max-width: 18rem; /* Limit the maximum width of the cards */
+}
+
+.home-card-title{
+    font-size: clamp(5px, 3vw, 20px);
+}
+
+.home-card-text{
+    font-size: clamp(3px, 2vw, 16px);
+}
