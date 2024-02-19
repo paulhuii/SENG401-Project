@@ -39,7 +39,6 @@ import Dashboard from './Dashboard';
 import Profile from './Profile'; // Import the Profile component
 import JobBoard from './JobBoard';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import CompanyPost from "./CompanyPost";

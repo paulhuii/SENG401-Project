@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 // Import Bootstrap's JavaScript file
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
