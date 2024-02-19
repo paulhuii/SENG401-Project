@@ -1,9 +1,11 @@
 // dashboard.js
 
 import React, { useState } from 'react';
-import './App.css';
 import './Dashboard.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import JobListing from "./components/jobPosting/JobListing";
+import CompanyCard from "./components/Cards/CompanyCard";
+import ApplicationCard from "./components/Cards/ApplicationCard";
+
 
 function Dashboard() {
   const [selectedMenuItem, setSelectedMenuItem] = useState('My Network');
@@ -28,52 +30,49 @@ function Dashboard() {
 
           <div className="menu-content">
             {selectedMenuItem === 'My Network' && 
-            <div className="content-item">
+            <div className="content-item-db">
               <div className='card-columns companies'> 
-                <div className="card">
+                <CompanyCard />
+                <CompanyCard />
+                <CompanyCard />
+                <CompanyCard />
+                {/* <div className="card-db" id='dashboard-card'>
                   <div className="card-body recruiter">
-                    <h5 className="card-title">Company Name</h5>
-                    <p className="card-text">Location</p>
-                    <p className="card-text">Email:</p>
+                    <h5 className="card-title-db">Company Name</h5>
+                    <p className="card-text-db">Location</p>
+                    <p className="card-text-db">Email:</p>
                   </div>
-                </div>
-
-                <div className="card">
-                  <div className="card-body recruiter">
-                    <h5 className="card-title">Company Name</h5>
-                    <p className="card-text">Location</p>
-                    <p className="card-text">Email:</p>
-                  </div>
-                </div>
+                </div> */}
           
               </div>
 
             </div>}
             {selectedMenuItem === 'Browse Available Jobs' && 
-            <div className="content-item">
-              Content 2
-            </div>}
-            {selectedMenuItem === 'My Applications' && 
-            <div className="content-item">
-              <div className='card-columns applications'> 
-                <div className="card">
-                  <div className="card-body applied-job">
-                    <h5 className="card-title">Job Title</h5>
-                    <p className="card-text">Company Name</p>
-                    <p className="card-text">Location</p>
-                    <p className="card-text">Date Applied: 2021-01-01</p>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-body applied-job">
-                    <h5 className="card-title">Job Title</h5>
-                    <p className="card-text">Company Name</p>
-                    <p className="card-text">Location</p>
-                    <p className="card-text">Date Applied: 2021-01-01</p>
-                  </div>
-                </div>
+            <div className="content-item-db">
+              <div className="card-columns job-listing">
+                <JobListing />
+                <JobListing />
+                <JobListing />
+                <JobListing />
               </div>
 
+            </div>}
+            {selectedMenuItem === 'My Applications' && 
+            <div className="content-item-db">
+              <div className='card-columns applications'> 
+                <ApplicationCard />
+                <ApplicationCard />
+                <ApplicationCard />
+                <ApplicationCard />
+                {/* <div className="card-db" id='dashboard-card'>
+                  <div className="card-body applied-job">
+                    <h5 className="card-title-db">Job Title</h5>
+                    <p className="card-text-db">Company Name</p>
+                    <p className="card-text-db">Location</p>
+                    <p className="card-text-db">Date Applied: 2021-01-01</p>
+                  </div>
+                </div> */}
+              </div>
             </div>}
           </div>
         </div>
