@@ -37,6 +37,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Dashboard from './Dashboard';
 import Profile from './Profile'; // Import the Profile component
+import JobBoard from './JobBoard';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -76,42 +77,51 @@ function App() {
         {/* Header for the entire application */}
 
         <nav className="navbar navbar-expand-sm bg-body-tertiary border-bottom">
-        <div className="container-fluid">
-          <Link className="navbar-brand d-flex align-items-center" to="/">
-            <img src="/BxRocket.png" alt="Logo" width="35" height="35" className="d-inline-block align-text-top me-2"/>
-            <span className="fw-bold fs-4">JobHub</span>
-          </Link>
+          <div className="container-fluid">
+            <Link className="navbar-brand d-flex align-items-center" to="/">
+              <img src="/BxRocket.png" alt="Logo" width="35" height="35" className="d-inline-block align-text-top me-2"/>
+              <span className="fw-bold fs-4">JobHub</span>
+            </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mx-auto">
-                <form class="d-flex" role="search">
+                <form className="d-flex" role="search">
                   <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style={{ maxWidth: '200px' }} />
-                  <button className="btn btn-success" type="submit">Search</button>
+                  <Link to="/JobBoard" className="nav-link">
+                    <button className="btn btn-success" type="submit">Search</button>
+                  </Link>
                 </form>
               </ul>
               <ul className="navbar-nav ml-auto">
-  <li className="nav-item">
-    <Link to="/login" className="nav-link">
-      <button className="btn btn-primary me-2" onClick={handleLogout}>{isLoggedIn ? 'Logout' : 'Login'}</button>
-    </Link>
-  </li>
-  {isLoggedIn && (
-    <li className="nav-item">
-      <Link to="/profile" className="nav-link">
-        <button className="btn btn-primary me-2">Profile</button>
-      </Link>
-    </li>
-  )}
-  {!isLoggedIn && (
-    <li className="nav-item">
-      <Link to="/signup" className="nav-link">
-        <button className="btn btn-primary">Signup</button>
-      </Link>
-    </li>
-  )}
-</ul>
+                {isLoggedIn && (
+                    <>
+                      <li className="nav-item">
+                        <Link to="/dashboard" className="nav-link">
+                          <button className="btn btn-primary me-2">Dashboard</button>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/profile" className="nav-link">
+                          <button className="btn btn-primary me-2">Profile</button>
+                        </Link>
+                      </li>
+                    </>
+                )}
+                {!isLoggedIn && (
+                    <li className="nav-item">
+                      <Link to="/signup" className="nav-link">
+                        <button className="btn btn-primary">Signup</button>
+                      </Link>
+                    </li>
+                )}
+                <li className="nav-item">
+                  <Link to="/login" className="nav-link">
+                    <button className="btn btn-primary me-2" onClick={handleLogout}>{isLoggedIn ? 'Logout' : 'Login'}</button>
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </nav>
@@ -127,6 +137,7 @@ function App() {
             {/* Render the Profile component only when logged in */}
             {isLoggedIn && <Route path="/profile" element={<Profile />} />}
             <Route path="/CompanyPost" element={<CompanyPost/>}/>
+            <Route path="/JobBoard" element={<JobBoard />}/>
           </Routes>
         </div>
       </div>
