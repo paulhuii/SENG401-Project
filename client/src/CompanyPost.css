@@ -1,3 +1,18 @@
+/* CompanyPost style sheet */
+
+.post-heading, .instruction-text{
+    text-align: center;
+}
+
 .description-label{
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.submit-btn-container{
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.submit-btn {
+    width: 10rem;
 }

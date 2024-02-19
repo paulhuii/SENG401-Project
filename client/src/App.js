@@ -37,6 +37,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Dashboard from './Dashboard';
 import Profile from './Profile'; // Import the Profile component
+import JobBoard from './JobBoard';
 import './App.css';
 
 
@@ -87,7 +88,9 @@ function App() {
               <ul className="navbar-nav mx-auto">
                 <form className="d-flex" role="search">
                   <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style={{ maxWidth: '200px' }} />
-                  <button className="btn btn-success" type="submit">Search</button>
+                  <Link to="/JobBoard" className="nav-link">
+                    <button className="btn btn-success" type="submit">Search</button>
+                  </Link>
                 </form>
               </ul>
               <ul className="navbar-nav ml-auto">
@@ -133,6 +136,7 @@ function App() {
             {/* Render the Profile component only when logged in */}
             {isLoggedIn && <Route path="/profile" element={<Profile />} />}
             <Route path="/CompanyPost" element={<CompanyPost/>}/>
+            <Route path="/JobBoard" element={<JobBoard />}/>
           </Routes>
         </div>
       </div>
