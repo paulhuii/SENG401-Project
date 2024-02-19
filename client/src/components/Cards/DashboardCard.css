@@ -1,0 +1,21 @@
+.card-db#dashboard-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 #ccc;
+}
+
+#dashboard-card:hover {
+    box-shadow: 0 0 5px 0 #000;
+    transform: scale(1.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    
+    color: #2D81FF;
+    
+}
+
+.card-db button {
+    cursor: pointer;
+    margin: 10px 10px 10px 0;
+}
