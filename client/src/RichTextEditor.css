@@ -1,11 +1,6 @@
-.rich-text-editor {
-    padding: 0.5rem;
-    height: 400px;
-}
-
-/* Fix quills overlapping text container problem*/
+/* Set height for quill */
 .rich-text-editor .ql-container {
-    max-height: 90%;
+    height: 20rem;
 }
 
 /* Set editor to have same font size as bootstrap */

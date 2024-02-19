@@ -5,11 +5,14 @@
 }
 
 .description-label{
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.submit-btn-container{
+    padding-top: 1rem;
+    text-align: center;
 }
 
 .submit-btn {
-    display: block;
     width: 10rem;
-    margin: 5px auto 0;
 }
