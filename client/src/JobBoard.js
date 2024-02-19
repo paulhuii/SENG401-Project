@@ -11,10 +11,8 @@ function JobBoard() {
       <p/>
       <div className="content">
         <div class="card-columns" >
-            <JobListing/>
-            <JobListing/>
-            <JobListing/>
-            <JobListing/>
+             {/* How to pass in Job Listings for the time being until backend can get this from Job Posting*/}
+            <JobListing position="Junior Software Engineer" company="Amazon" location="Vancouver, BC" description="20+ Years of experience doing AI and ML"/>
             <JobListing/>
         </div>
       </div>
