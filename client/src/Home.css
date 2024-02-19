@@ -1,0 +1,70 @@
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #2D81FF;
+    min-height: 100vh;
+}
+
+.home-page-slogan{
+    color: white;
+    padding-top: 3vw;
+    font-size: clamp(15px, 6vw, 50px);
+    text-align: center;
+}
+
+.Home-Page-Footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+.home-carousel{
+    margin-top: 5vw;
+}
+
+.home-carousel-card-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.home-carousel-card-container .card {
+    margin: 1vw;
+    min-height: 10vw;
+    max-width: 25vw;
+}
+
+.home-card-title{
+    font-size: clamp(5px, 3vw, 20px);
+}
+
+.home-card-text{
+    font-size: clamp(3px, 2vw, 16px);
+}
+
+.home-card-button{
+    font-size: clamp(3px, 2vw, 16px);
+}
+
+.home-stats{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10vw;
+}
+
+.home-stats .card{
+    margin: 1vw;
+}
+
+.home-stats .card-title {
+    text-align: center;
+}
+
+.home-footer{
+    margin-top: auto;
+    font-size:10px;
+}
