@@ -1,0 +1,43 @@
+/*make divider flex*/
+.divider {
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    margin: 20px 0;
+}
+
+/*put each menu*/
+.divider .menu {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.divider .menu-content {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.menu-item.active {
+    font-weight: bolder;
+}
+
+.card {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 #ccc;
+}
+
+.card:hover {
+    box-shadow: 0 0 5px 0 #000;
+    transform: scale(1.03);
+    transition: transform 0.5s;
+}
