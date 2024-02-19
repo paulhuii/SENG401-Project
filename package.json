@@ -3,7 +3,7 @@
     "server": "cd server && node server.js",
     "client": "cd client && npm start",
 
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "npm-run-all --parallel server client",
     "postinstall": "cd client && npm install quill && npm install && cd ../server && npm install"
 
   },
