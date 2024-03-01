@@ -31,7 +31,8 @@ const CompanyPost = () => {
                     <RichTextEditor/>
 
                     <div className="submit-btn-container">
-                        <button type="button" className="btn btn-primary submit-btn">Submit</button>
+                        <button type="button" className="btn btn-primary post-btns">Submit</button>
+                        <a href="/CompanyDashboard" className="btn btn-primary post-btns">Cancel</a>
                     </div>
                 </div>
             </form>

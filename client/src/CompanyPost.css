@@ -16,6 +16,7 @@
     text-align: center;
 }
 
-.submit-btn {
+.post-btns {
     width: 10rem;
+    margin-right: 1rem;
 }

@@ -42,6 +42,7 @@ import './App.css';
 
 
 import CompanyPost from "./CompanyPost";
+import CompanyDashboard from "./CompanyDashboard";
 import {Button, Dropdown, DropdownButton, FormControl, InputGroup} from "react-bootstrap";
 
 function App() {
@@ -157,6 +158,7 @@ function App() {
             {isLoggedIn && <Route path="/profile" element={<Profile />} />}
             <Route path="/CompanyPost" element={<CompanyPost/>}/>
             <Route path="/JobBoard" element={<JobBoard />}/>
+            <Route path="/CompanyDashboard" element={<CompanyDashboard/>}/>
           </Routes>
         </div>
       </div>
