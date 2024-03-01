@@ -1,0 +1,10 @@
+.jbpage-container {
+    max-width: 40%;
+    height: 80vh; /* Set height to 100% of viewport height */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
