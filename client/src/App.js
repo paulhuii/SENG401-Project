@@ -42,9 +42,17 @@ import './App.css';
 
 
 import CompanyPost from "./CompanyPost";
+import {Button, Dropdown, DropdownButton, FormControl, InputGroup} from "react-bootstrap";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
+
+  const [selectedCategory, setSelectedCategory] = useState("Search All"); // State to store the selected category
+
+  // Function to handle dropdown item selection
+  const handleDropdownSelect = (category) => {
+    setSelectedCategory(category);
+  };
 
   // Function to check if a token exists in local storage
   const checkAuthToken = () => {
@@ -75,7 +83,7 @@ function App() {
       <div className="App">
         {/* Header for the entire application */}
 
-        <nav className="navbar navbar-expand-sm bg-body-tertiary border-bottom">
+        <nav className="navbar navbar-expand-md bg-body-tertiary border-bottom">
           <div className="container-fluid">
             <Link className="navbar-brand d-flex align-items-center" to="/">
               <img src="/BxRocket.png" alt="Logo" width="35" height="35" className="d-inline-block align-text-top me-2"/>
@@ -86,12 +94,24 @@ function App() {
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mx-auto">
-                <form className="d-flex" role="search">
-                  <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style={{ maxWidth: '200px' }} />
-                  <Link to="/JobBoard" className="nav-link">
-                    <button className="btn btn-success" type="submit">Search</button>
-                  </Link>
-                </form>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  {/* Search bar with dropdown */}
+                  <InputGroup className="mx-auto" style={{ maxWidth: '400px' }}>
+                    <Dropdown onSelect={handleDropdownSelect}>
+                      <Dropdown.Toggle variant="outline-secondary">
+                        {selectedCategory}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item eventKey="Search All">Search All</Dropdown.Item>
+                        <Dropdown.Item eventKey="Search Jobs">Search Jobs</Dropdown.Item>
+                        <Dropdown.Item eventKey="Search Job Seekers">Search Job Seekers</Dropdown.Item>
+                        <Dropdown.Item eventKey="Search Companies">Search Companies</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <FormControl placeholder="Search" aria-label="Search" />
+                    <Button variant="success">Search</Button>
+                  </InputGroup>
+                </div>
               </ul>
               <ul className="navbar-nav ml-auto">
                 {isLoggedIn && (
