@@ -1,4 +1,4 @@
-.card{
+.jlcard{
     margin-bottom: 15px;
     border-radius: 4px;
     background: #fff;
@@ -7,18 +7,18 @@
     padding: 14px 80px 18px 36px;
 }
 
-.card:hover{
-    transform: scale(1.05);
+.jlcard:hover{
+    transform: scale(1.02);
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 
-.card-hover-text{
+.jlcard-hover-text{
     display:none;
 }
-.card:hover .card-text{
+.jlcard:hover .jlcard-text{
     display:none;
 }
-.card:hover .card-hover-text{
+.jlcard:hover .jlcard-hover-text{
     display:block;
 }
 
@@ -30,7 +30,7 @@
     border-radius: 25px;
     background: #ececf0;
     padding: 20px;
-    width: 107%;
+    width: 105%;
     height: 250px;
     overflow: auto;
 }
