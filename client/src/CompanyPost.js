@@ -1,14 +1,14 @@
 import React from 'react';
 import "./CompanyPost.css"
-import "./RichTextEditor"
-import RichTextEditor from "./RichTextEditor";
+import "./components/TextEditor/RichTextEditor"
+import RichTextEditor from "./components/TextEditor/RichTextEditor";
 
 const CompanyPost = () => {
 
     return (
-        <div className="container company-post-page">
-            <form className="company-post-row">
-                <div className="company-post-col">
+        <div className="container-fluid shadow mt-4 mb-4 rounded p-3 company-post-page">
+            <form className="row company-post-row">
+                <div className="col company-post-col">
                     <h1 className="post-heading">Create A New Job Listing</h1>
                     <p className="instruction-text">Fill the form below then click submit</p>
 

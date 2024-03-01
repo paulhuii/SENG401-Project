@@ -1,4 +1,7 @@
 /* CompanyPost style sheet */
+.company-post-page {
+    max-width: 50%;
+}
 
 .post-heading, .instruction-text{
     text-align: center;
