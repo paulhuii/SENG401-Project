@@ -8,11 +8,8 @@ const CompanyDashboard = () => {
   return (
       <div className="container-fluid">
           <div className="row mt-3 mb-1 p-2 company-dash-header">
-              <div className="col-6">
+              <div className="col d-flex align-items-center justify-content-between">
                   <h1>Company Dashboard</h1>
-              </div>
-
-              <div className="col-6 d-flex justify-content-end align-items-center">
                   <a href="/CompanyPost" className="btn btn-primary">Post a New Job</a>
               </div>
           </div>
