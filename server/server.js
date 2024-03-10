@@ -33,20 +33,15 @@ app.use((req, res, next) => {
 });
 
 // Connect to MongoDB db1 
-const db = mongoose.createConnection(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
+}).then(() => console.log('Connected to MongoDB db'))
+  .catch(err => console.error('Connection error:', err));
 
 const db2 = mongoose.createConnection(process.env.MONGO_URI_1, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
-
-//Catch connection error for db1 (Paul's MongoDB)
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB db');
 });
 
 //Catch connection error for db2 (Mai's MongoDB)
@@ -54,7 +49,6 @@ db2.on('error', console.error.bind(console, 'connection error:'));
 db2.once('open', () => {
   console.log('Connected to MongoDB db2');
 });
-
 
 // Use the authentication routes
 app.use('/api', authRoutes);
