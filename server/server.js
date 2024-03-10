@@ -16,6 +16,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes'); // Import the authentication routes
 const userRoutes = require('./routes/userRoutes'); // Import the user routes
+const jobRoutes = require('./routes/jobRoutes')
 
 require('dotenv').config({ path: '../.env' });
 
@@ -50,9 +51,15 @@ db2.once('open', () => {
   console.log('Connected to MongoDB db2');
 });
 
+const createJobModel = require('./models/Job');
+const Job = createJobModel(db2); // Now Job is a model that uses the db2 connection
+app.locals.Job = Job; // Attach the Job model to the app object
+
+
 // Use the authentication routes
 app.use('/api', authRoutes);
 app.use('/api', userRoutes); 
+app.use('/api/jobs', jobRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000; // Default port is 5000 if not specified in environment
