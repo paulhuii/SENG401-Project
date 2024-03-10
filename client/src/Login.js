@@ -50,7 +50,9 @@ function Login({ setIsLoggedIn }) {
         body: JSON.stringify(formData)
       });
       if (!response.ok) {
-        throw new Error('Failed to login. Please try again.');
+        console.log('Response Status:', response.status);
+        console.log('Status Text:', response.statusText);
+        console.log('Headers:', Array.from(response.headers.entries()));        throw new Error('Failed to login. Please try again.');
       }
       const data = await response.json(); // Parse JSON response
       

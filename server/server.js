@@ -32,26 +32,33 @@ app.use((req, res, next) => {
   next(); // Call the next middleware in the chain
 });
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
+// Connect to MongoDB db1 
+const db = mongoose.createConnection(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-const db = mongoose.connection;
 
+const db2 = mongoose.createConnection(process.env.MONGO_URI_1, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+//Catch connection error for db1 (Paul's MongoDB)
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Connected to MongoDB');
+  console.log('Connected to MongoDB db');
 });
+
+//Catch connection error for db2 (Mai's MongoDB)
+db2.on('error', console.error.bind(console, 'connection error:'));
+db2.once('open', () => {
+  console.log('Connected to MongoDB db2');
+});
+
 
 // Use the authentication routes
 app.use('/api', authRoutes);
-app.use('/api', userRoutes); // Use user routes
-// app.put('/api/profile', (req, res) => {
-//   console.log('Hello');
-//   res.status(200).json({ message: 'Profile endpoint hit successfully' });
-// });
-
+app.use('/api', userRoutes); 
 
 // Start the server
 const PORT = process.env.PORT || 5000; // Default port is 5000 if not specified in environment
