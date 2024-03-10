@@ -40,17 +40,23 @@ const jwt = require('jsonwebtoken');
  */
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
+    console.log("11111111"); // Check the format and completeness
+
     const token = authHeader && authHeader.split(' ')[1]; // Split "Bearer <token>" and take the token part
+    console.log("2222222222"); // Check the format and completeness
+
 
     if (!token) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(401).json({ message: 'Unauthorized in verifyToken.js' });
     }
-
+    console.log("JWT_SECRET:", process.env.JWT_SECRET); // Check if JWT_SECRET is correctly set
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
-            return res.status(401).json({ message: 'Unauthorized' });
+            console.log("Verification Error:", err); // Log the error details
+            return res.status(401).json({ message: `Unauthorized in jwt.verify: ${err.message}` });
         }
         req.userId = decoded.userId;
+        req.role = decoded.role; // Ensure your token's payload includes 'role'
         next();
     });
 };
