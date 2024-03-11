@@ -1,10 +1,10 @@
 import "./JobListing.css"
+import ApplyPopup from "./ApplyPopup";
 
-
-
+// Props fields so far: position:'', company:'', location:'', description:"", email:""
 const JobListing = (props) => {
 
-    // Put a random day until we can get that information from the backend
+    // TODO: Put a random day until we can get that information from the backend
     var daysPassed = Math.floor(Math.random()*10) + 1;
 
     return(
@@ -17,8 +17,13 @@ const JobListing = (props) => {
                 <p class="jlcard-text">{props.description ? String(props.description).slice(0,256) + "..." : "No description available"}</p>
                 <p class="jlcard-hover-text">{props.description ? props.description : "No description available"}</p>
             </div>
-            <button class="btn btn-primary p-2" type="submit">Apply</button> 
-            {/* May have to alter logic if we are accounting for hours as well */}
+            
+            <ApplyPopup 
+                company={props.company ? props.company : "no company given"}
+                position={props.position ? props.position : "No position given"}
+                description={props.description ? props.description : "No description available."} 
+                email={props.email ? props.email : null}
+            />
             <span class="p-2 text-secondary"> {daysPassed > 1 ? "Posted "+daysPassed+" Days Ago": "Posted "+daysPassed+" Day Ago"}</span>
         </div>
         </div>
