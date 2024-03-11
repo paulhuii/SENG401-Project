@@ -18,23 +18,23 @@ function JobBoard() {
     {},
     {}])
 
-    // TODO: A function that updates the list of job listings from the database
-    const fetchJobListings = () =>{
-      try {
-        // Get job listings from database that match query. My suggestion is to load a max of 25 job listings then have a "Next" button at the end of the list that will query the db again for the next 25
-        // updateJobListings([an array containing jobListings as formatted above])
-      } catch (err) {
-        console.log(err);
-      }
+  // TODO: A function that updates the list of job listings from the database
+  const fetchJobListings = () =>{
+    try {
+      // Get job listings from database that match query. My suggestion is to load a max of 25 job listings then have a "Next" button at the end of the list that will query the db again for the next 25
+      // updateJobListings([an array containing jobListings as formatted above])
+    } catch (err) {
+      console.log(err);
     }
-  
-    // Once a user enters the room, load the first 25
-    window.addEventListener("load", function(){
-      updateJobListings()
-      fetchJobListings();
+  }
 
-      queryCounter++;
-    })
+  // Once a user enters the room, load the first 25
+  window.addEventListener("load", function(){
+    updateJobListings()
+    fetchJobListings();
+
+    queryCounter++;
+  })
   
   return (
     <div className='jbpage'>
