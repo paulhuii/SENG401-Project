@@ -19,9 +19,7 @@ exports.create = async (req, res) => {
         location,
         salary,
         contact,
-        description: {
-            text: description.text, 
-        }
+        description,
         // postedBy: req.user._id // Assumes req.user is populated by the auth middleware
       });
 

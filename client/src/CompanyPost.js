@@ -90,8 +90,10 @@ const CompanyPost = () => {
                     <input type="text" className="form-control" id="contact" ref={contactRef}/>
 
                     <label className="description-label mb-2">Description</label>
-                    <RichTextEditor value={jobDescription} setValue={setJobDescription}/>
-
+                    <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} 
+                        className="form-control" // Assuming you're using Bootstrap or a similar CSS framework
+                        rows="4" // Sets the initial visible number of lines in the textarea
+                        ></textarea>
                     <div className="d-flex justify-content-center align-items-center pt-3">
                         <button type="submit" className="btn btn-primary post-btns">Submit</button>
                         <button onClick={() => navigate('/CompanyDashboard')} className="btn btn-primary post-btns">Cancel</button>
