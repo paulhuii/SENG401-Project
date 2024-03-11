@@ -3,7 +3,7 @@ const { roles } = require('../roles');
 
 const authorizeRole = (requiredRole) => {
   return (req, res, next) => {
-    const userRole = req.role; // The role should be attached to req by verifyToken middleware
+    const userRole = req.userRole; // The role should be attached to req by verifyToken middleware
     if (!userRole) {
       return res.status(401).json({ message: "Unauthorized: No role provided" });
     }
