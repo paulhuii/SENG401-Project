@@ -49,7 +49,7 @@ const jobSchema = new mongoose.Schema({
     required: true
   },
   description: {
-    type: Object,
+    type: String,
     required: true
   },
   postedBy: {
