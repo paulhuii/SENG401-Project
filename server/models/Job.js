@@ -25,6 +25,7 @@
 
 const mongoose = require('mongoose');
 
+// Define the job schema outside the exported function
 const jobSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -33,14 +34,14 @@ const jobSchema = new mongoose.Schema({
   jobType: {
     type: String,
     required: true,
-    enum: ['Part-time', 'Full-time', 'Contract', 'Temporary', 'Internship'] // Adjust based on your application's needs
+    enum: ['Part-time', 'Full-time', 'Contract', 'Temporary', 'Internship']
   },
   location: {
     type: String,
     required: true
   },
   salary: {
-    type: String, // Consider using a Number or a structured object if you need to store ranges or additional details
+    type: String, // Consider using a Number for easier range queries and validation
     required: true
   },
   contact: {
@@ -48,15 +49,20 @@ const jobSchema = new mongoose.Schema({
     required: true
   },
   description: {
-    type: String,
+    type: Object,
     required: true
   },
   postedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', // Ensure this matches your User model's name
-    required: true
+    required: false
   },
 }, { timestamps: true }); // Including timestamps to track when jobs are created or updated
 
-const Job = mongoose.model('Job', jobSchema);
-module.exports = Job;
+// Export a function that accepts a connection and returns a Job model bound to that connection
+module.exports = function(connection) {
+  // Use the connection argument to create and return the model
+  // This ensures that the model is associated with the specified connection, not the default connection
+  return connection.model('Job', jobSchema);
+};
+
