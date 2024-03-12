@@ -10,13 +10,19 @@ const JobListing = (props) => {
     return(
     <div class="row-lg-4 d-flex align-items-stretch">
         <div class="jlcard w-100">
-        <div class="jlcard-body">
-            <h3 class="jlcard-title">{props.position ? props.position : "No position given"}</h3> 
-            <h5>{props.company ? props.company : "No company given"} | <span class="text-muted">{props.location ? props.location : "No location given"}</span> </h5>
-            <div class="description">
-                <p class="jlcard-text">{props.description ? String(props.description).slice(0,256) + "..." : "No description available"}</p>
-                <p class="jlcard-hover-text">{props.description ? props.description : "No description available"}</p>
+        <div className="row-lg-4 d-flex align-items-stretch">
+    <div className="jlcard w-100">
+        <div className="jlcard-body">
+            <h3 className="jlcard-title">{props.position ? props.position : "No position given"}</h3>
+            <h5>{props.company ? props.company : "No company given"} | <span className="text-muted">{props.location ? props.location : "No location given"}</span> </h5>
+            <div className="description">
+                <p className="jlcard-text">{props.description ? String(props.description).slice(0,256) + "..." : "No description available"}</p>
+                <p className="jlcard-hover-text">{props.description ? props.description : "No description available"}</p>
             </div>
+            {/* Contact Information */}
+            <h5>Contact Information: {props.email ? props.email : "No contact information provided"}</h5>
+        </div>
+    </div>
             
             <ApplyPopup 
                 company={props.company ? props.company : "no company given"}

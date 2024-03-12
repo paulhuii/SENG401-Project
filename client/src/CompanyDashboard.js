@@ -1,11 +1,34 @@
-import React from 'react';
-import {Col, Nav, Row, Tab} from "react-bootstrap";
-import "./CompanyDashboard.css"
-import JobListing from "./components/JobListings/JobListingCard"
-
-// https://react-bootstrap.netlify.app/docs/components/tabs/#pills
+import React, { useState, useEffect } from 'react';
+import { Col, Nav, Row, Tab } from "react-bootstrap";
+import "./CompanyDashboard.css";
+import JobListing from "./components/JobListings/JobListingCard";
 
 const CompanyDashboard = () => {
+    const [jobListings, setJobListings] = useState([]);
+
+    useEffect(() => {
+        const fetchJobListings = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('/api/jobs/list',{
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                console.log("Overall response:", response); // Prints the response status code
+        
+                if (!response.ok) throw new Error('Hello Failed to fetch job listings');
+                const data = await response.json();
+                console.log("Fetched job listings:", data); // Check fetched data
+                setJobListings(data);
+            } catch (error) {
+                console.error("Error fetching job listings:", error);
+            }
+        };
+
+        fetchJobListings();
+    }, []);
+
     return (
         <div className="container-fluid">
             <div className="row mt-3 mb-1 p-2 company-dash-header">
@@ -37,10 +60,20 @@ const CompanyDashboard = () => {
 
                                 <Tab.Pane eventKey="job_listings">
                                     <h1>Job Listings</h1>
-                                    <h5 className="mb-3">View, delete, and edit your jobs listings here!</h5>
-                                    <JobListing/>
-                                    <JobListing/>
-                                    <JobListing/>
+                                    <h5 className="mb-3">View, delete, and edit your job listings here!</h5>
+                                    {jobListings.map((job, index) => {
+                                        console.log(`Rendering job ${index}`, job); // Check each job being rendered
+                                    return (
+                                        <JobListing
+                                            position={job.title}
+                                            company={job.company}
+                                            location={job.location}
+                                            description={job.description}
+                                            contact={job.email} // Assuming 'email' is part of your data
+                                            jobType={job.jobType}
+                        />
+                    );
+                                    })}
                                 </Tab.Pane>
                             </Tab.Content>
                         </Col>
@@ -48,7 +81,7 @@ const CompanyDashboard = () => {
                 </Tab.Container>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default CompanyDashboard
+export default CompanyDashboard;

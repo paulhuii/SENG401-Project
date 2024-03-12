@@ -10,5 +10,8 @@ router.post('/', (req, res, next) => {
     console.log('Request received for job creation');
     next();
   }, verifyToken, authorizeRole('recruiter'), jobsController.create);
+
+
+  router.get('/list', verifyToken, authorizeRole('recruiter'), jobsController.list);
   
 module.exports = router;

@@ -1,3 +1,20 @@
+// Function to list all jobs
+exports.list = async (req, res) => {
+  // Accessing the Job model from app.locals
+  const Job = req.app.locals.Job;
+  
+  try {
+    // Fetch all jobs from the database
+    const jobs = await Job.find();
+    // Send the jobs back in the response
+    res.status(200).json(jobs);
+  } catch (error) {
+    // Log and send back error message if something goes wrong
+    console.error('Error fetching job listings:', error);
+    res.status(500).send('Failed to fetch job listings');
+  }
+};
+
 exports.create = async (req, res) => {
     // Access the Job model directly from app.locals
     const Job = req.app.locals.Job;
