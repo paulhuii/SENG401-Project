@@ -37,12 +37,15 @@ exports.register = async (req, res) => {
 
         // Generate JWT token for the new user
         const token = jwt.sign(
-            { userId: newUser._id.toString() },
+            {
+                userId: newUser._id.toString(),
+                role: newUser.role // Make sure newUser.role is not undefined
+            },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
 
-        // Send the token along with the success message
+        // Send the tokenn along with the success message
         res.status(201).json({
             message: 'User registered successfully',
             user: {
@@ -77,7 +80,10 @@ exports.login = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign(
-            { userId: user._id.toString() },
+            { 
+                userId: user._id.toString(),
+                role: user.role
+            },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );

@@ -16,6 +16,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes'); // Import the authentication routes
 const userRoutes = require('./routes/userRoutes'); // Import the user routes
+const jobRoutes = require('./routes/jobRoutes')
 
 require('dotenv').config({ path: '../.env' });
 
@@ -32,26 +33,33 @@ app.use((req, res, next) => {
   next(); // Call the next middleware in the chain
 });
 
-// Connect to MongoDB
+// Connect to MongoDB db1 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
-const db = mongoose.connection;
+}).then(() => console.log('Connected to MongoDB db'))
+  .catch(err => console.error('Connection error:', err));
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
+const db2 = mongoose.createConnection(process.env.MONGO_URI_1, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
+
+//Catch connection error for db2 (Mai's MongoDB)
+db2.on('error', console.error.bind(console, 'connection error:'));
+db2.once('open', () => {
+  console.log('Connected to MongoDB db2');
+});
+
+const createJobModel = require('./models/Job');
+const Job = createJobModel(db2); // Now Job is a model that uses the db2 connection
+app.locals.Job = Job; // Attach the Job model to the app object
+
 
 // Use the authentication routes
 app.use('/api', authRoutes);
-app.use('/api', userRoutes); // Use user routes
-// app.put('/api/profile', (req, res) => {
-//   console.log('Hello');
-//   res.status(200).json({ message: 'Profile endpoint hit successfully' });
-// });
-
+app.use('/api', userRoutes); 
+app.use('/api/jobs', jobRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000; // Default port is 5000 if not specified in environment
