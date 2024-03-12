@@ -68,8 +68,8 @@ const CompanyDashboard = () => {
                                             position={job.title}
                                             company={job.company}
                                             location={job.location}
+                                            email={job.contact} // Assuming 'email' is part of your data
                                             description={job.description}
-                                            contact={job.email} // Assuming 'email' is part of your data
                                             jobType={job.jobType}
                         />
                     );
