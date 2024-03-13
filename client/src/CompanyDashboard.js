@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Nav, Row, Tab } from "react-bootstrap";
 import "./CompanyDashboard.css";
-import JobListing from "./components/JobListings/JobListingCard";
+import JobListingCard from "./components/JobListings/JobListingCard";
 
 const CompanyDashboard = () => {
     const [jobListings, setJobListings] = useState([]);
@@ -64,7 +64,7 @@ const CompanyDashboard = () => {
                                     {jobListings.map((job, index) => {
                                         console.log(`Rendering job ${index}`, job); // Check each job being rendered
                                     return (
-                                        <JobListing
+                                        <JobListingCard
                                             position={job.title}
                                             company={job.company}
                                             location={job.location}
