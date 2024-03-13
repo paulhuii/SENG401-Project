@@ -21,7 +21,7 @@ function CompanyCard({ company }) {
             <p className="card-text-db">{company.location}</p>
             <p className="card-text-db">Email: {company.email}</p>
             <button type="button" className="btn btn-primary"onClick={handleViewJobs}>View Jobs</button>
-            <button type="button" className="btn btn-primary" onClick={handleFollow}>{isFollowing ? 'Unfollow' : 'Follow'}</button>
+            <button type="button" className="btn btn-primary" onClick={handleFollow}>{isFollowing ? 'Followed' : 'Follow'}</button>
         </div>
     </div>
   );
