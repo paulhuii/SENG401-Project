@@ -36,13 +36,7 @@ function Dashboard() {
                 <CompanyCard />
                 <CompanyCard />
                 <CompanyCard />
-                {/* <div className="card-db" id='dashboard-card'>
-                  <div className="card-body recruiter">
-                    <h5 className="card-title-db">Company Name</h5>
-                    <p className="card-text-db">Location</p>
-                    <p className="card-text-db">Email:</p>
-                  </div>
-                </div> */}
+                
           
               </div>
 
@@ -64,14 +58,9 @@ function Dashboard() {
                 <ApplicationCard />
                 <ApplicationCard />
                 <ApplicationCard />
-                {/* <div className="card-db" id='dashboard-card'>
-                  <div className="card-body applied-job">
-                    <h5 className="card-title-db">Job Title</h5>
-                    <p className="card-text-db">Company Name</p>
-                    <p className="card-text-db">Location</p>
-                    <p className="card-text-db">Date Applied: 2021-01-01</p>
-                  </div>
-                </div> */}
+
+
+                
               </div>
             </div>}
           </div>
