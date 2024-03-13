@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Col, Nav, Row, Tab } from "react-bootstrap";
 import "./CompanyDashboard.css";
 import JobListing from "./components/JobListings/JobListingCard";
+import ViewApplicants from "./components/ViewApplicants/ViewApplicants";
 
 const CompanyDashboard = () => {
     const [jobListings, setJobListings] = useState([]);
@@ -39,42 +40,50 @@ const CompanyDashboard = () => {
             </div>
 
             <div className="row">
-                <Tab.Container id="company-dash-menu" defaultActiveKey="company_profile">
+                <Tab.Container id="company-dash-menu" defaultActiveKey="job_listings">
                     <Row>
                         <Col lg={2} md={3}>
                             <Nav variant="pills" className="flex-column">
                                 <Nav.Item>
-                                    <Nav.Link eventKey="company_profile">Company Profile</Nav.Link>
+                                    <Nav.Link eventKey="job_listings">Job Listings</Nav.Link>
                                 </Nav.Item>
 
                                 <Nav.Item>
-                                    <Nav.Link eventKey="job_listings">Job Listings</Nav.Link>
+                                    <Nav.Link eventKey="view_applicants">View Applicants</Nav.Link>
                                 </Nav.Item>
                             </Nav>
                         </Col>
                         <Col lg={10} md={9}>
                             <Tab.Content>
-                                <Tab.Pane eventKey="company_profile">
-                                    <h1>Company Profile</h1>
-                                </Tab.Pane>
-
                                 <Tab.Pane eventKey="job_listings">
                                     <h1>Job Listings</h1>
                                     <h5 className="mb-3">View, delete, and edit your job listings here!</h5>
                                     {jobListings.map((job, index) => {
                                         console.log(`Rendering job ${index}`, job); // Check each job being rendered
-                                    return (
-                                        <JobListing
-                                            position={job.title}
-                                            company={job.company}
-                                            location={job.location}
-                                            email={job.contact} // Assuming 'email' is part of your data
-                                            description={job.description}
-                                            jobType={job.jobType}
-                        />
-                    );
+                                        return (
+                                            <JobListing
+                                                position={job.title}
+                                                company={job.company}
+                                                location={job.location}
+                                                email={job.contact} // Assuming 'email' is part of your data
+                                                description={job.description}
+                                                jobType={job.jobType}
+                                            />
+                                        );
                                     })}
                                 </Tab.Pane>
+
+                                <Tab.Pane eventKey="view_applicants">
+                                    <h1>View Applicants</h1>
+                                    <h5 className="mb-3">View all prospective applicants!</h5>
+                                    <ViewApplicants/>
+                                    <ViewApplicants/>
+                                    <ViewApplicants/>
+                                    <ViewApplicants/>
+                                    <ViewApplicants/>
+                                    <ViewApplicants/>
+                                </Tab.Pane>
+
                             </Tab.Content>
                         </Col>
                     </Row>
