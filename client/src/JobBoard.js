@@ -1,7 +1,7 @@
 import React from 'react';
 // import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import JobListing from "./components/jobPosting/JobListing";
+import JobListing from "./components/jobPosting/JobListing.js";
 import "./JobBoard.css"
 import { useState } from 'react';
 
