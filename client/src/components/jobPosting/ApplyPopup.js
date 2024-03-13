@@ -58,7 +58,7 @@ function ApplyPopup({ company, position, description, email }) {
                 </Modal.Body>
 
                 <Modal.Footer >
-                    <input type="file" id="resume" accept='.docx, .doc, .pdf' onChange={(e) => {
+                    <input type="file" id="resume" accept='.docx, .doc, .pdf' disabled={applicationSent} onChange={(e) => {
 
                         // Check if our file has the appropriate extension:
                         var name = document.getElementById("resume").value;
