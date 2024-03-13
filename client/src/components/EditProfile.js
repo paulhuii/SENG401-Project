@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios'
 
 const EditProfile = ({ profileData, onSave, setEditing }) => {
   const [userData, setUserData] = useState({
@@ -16,21 +15,6 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
 
   // Email validation pattern
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // File input constant
-  const [file, setFile] = useState();
-
-  // TODO: Upload a resume to the backend using Axios and Multer: https://www.youtube.com/watch?v=-7w2KtfiMEM
-  const upload = () => {
-    // Check if there was an upload
-    if (document.getElementById("resume").value !== ''){
-      const formData = new FormData()
-      formData.append('file', file)
-      axios.post('PATHTOCHANGE', formData)
-      .then( res => {})
-      .catch( er => console.log(er))
-    }
-  }
 
   // Username validation pattern (basic example, adjust as needed)
   // const usernamePattern = /^[a-zA-Z]+(?:_+[a-zA-Z0-9]+)*(?:\.[a-zA-Z0-9]+(?:_+[a-zA-Z0-9]+)*)?$/;
@@ -101,7 +85,6 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
       alert("Please correct the errors before submitting.");
       return;
     }
-    upload();
     console.log("Submitting data:", userData);
     onSave(userData);
     setEditing(false);
@@ -153,23 +136,7 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
           <label htmlFor="description">Description</label>
           <textarea className="form-control" id="description" name="description" rows="3" value={userData.description} onChange={handleInput}></textarea>
         </div>
-
-        <div className="mb-3">
-          <label htmlFor="resume" className="form-label">Upload Resume</label>
-          <input className="form-control" type="file" id="resume" accept='.docx, .doc, .pdf' onChange={(e) => {
-            // Check if our file has the appropriate extension:
-            var name = document.getElementById("resume").value;
-            if (name.slice(-4) === (".pdf") || name.slice(-4) === (".doc") || name.slice(-4) === (".docx")){
-              setFile(e.target.files[0]);
-              console.log("Resume set to " + name);
-            } else {
-              // Rest if not what was expected
-              document.getElementById("resume").value = '';
-              console.log("Invalid file type selected...");
-            }
-            }}/>
-          {/* The upload will be moved to the submit function of this form */}
-        </div>
+        
         <p/>
 
         <button className="btn btn-primary " type="submit" >Save</button>
