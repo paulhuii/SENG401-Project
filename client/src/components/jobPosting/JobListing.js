@@ -8,6 +8,7 @@ const JobListing = (props) => {
     var daysPassed = Math.floor(Math.random()*10) + 1;
 
     return(
+
 <div className="row-lg-4 d-flex align-items-stretch">
     <div className="jlcard w-100">
         <div className="jlcard-body">
@@ -27,7 +28,7 @@ const JobListing = (props) => {
             />
             <span class="p-2 text-secondary"> {daysPassed > 1 ? "Posted "+daysPassed+" Days Ago": "Posted "+daysPassed+" Day Ago"}</span>
         </div>
-    </div>
+    </div>      
 </div>
 
     );
