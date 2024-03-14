@@ -4,7 +4,6 @@
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    
 }
 
 .divider .menu {
@@ -61,3 +60,31 @@
     color: #2D81FF;
     
 } */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.pagination-button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .pagination-button:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }

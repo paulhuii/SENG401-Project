@@ -12,12 +12,12 @@ function ApplicationCard({ application }) {
 
   return (
     <div className="card-db" id='dashboard-card'>
-        <div className="card-body applied-job">
+        <div className="card-body applied-job"> 
             <h5 className="card-title-db">{application.jobTitle}</h5>
             <p className="card-text-db">{application.companyName}</p>
             <p className="card-text-db">{application.location}</p>
             <p className="card-text-db">Date Applied: {application.dateApplied}</p>
-            <button type="button" className="btn btn-primary" onClick={handleViewApplication}>View Application</button>
+            <button type="button" className="btn btn-primary" onClick={handleViewApplication}>View Job Post</button>
         </div>
     </div>
   );

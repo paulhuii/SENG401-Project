@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import "./DashboardCard.css"
 
 function CompanyCard({ company }) {
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(true);
 
   const handleFollow = () => {
     setIsFollowing(!isFollowing);
@@ -20,7 +20,7 @@ function CompanyCard({ company }) {
             <h5 className="card-title-db">{company.name}</h5>
             <p className="card-text-db">{company.location}</p>
             <p className="card-text-db">Email: {company.email}</p>
-            <button type="button" className="btn btn-primary"onClick={handleViewJobs}>View Jobs</button>
+            <button type="button" className="btn btn-primary"onClick={handleViewJobs}>View Profile</button>
             <button type="button" className="btn btn-primary" onClick={handleFollow}>{isFollowing ? 'Followed' : 'Follow'}</button>
         </div>
     </div>
