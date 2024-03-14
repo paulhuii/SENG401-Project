@@ -21,11 +21,11 @@ function ApplyPopup({ company, position, description, email }) {
     const upload = () => {
         // Check if there was an upload
         if (document.getElementById("resume").value !== ''){
-        const formData = new FormData()
-        formData.append('file', file)
+        const formData = new FormData();
+        formData.append('file', file);
         axios.post('PATHTOCHANGE', formData)
         .then( res => {})
-        .catch( er => console.log(er))
+        .catch( er => console.log(er));
         }
     }
 
