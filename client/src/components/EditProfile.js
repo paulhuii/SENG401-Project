@@ -85,7 +85,6 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
       alert("Please correct the errors before submitting.");
       return;
     }
-
     console.log("Submitting data:", userData);
     onSave(userData);
     setEditing(false);
@@ -93,9 +92,9 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
 
   return (
     <div className="edit_profile">
-      <button className="btn btn-danger btn_close" onClick={() => setEditing(false)}>Close</button>
       <form onSubmit={handleSubmit}>
         {/* Fields */}
+        <p/>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" className="form-control" id="name" name="name" value={userData.name} onChange={handleInput} />
@@ -138,8 +137,11 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
           <label htmlFor="description">Description</label>
           <textarea className="form-control" id="description" name="description" rows="3" value={userData.description} onChange={handleInput}></textarea>
         </div>
+        
+        <p/>
 
-        <button type="submit" className="btn btn-info w-100">Save</button>
+        <button className="btn btn-primary " type="submit" >Save</button>
+        <button style={{float:'right'}} className="btn btn-danger  btn_close" onClick={() => setEditing(false)}>Close</button>
       </form>
     </div>
   );
