@@ -8,9 +8,8 @@ const JobListing = (props) => {
     var daysPassed = Math.floor(Math.random()*10) + 1;
 
     return(
-    <div class="row-lg-4 d-flex align-items-stretch">
-        <div class="jlcard w-100">
-        <div className="row-lg-4 d-flex align-items-stretch">
+
+<div className="row-lg-4 d-flex align-items-stretch">
     <div className="jlcard w-100">
         <div className="jlcard-body">
             <h3 className="jlcard-title">{props.position ? props.position : "No position given"}</h3>
@@ -21,9 +20,6 @@ const JobListing = (props) => {
             </div>
             {/* Contact Information */}
             <h5>Contact Information: {props.email ? props.email : "No contact information provided"}</h5>
-        </div>
-    </div>
-            
             <ApplyPopup 
                 company={props.company ? props.company : "no company given"}
                 position={props.position ? props.position : "No position given"}
@@ -32,8 +28,9 @@ const JobListing = (props) => {
             />
             <span class="p-2 text-secondary"> {daysPassed > 1 ? "Posted "+daysPassed+" Days Ago": "Posted "+daysPassed+" Day Ago"}</span>
         </div>
-        </div>
-    </div>
+    </div>      
+</div>
+
     );
 
 };

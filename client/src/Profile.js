@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import EditProfile from './components/EditProfile';
+import ProfilePic from './components/ProfilePic/ProfilePic.js';
 
 function Profile() {
   const [profileData, setProfileData] = useState(null);
@@ -78,6 +79,8 @@ function Profile() {
   return (
     <div className="profile-container">
       <h2 className="profile-title">User Profile</h2>
+      <ProfilePic/>
+      
       {editing ? (
         <EditProfile profileData={profileData} onSave={handleSave} setEditing={setEditing} />
       ) : (
