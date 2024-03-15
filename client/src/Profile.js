@@ -21,19 +21,7 @@ function Profile() {
       localStorage.setItem('user', JSON.stringify(profileData));
     }
   }, [profileData]); // Sync with local storage on profileData change
-
-  // const fetchProfileData = async () => {
-  //   try {
-  //     const response = await fetch('/api/profile');
-  //     if (!response.ok) {
-  //       throw new Error('Failed to fetch profile data');
-  //     }
-  //     const data = await response.json();
-  //     setProfileData(data);
-  //   } catch (error) {
-  //     setError(error.message);
-  //   }
-  // };
+  
   const fetchProfileData = async () => {
     try {
       const response = await fetch('/api/profile');

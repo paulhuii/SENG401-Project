@@ -120,17 +120,17 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
         <div className="form-group">
           <label htmlFor="role">Role</label>
           <select className="form-control" id="role" name="role" value={userData.role} onChange={handleInput}>
-            <option value="recruiter">Recruiter</option>
-            <option value="jobseeker">Jobseeker</option>
+            <option value="Recruiter">Recruiter</option>
+            <option value="Jobseeker">Jobseeker</option>
           </select>
         </div>
 
         <div className="form-group">
           <label htmlFor="gender">Gender</label>
           <select className="form-control" id="gender" name="gender" value={userData.gender} onChange={handleInput}>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Non-binary/Other</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Non-binary/Other">Non-binary/Other</option>
           </select>
         </div>
 

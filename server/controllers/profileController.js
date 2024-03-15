@@ -15,12 +15,12 @@ const userCtrl = {
         console.log('Received updateUser request with data:', req.body);
 
         try {
-            const { name, username, email, role, gender } = req.body
+            const { name, username, email, role, gender, description } = req.body
             if(!name) return res.status(400).json({msg: "Please add your full name."})
             console.log('Updating user ID:', req.userId);
 
             // Assuming you're using MongoDB with Mongoose for database operations
-            const updatedUser = await User.findByIdAndUpdate(req.userId, { name, username, email, role, gender }, { new: true });
+            const updatedUser = await User.findByIdAndUpdate(req.userId, { name, username, email, role, gender, description }, { new: true });
       
             if (!updatedUser) {
               console.log('User not found with ID:', req.userId);

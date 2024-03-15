@@ -163,8 +163,8 @@ function Signup() {
               required
             >
               <option value="">Select role</option>
-              <option value="recruiter">Recruiter</option>
-              <option value="jobseeker">Job Seeker</option>
+              <option value="Recruiter">Recruiter</option>
+              <option value="Jobseeker">Job Seeker</option>
             </select>
           </div>
           <div className="form-group">
@@ -177,9 +177,9 @@ function Signup() {
               required
             >
               <option value="">Select gender</option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-              <option value="non-binary">Non-binary</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Non-binary">Non-binary</option>
 
             </select>
           </div>

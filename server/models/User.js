@@ -47,15 +47,20 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['recruiter', 'jobseeker'], // Define possible roles
+    enum: ['Recruiter', 'Jobseeker'], // Define possible roles
     required: true
   },
 
   gender: {
     type: String, 
-    enum: ['female', 'male', 'non-binary'],
+    enum: ['Female', 'Male', 'Non-binary'],
     required: true
   },
+
+  description: {
+    type: String,
+    required: false
+  }
 
 });
 
