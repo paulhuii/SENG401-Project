@@ -94,6 +94,7 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
     <div className="edit_profile">
       <form onSubmit={handleSubmit}>
         {/* Fields */}
+        <p/>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" className="form-control" id="name" name="name" value={userData.name} onChange={handleInput} />
