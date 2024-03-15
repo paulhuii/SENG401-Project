@@ -31,6 +31,7 @@ function Dashboard() {
     companyName: `Company ${index + 1}`, 
     location: `Location ${index + 1}`,
     dateApplied: new Date(Date.now() - (20 - index) * 86400000).toLocaleDateString(),
+    salary: `$${index * 10000}`,
   }));
 
   const totalCompanyPages = Math.ceil(companies.length / itemsPerPage);
