@@ -53,6 +53,42 @@ function Dashboard() {
     setApplicationPage(pageNumber);
   };
 
+  const handleCompanyPreviousClick = () => {
+    if (companyPage > 1) {
+      setCompanyPage(companyPage - 1);
+    }
+  };
+  
+  const handleCompanyNextClick = () => {
+    if (companyPage < totalCompanyPages) {
+      setCompanyPage(companyPage + 1);
+    }
+  };
+  
+  const handleJobPreviousClick = () => {
+    if (jobPage > 1) {
+      setJobPage(jobPage - 1);
+    }
+  };
+  
+  const handleJobNextClick = () => {
+    if (jobPage < totalJobPages) {
+      setJobPage(jobPage + 1);
+    }
+  };
+  
+  const handleApplicationPreviousClick = () => {
+    if (applicationPage > 1) {
+      setApplicationPage(applicationPage - 1);
+    }
+  };
+
+  const handleApplicationNextClick = () => {
+    if (applicationPage < totalApplicationPages) {
+      setApplicationPage(applicationPage + 1);
+    }
+  };
+
   const currentCompanies = companies.slice((companyPage - 1) * itemsPerPage, companyPage * itemsPerPage);
   const currentJobs = jobs.slice((jobPage - 1) * itemsPerPage, jobPage * itemsPerPage);
   const currentApplications = applications.slice((applicationPage - 1) * itemsPerPage, applicationPage * itemsPerPage);
@@ -77,11 +113,29 @@ function Dashboard() {
                 {currentCompanies.map(company => <CompanyCard key={company.id} company={company} />)}
               </div>
               <div className="pagination">
+                <div className="pagination-button-placeholder">
+                  {companyPage > 1 && (
+                    <button className="pagination-button prev-next-button" onClick={handleCompanyPreviousClick}>
+                      Previous
+                    </button>
+                  )}
+                </div>
                 {[...Array(totalCompanyPages)].map((_, index) => (
-                  <button className="pagination-button" key={index} onClick={() => handleCompanyPageClick(index + 1)}>
+                  <button 
+                    className={`pagination-button ${companyPage === index + 1 ? 'active-page' : ''}`} 
+                    key={index} 
+                    onClick={() => handleCompanyPageClick(index + 1)}
+                  >
                     {index + 1}
                   </button>
                 ))}
+                <div className="pagination-button-placeholder">
+                {companyPage < totalCompanyPages && (
+                  <button className="pagination-button prev-next-button" onClick={handleCompanyNextClick}>
+                    Next
+                  </button>
+                )}
+                </div>
               </div>
             </div>}
             {selectedMenuItem === 'Browse Available Jobs' && 
@@ -90,11 +144,30 @@ function Dashboard() {
                 {currentJobs.map(job => <JobListing key={job.id} job={job} />)}
               </div>
               <div className="pagination">
+                <div className="pagination-button-placeholder">
+                  {jobPage > 1 && (
+                    <button className="pagination-button prev-next-button" onClick={handleJobPreviousClick}>
+                      Previous
+                    </button>
+                  )}
+                </div>
                 {[...Array(totalJobPages)].map((_, index) => (
-                  <button className="pagination-button" key={index} onClick={() => handleJobPageClick(index + 1)}>
+                  <button 
+                    className={`pagination-button ${jobPage === index + 1 ? 'active-page' : ''}`} 
+                    key={index} 
+                    onClick={() => handleJobPageClick(index + 1)}
+                  >
                     {index + 1}
                   </button>
                 ))}
+                <div className="pagination-button-placeholder">
+                  {jobPage < totalJobPages && (
+                    <button className="pagination-button prev-next-button" onClick={handleJobNextClick}>
+                      Next
+                    </button>
+                  )}
+                </div>
+
               </div>
             </div>}
             {selectedMenuItem === 'My Applications' && 
@@ -103,11 +176,29 @@ function Dashboard() {
                 {currentApplications.map(application => <ApplicationCard key={application.id} application={application} />)}
               </div>
               <div className="pagination">
+                <div className="pagination-button-placeholder">
+                  {applicationPage > 1 && (
+                    <button className="pagination-button prev-next-button" onClick={handleApplicationPreviousClick}>
+                      Previous
+                    </button>
+                  )}
+                </div>
                 {[...Array(totalApplicationPages)].map((_, index) => (
-                  <button className="pagination-button" key={index} onClick={() => handleApplicationPageClick(index + 1)}>
+                  <button 
+                    className={`pagination-button ${applicationPage === index + 1 ? 'active-page' : ''}`} 
+                    key={index} 
+                    onClick={() => handleApplicationPageClick(index + 1)}
+                  >
                     {index + 1}
                   </button>
                 ))}
+                <div className="pagination-button-placeholder">
+                  {applicationPage < totalApplicationPages && (
+                    <button className="pagination-button prev-next-button" onClick={handleApplicationNextClick}>
+                      Next
+                    </button>
+                  )}
+                </div>
               </div>
             </div>}
           </div>
