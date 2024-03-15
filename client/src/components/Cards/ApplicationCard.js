@@ -6,8 +6,9 @@ function ApplicationCard({ application }) {
   const [isViewingApplication, setIsViewingApplication] = useState(false);
 
   const handleViewApplication = () => {
-    setIsViewingApplication(true);
+    setIsViewingApplication(!isViewingApplication);
     // TODO: Implement view application feature
+
   };
 
   return (
@@ -17,8 +18,21 @@ function ApplicationCard({ application }) {
             <p className="card-text-db">{application.companyName}</p>
             <p className="card-text-db">{application.location}</p>
             <p className="card-text-db">Date Applied: {application.dateApplied}</p>
-            <button type="button" className="btn btn-primary" onClick={handleViewApplication}>View Job Post</button>
+            <button type="button" className="btn btn-primary" onClick={handleViewApplication}>
+              {isViewingApplication ? 'Hide Details' : 'View Details'}
+            </button>       
         </div>
+        {isViewingApplication && (
+          <div className="application-details">
+            <p>Salary: {application.salary}</p>
+            <div className="description">
+                <p className="jlcard-text">{application.description ? String(application.description).slice(0,256) + "..." : "No description available"}</p>
+                <p className="jlcard-hover-text">{application.description ? application.description : "No description available"}</p>
+            </div>
+            
+            <p>Requirements: {application.requirements}</p>
+          </div>
+        )}
     </div>
   );
 }
@@ -29,6 +43,7 @@ ApplicationCard.propTypes = {
     companyName: PropTypes.string,
     location: PropTypes.string,
     dateApplied: PropTypes.string,
+    salary: PropTypes.string,
   }),
 };
 
@@ -38,6 +53,7 @@ ApplicationCard.defaultProps = {
     companyName: 'Company Name',
     location: 'Location',
     dateApplied: 'Date Applied',
+    salary: '$$$$$$',
   },
 };
 
