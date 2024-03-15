@@ -69,7 +69,15 @@ function Login({ setIsLoggedIn }) {
         localStorage.setItem('token', data.token); // Save the token to localStorage
         localStorage.setItem('user', JSON.stringify(data.user)); // Save the user data to localStorage
         setIsLoggedIn(true); // Update isLoggedIn state to true
-        window.location.href = '/dashboard'; // Redirect to dashboard after login
+        
+        const role = data.user.role.toLowerCase();
+        // Redirect to different pages based on role
+        if (role === 'recruiter') {
+          window.location.href = '/CompanyDashboard';
+        } else if (role === 'jobseeker') {
+          window.location.href = '/dashboard'; 
+        } 
+        // window.location.href = '/dashboard'; // Redirect to dashboard after login
       } else {
         throw new Error('Token not found in response');
       }
