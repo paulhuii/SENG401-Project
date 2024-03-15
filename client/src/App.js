@@ -38,6 +38,7 @@ import Signup from './Signup';
 import Dashboard from './Dashboard';
 import Profile from './Profile'; // Import the Profile component
 import JobBoard from './JobBoard';
+import UnderDevelopment from "./UnderDevelopment";
 import './App.css';
 
 
@@ -159,6 +160,7 @@ function App() {
             <Route path="/CompanyPost" element={<CompanyPost/>}/>
             <Route path="/JobBoard" element={<JobBoard />}/>
             <Route path="/CompanyDashboard" element={<CompanyDashboard/>}/>
+            <Route path="/underdevelopment" element={<UnderDevelopment/>}/>
           </Routes>
         </div>
       </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Col, Nav, Row, Tab } from "react-bootstrap";
 import "./CompanyDashboard.css";
 import JobListing from "./components/JobListings/JobListingCard";
-import ViewApplicants from "./components/ViewApplicants/ViewApplicants";
 
 const CompanyDashboard = () => {
     const [jobListings, setJobListings] = useState([]);
@@ -47,10 +46,6 @@ const CompanyDashboard = () => {
                                 <Nav.Item>
                                     <Nav.Link eventKey="job_listings">Job Listings</Nav.Link>
                                 </Nav.Item>
-
-                                <Nav.Item>
-                                    <Nav.Link eventKey="view_applicants">View Applicants</Nav.Link>
-                                </Nav.Item>
                             </Nav>
                         </Col>
                         <Col lg={10} md={9}>
@@ -72,18 +67,6 @@ const CompanyDashboard = () => {
                                         );
                                     })}
                                 </Tab.Pane>
-
-                                <Tab.Pane eventKey="view_applicants">
-                                    <h1>View Applicants</h1>
-                                    <h5 className="mb-3">View all prospective applicants!</h5>
-                                    <ViewApplicants/>
-                                    <ViewApplicants/>
-                                    <ViewApplicants/>
-                                    <ViewApplicants/>
-                                    <ViewApplicants/>
-                                    <ViewApplicants/>
-                                </Tab.Pane>
-
                             </Tab.Content>
                         </Col>
                     </Row>
