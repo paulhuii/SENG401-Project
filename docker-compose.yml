@@ -17,7 +17,8 @@ services:  # Defines the different services (containers) that make up your appli
       dockerfile: Dockerfile  # The Dockerfile to use for the backend service.
     ports:
       - "5000:5000"  # Maps port 5000 on the host to port 5000 in the container.
-
+    env_file:
+      - .env
 
 # This is how to run the application:
 # 1. Open a terminal in the root directory of the project.
