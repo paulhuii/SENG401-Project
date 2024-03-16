@@ -52,3 +52,23 @@ exports.create = async (req, res) => {
       res.status(400).json({ message: 'Failed to create job', error: error.message });
     }
 };
+
+
+// function to count the number of jobs in the database
+exports.count = async (req, res) => {
+  // Accessing the Job model from app.locals
+  const Job = req.app.locals.Job;
+
+  try {
+    // Count the number of jobs in the database
+    const count = await Job.countDocuments();
+    // Send the count back in the response
+    res.status(200).json({ count });
+  } catch (error) {
+    // Log and send back error message if something goes wrong
+    console.error('Error counting jobs:', error);
+    res.status(500).send('Failed to count jobs');
+  }
+};
+
+

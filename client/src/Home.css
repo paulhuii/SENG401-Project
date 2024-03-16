@@ -56,9 +56,12 @@
     margin-top: 10vw;
 }
 
-.home-stats .card{
+.home-stats .card {
     margin: 1vw;
+    max-width: 300px;
+    flex-shrink: 1;
 }
+
 
 .home-stats .card-title {
     text-align: center;

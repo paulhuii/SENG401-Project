@@ -1,13 +1,31 @@
 // Home.js
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 import {Button, Card} from "react-bootstrap";
 
 
 function Home() {
-    return (
+    // constant and setter for the number of jobs currently in the mongodb database
+    const [jobCount, setJobCount] = useState(0);
+
+
+    useEffect(() => {
+        // Fetch job count
+        axios.get('http://localhost:3000/api/jobs/count')
+            .then(response => {
+                setJobCount(response.data.count);
+            })
+            .catch(error => {
+                console.error('Error fetching job count:', error);
+            });
+    }, []);
+
+
+
+        return (
         <div className="home-page-container">
             <h1 className="home-page-slogan">Propel Your Career or Business into the Future with Job Hub</h1>
 
@@ -132,8 +150,11 @@ function Home() {
                     <Card.Body>
                         <Card.Title className="home-card-title">Jobs</Card.Title>
                         <Card.Text className="home-card-text">
-                           List number of jobs available
+                            Explore countless Job opportunities with Job Hub. <br/><br/>
+                            Now listing <strong><span style={{fontWeight: 'bold', textDecoration: 'underline'}}>{jobCount}</span></strong> Jobs and counting!
                         </Card.Text>
+
+
                     </Card.Body>
                 </Card>
 
