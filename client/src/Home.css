@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background-color: #2D81FF;
-    min-height: 100vh;
+    min-height:calc(100vh - 71px);
 }
 
 .home-page-slogan{
@@ -53,12 +53,15 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 10vw;
+    margin-top: 5vw;
 }
 
-.home-stats .card{
+.home-stats .card {
     margin: 1vw;
+    max-width: 300px;
+    flex-shrink: 1;
 }
+
 
 .home-stats .card-title {
     text-align: center;
