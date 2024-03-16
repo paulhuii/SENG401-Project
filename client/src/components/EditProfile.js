@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { updateRole } from '../../src/App.js';
+
 
 const EditProfile = ({ profileData, onSave, setEditing }) => {
   const [userData, setUserData] = useState({
@@ -79,7 +81,7 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
     const hasErrors = Object.values(errors).some(error => error !== "");
 
     // Check if all fields are filled
-    const allFieldsFilled = Object.values(userData).every(value => value.trim() !== "");
+    const allFieldsFilled = Object.values(userData).every(value => (value.trim() !== "") || value === userData.description ); // Description is optional to fill in.
 
     if (hasErrors || !allFieldsFilled) {
       alert("Please correct the errors before submitting.");
@@ -88,7 +90,7 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
     console.log("Submitting data:", userData);
     onSave(userData);
     setEditing(false);
-  };
+    };
 
   return (
     <div className="edit_profile">
