@@ -81,7 +81,7 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
     const hasErrors = Object.values(errors).some(error => error !== "");
 
     // Check if all fields are filled
-    const allFieldsFilled = Object.values(userData).every(value => (value.trim() !== "") || value === userData.description ); // Description is optional to fill in.
+    const allFieldsFilled = Object.values(userData).every(value => (value.trim() !== "") || value === userData.role ||value === userData.description ); // Role can't be changed and description is optional to fill in.
 
     if (hasErrors || !allFieldsFilled) {
       alert("Please correct the errors before submitting.");
@@ -120,7 +120,7 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
 
         <div className="form-group">
           <label htmlFor="role">Role</label>
-          <select className="form-control" id="role" name="role" value={userData.role} onChange={handleInput}>
+          <select className="form-control" id="role" name="role" value={userData.role} onChange={handleInput} disabled>
             <option value="Recruiter">Recruiter</option>
             <option value="Jobseeker">Jobseeker</option>
           </select>
