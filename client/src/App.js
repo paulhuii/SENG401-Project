@@ -122,7 +122,7 @@ function App() {
                 {isLoggedIn && (
                     <>
                       <li className="nav-item">
-                        <Link to={role.toLowerCase() === 'recruiter' ? "/CompanyDashboard" : "/dashboard"} className="nav-link">
+                        <Link to={role === 'Recruiter' ? "/CompanyDashboard" : "/dashboard"} className="nav-link">
                           <button className="btn btn-primary me-2">Dashboard</button>
                         </Link>
                       </li>

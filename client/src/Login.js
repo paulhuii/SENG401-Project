@@ -71,11 +71,11 @@ function Login({ setIsLoggedIn }) {
         localStorage.setItem('user', JSON.stringify(data.user)); // Save the user data to localStorage
         setIsLoggedIn(true); // Update isLoggedIn state to true
         
-        const role = data.user.role.toLowerCase();
+        const role = data.user.role;
         // Redirect to different pages based on role
-        if (role === 'recruiter') {
+        if (role === 'Recruiter') {
           window.location.href = '/CompanyDashboard';
-        } else if (role === 'jobseeker') {
+        } else if (role === 'Jobseeker') {
           window.location.href = '/dashboard'; 
         } 
         // window.location.href = '/dashboard'; // Redirect to dashboard after login
