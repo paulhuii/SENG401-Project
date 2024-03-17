@@ -11,7 +11,7 @@ function Home() {
     // constant and setter for the number of jobs currently in the mongodb database
     const [jobCount, setJobCount] = useState(0);
 
-    // constant and setter for the number of job seekers currently in the mongodb database
+    // constant and setter for the number of jobseekers currently in the mongodb database
     const [applicantCount, setApplicantCount] = useState(0);
 
     useEffect(() => {
