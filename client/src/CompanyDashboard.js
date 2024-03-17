@@ -63,6 +63,7 @@ const CompanyDashboard = () => {
                                                 email={job.contact} // Assuming 'email' is part of your data
                                                 description={job.description}
                                                 jobType={job.jobType}
+                                                salary={job.salary}
                                             />
                                         );
                                     })}

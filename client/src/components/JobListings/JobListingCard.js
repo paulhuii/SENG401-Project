@@ -4,7 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import {Button, Modal} from "react-bootstrap";
 import ViewApplicants from "../ViewApplicants/ViewApplicants";
 
-const JobListingCard = ({ position, company, location, description, email, jobType }) => {
+const JobListingCard = ({ position, company, location, description, email, jobType, salary }) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -62,6 +62,8 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                     <h6 className="shadow-sm p-2 rounded bg-primary me-2 text-white">{jobType}</h6>
                 </div>
             </div>
+
+            <h5>Salary: {salary}</h5>
 
             <h5>Contact Information: {email}</h5>
 
