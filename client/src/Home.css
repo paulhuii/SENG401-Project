@@ -33,8 +33,10 @@
 
 .home-carousel-card-container .card {
     margin: 1vw;
-    min-height: 10vw;
-    max-width: 25vw;
+    min-height: 13vw;
+    max-height: 13vw;
+    min-width: 20vw;
+    max-width: 20vw;
 }
 
 .card .home-card-title{

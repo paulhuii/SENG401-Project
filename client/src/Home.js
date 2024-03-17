@@ -14,6 +14,15 @@ function Home() {
     // constant and setter for the number of job seekers currently in the mongodb database
     const [applicantCount, setApplicantCount] = useState(0);
 
+    // job 1 for carousel
+    const [job1, setJob1] = useState([]);
+
+    // job 2 for carousel
+    const [job2, setJob2] = useState([]);
+
+    // job 3 for carousel
+    const [job3, setJob3] = useState([]);
+
     useEffect(() => {
         // Fetch job count
         axios.get('http://localhost:3000/api/jobs/count')
@@ -33,6 +42,26 @@ function Home() {
                 console.error('Error fetching Applicant count:', error);
             });
 
+        // fetch the job list, then shuffle to randomly get 3 jobs for the carousel cards
+        axios.get('http://localhost:5000/api/jobs/getList')
+            .then(response => {
+                // Shuffle the jobs array
+                const shuffledJobs = response.data.sort(() => Math.random() - 0.5);
+
+                // Set the first job to the first card
+                setJob1(shuffledJobs[0]);
+
+                // Set the second job to the second card
+                setJob2(shuffledJobs[1]);
+
+                // Set the third job to the third card
+                setJob3(shuffledJobs[2]);
+            })
+            .catch(error => {
+                console.error('Error fetching jobs:', error);
+            });
+
+
     }, []);
 
 
@@ -43,14 +72,19 @@ function Home() {
 
             <div className="Home-page-content">
                 <Carousel className="home-carousel" interval={6000}>
-                    <Carousel.Item>
+
+                    <Carousel.Item key={job1._id}>
                         <div className="home-carousel-card-container">
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Job 1</Card.Title>
+                                    <Card.Title className="home-card-title">{job1.title}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Job 1 and some info about the jobs
+                                        {job1 && job1.description && job1.description.length > 80 ? job1.description.substring(0, 80) + '...' : job1.description}
+                                        <br/>
+                                        <strong>Job Type:</strong> {job1.jobType}<br/>
+                                        <strong>Location:</strong> {job1.location}<br/>
+                                        <strong>Salary:</strong> {job1.salary}
                                     </Card.Text>
                                     <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
                                 </Card.Body>
@@ -59,9 +93,14 @@ function Home() {
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Job 2</Card.Title>
+                                    <Card.Title className="home-card-title">{job2.title}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Job 2 and some info about the jobs
+                                        {job2 && job2.description && job2.description.length > 80 ? job2.description.substring(0, 80) + '...' : job2.description}
+
+                                        <br/>
+                                        <strong>Job Type:</strong> {job2.jobType}<br/>
+                                        <strong>Location:</strong> {job2.location}<br/>
+                                        <strong>Salary:</strong> {job2.salary}
                                     </Card.Text>
                                     <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
                                 </Card.Body>
@@ -70,9 +109,13 @@ function Home() {
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Job 3</Card.Title>
+                                    <Card.Title className="home-card-title">{job3.title}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Job 3 and some info about the jobs
+                                        {job3 && job3.description && job3.description.length > 80 ? job1.description.substring(0, 80) + '...' : job3.description}
+                                        <br/>
+                                        <strong>Job Type:</strong> {job3.jobType}<br/>
+                                        <strong>Location:</strong> {job3.location}<br/>
+                                        <strong>Salary:</strong> {job3.salary}
                                     </Card.Text>
                                     <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
                                 </Card.Body>
