@@ -33,10 +33,9 @@
 
 .home-carousel-card-container .card {
     margin: 1vw;
-    min-height: 13vw;
-    max-height: 13vw;
-    min-width: 20vw;
-    max-width: 20vw;
+    width: 400px;
+    height: auto;
+    min-height: 220px;
 }
 
 .card .home-card-title{
@@ -60,9 +59,11 @@
 
 .home-stats .card {
     margin: 1vw;
-    max-width: 300px;
+    width: 300px; /* Set a fixed width */
+    height: 220px; /* Set a fixed height */
     flex-shrink: 1;
 }
+
 
 
 .home-stats .card-title {
@@ -85,4 +86,8 @@
 .home-stats .card:hover{
     transform: scale(1.02);
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.home-carousel .carousel-indicators {
+    bottom:-30px;
 }

@@ -80,8 +80,6 @@ function Home() {
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{job1.title}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        {job1 && job1.description && job1.description.length > 80 ? job1.description.substring(0, 80) + '...' : job1.description}
-                                        <br/>
                                         <strong>Job Type:</strong> {job1.jobType}<br/>
                                         <strong>Location:</strong> {job1.location}<br/>
                                         <strong>Salary:</strong> {job1.salary}
@@ -95,9 +93,6 @@ function Home() {
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{job2.title}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        {job2 && job2.description && job2.description.length > 80 ? job2.description.substring(0, 80) + '...' : job2.description}
-
-                                        <br/>
                                         <strong>Job Type:</strong> {job2.jobType}<br/>
                                         <strong>Location:</strong> {job2.location}<br/>
                                         <strong>Salary:</strong> {job2.salary}
@@ -111,8 +106,6 @@ function Home() {
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{job3.title}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        {job3 && job3.description && job3.description.length > 80 ? job1.description.substring(0, 80) + '...' : job3.description}
-                                        <br/>
                                         <strong>Job Type:</strong> {job3.jobType}<br/>
                                         <strong>Location:</strong> {job3.location}<br/>
                                         <strong>Salary:</strong> {job3.salary}
