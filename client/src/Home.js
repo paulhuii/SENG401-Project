@@ -1,13 +1,43 @@
 // Home.js
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 import {Button, Card} from "react-bootstrap";
 
 
 function Home() {
-    return (
+    // constant and setter for the number of jobs currently in the mongodb database
+    const [jobCount, setJobCount] = useState(0);
+
+    // constant and setter for the number of job seekers currently in the mongodb database
+    const [applicantCount, setApplicantCount] = useState(0);
+
+    useEffect(() => {
+        // Fetch job count
+        axios.get('http://localhost:3000/api/jobs/count')
+            .then(response => {
+                setJobCount(response.data.count);
+            })
+            .catch(error => {
+                console.error('Error fetching job count:', error);
+            });
+
+        // Fetch user count
+        axios.get('http://localhost:3000/api/applicantCount')
+            .then(response => {
+                setApplicantCount(response.data.count);
+            })
+            .catch(error => {
+                console.error('Error fetching Applicant count:', error);
+            });
+
+    }, []);
+
+
+
+        return (
         <div className="home-page-container">
             <h1 className="home-page-slogan">Propel Your Career or Business into the Future with Job Hub</h1>
 
@@ -130,10 +160,12 @@ function Home() {
                 <Card>
                     <Card.Img variant="top"  src="/briefcase.png" style={{ height: "50px", width: "50px",  margin: "0 auto" }}/>
                     <Card.Body>
-                        <Card.Title className="home-card-title">Jobs</Card.Title>
+                        <Card.Title className="home-card-title"><strong><span style={{fontWeight: 'bold', textDecoration: 'underline'}}>{jobCount}</span></strong> Job Listings</Card.Title>
                         <Card.Text className="home-card-text">
-                           List number of jobs available
+                            Explore countless job opportunities with Job Hub or showcase your company's openings and connect with our vibrant community of career seekers!
                         </Card.Text>
+
+
                     </Card.Body>
                 </Card>
 
@@ -150,10 +182,11 @@ function Home() {
                 <Card>
                     <Card.Img variant="top" src="/group.png"  style={{ height: "50px", width: "50px",  margin: "0 auto"}}/>
                     <Card.Body>
-                        <Card.Title className="home-card-title">Applicants</Card.Title>
+                        <Card.Title className="home-card-title"> <strong><span style={{fontWeight: 'bold', textDecoration: 'underline'}}>{applicantCount}</span></strong>: Applicants</Card.Title>
                         <Card.Text className="home-card-text">
-                            List number of applicants on job hub
+                            Join the ranks of the talented applicants already making waves on Job Hub! Your next career move could just be one click away!
                         </Card.Text>
+
                     </Card.Body>
                 </Card>
             </div>

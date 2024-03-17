@@ -9,9 +9,12 @@ const router = express.Router();
 router.post('/', (req, res, next) => {
     console.log('Request received for job creation');
     next();
-  }, verifyToken, authorizeRole('recruiter'), jobsController.create);
+  }, verifyToken, authorizeRole('Recruiter'), jobsController.create);
 
 
-  router.get('/list', verifyToken, authorizeRole('recruiter'), jobsController.list);
-  
+  router.get('/list', verifyToken, authorizeRole('Recruiter'), jobsController.list);
+
+// Allow access to job count without token verification
+router.get('/count', jobsController.count);
+
 module.exports = router;

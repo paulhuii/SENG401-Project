@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import EditProfile from './components/EditProfile';
+import ProfilePic from './components/ProfilePic/ProfilePic.js';
 
 function Profile() {
   const [profileData, setProfileData] = useState(null);
@@ -21,19 +22,7 @@ function Profile() {
       localStorage.setItem('user', JSON.stringify(profileData));
     }
   }, [profileData]); // Sync with local storage on profileData change
-
-  // const fetchProfileData = async () => {
-  //   try {
-  //     const response = await fetch('/api/profile');
-  //     if (!response.ok) {
-  //       throw new Error('Failed to fetch profile data');
-  //     }
-  //     const data = await response.json();
-  //     setProfileData(data);
-  //   } catch (error) {
-  //     setError(error.message);
-  //   }
-  // };
+  
   const fetchProfileData = async () => {
     try {
       const response = await fetch('/api/profile');
@@ -90,6 +79,8 @@ function Profile() {
   return (
     <div className="profile-container">
       <h2 className="profile-title">User Profile</h2>
+      <ProfilePic/>
+      
       {editing ? (
         <EditProfile profileData={profileData} onSave={handleSave} setEditing={setEditing} />
       ) : (
