@@ -14,7 +14,7 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
         <div className="container-fluid shadow rounded p-3 mb-3">
             <div className="row">
                 <div className="col d-flex justify-content-between">
-                    <h4>Job Title: {position}</h4>
+                    <h4>{position}</h4>
                     <div className="d-flex align-items-center justify-content-center">
                         {/* eslint-disable-next-line react/jsx-no-undef */}
                         <Button className="me-2 mb-2" variant="outline-info" onClick={handleShow}>
@@ -26,7 +26,7 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                                 <Modal.Title>View Applicants</Modal.Title>
                             </Modal.Header>
 
-                            <Modal.Body>
+                            <Modal.Body style={{ maxHeight: 'calc(100vh - 25vh)', overflowY: 'auto' }}>
                                 <h5 className="mb-3">View all prospective applicants!</h5>
                                 <ViewApplicants/>
                                 <ViewApplicants/>
@@ -56,7 +56,7 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                 </div>
             </div>
 
-            <h5>Location: {location}</h5>
+            <h5>{location}</h5>
             <div className="row">
                 <div className="col d-flex">
                     <h6 className="shadow-sm p-2 rounded bg-primary me-2 text-white">{jobType}</h6>
