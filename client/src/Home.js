@@ -16,7 +16,7 @@ function Home() {
 
     useEffect(() => {
         // Fetch job count
-        axios.get('http://localhost:3000/api/jobs/count')
+        axios.get('https://jobhub.company/api/jobs/count')
             .then(response => {
                 setJobCount(response.data.count);
             })
@@ -25,7 +25,7 @@ function Home() {
             });
 
         // Fetch user count
-        axios.get('http://localhost:3000/api/applicantCount')
+        axios.get('https://jobhub.company /api/applicantCount')
             .then(response => {
                 setApplicantCount(response.data.count);
             })
