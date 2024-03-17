@@ -38,6 +38,7 @@ import Signup from './Signup';
 import Dashboard from './Dashboard';
 import Profile from './Profile'; // Import the Profile component
 import JobBoard from './JobBoard';
+import UnderDevelopment from "./UnderDevelopment";
 import './App.css';
 
 
@@ -81,7 +82,7 @@ function App() {
 
   // Get the user role from local storage
   const user = JSON.parse(localStorage.getItem('user'));
-  const role = user.role.toLowerCase(); 
+  const role = user ? user.role.toLowerCase() : ''; 
 
   return (
     <Router>
@@ -122,7 +123,7 @@ function App() {
                 {isLoggedIn && (
                     <>
                       <li className="nav-item">
-                        <Link to={role === 'Recruiter' ? "/CompanyDashboard" : "/dashboard"} className="nav-link">
+                        <Link to={role === 'recruiter' ? "/CompanyDashboard" : "/dashboard"} className="nav-link">
                           <button className="btn btn-primary me-2">Dashboard</button>
                         </Link>
                       </li>
@@ -163,6 +164,7 @@ function App() {
             <Route path="/CompanyPost" element={<CompanyPost/>}/>
             <Route path="/JobBoard" element={<JobBoard />}/>
             <Route path="/CompanyDashboard" element={<CompanyDashboard/>}/>
+            <Route path="/underdevelopment" element={<UnderDevelopment/>}/>
           </Routes>
         </div>
       </div>
