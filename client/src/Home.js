@@ -25,7 +25,7 @@ function Home() {
             });
 
         // Fetch user count
-        axios.get('https://jobhub.company /api/applicantCount')
+        axios.get('https://jobhub.company/api/applicantCount')
             .then(response => {
                 setApplicantCount(response.data.count);
             })
