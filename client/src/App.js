@@ -81,7 +81,7 @@ function App() {
 
   // Get the user role from local storage
   const user = JSON.parse(localStorage.getItem('user'));
-  const role = user.role.toLowerCase(); 
+  const role = user ? user.role.toLowerCase() : ''; 
 
   return (
     <Router>
@@ -122,7 +122,7 @@ function App() {
                 {isLoggedIn && (
                     <>
                       <li className="nav-item">
-                        <Link to={role === 'Recruiter' ? "/CompanyDashboard" : "/dashboard"} className="nav-link">
+                        <Link to={role === 'recruiter' ? "/CompanyDashboard" : "/dashboard"} className="nav-link">
                           <button className="btn btn-primary me-2">Dashboard</button>
                         </Link>
                       </li>
