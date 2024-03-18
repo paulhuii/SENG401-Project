@@ -128,21 +128,23 @@ function Home() {
         // fetch the recruiter list, then shuffle to randomly get 3 recruiters for the carousel cards
         axios.get('http://localhost:5000/api/getRecruiterList')
             .then(response => {
-                const Recruiters = response.data.jobSeekers; // Access the jobSeekers array
+
+                const Recruiters = response.data.Recruiters; // Access the jobSeekers array
 
                 // Shuffle the applicants array
                 const shuffledRecruiters= Recruiters.sort(() => Math.random() - 0.5);
 
+
                 // Check if there are at least three applicants
                 if (shuffledRecruiters.length >= 3) {
                     // Set the first Recruiters to the first card
-                    setApplicant1(shuffledRecruiters[0]);
+                    setRecruiter1(shuffledRecruiters[0]);
 
                     // Set the second Recruiters to the second card
-                    setApplicant2(shuffledRecruiters[1]);
+                    setRecruiter2(shuffledRecruiters[1]);
 
                     // Set the third Recruiters to the third card
-                    setApplicant3(shuffledRecruiters[2]);
+                    setRecruiter3(shuffledRecruiters[2]);
                 } else {
                     console.error('Less than three Recruiters fetched.');
                 }
@@ -251,33 +253,36 @@ function Home() {
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Company 1</Card.Title>
+                                    <Card.Title className="home-card-title">{recruiter1.name}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Company 1 and info about it/job positions available
+                                        <strong>Gender:</strong> {recruiter1.gender}<br/>
+                                        <strong>Email:</strong> {recruiter1.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Company Profile</Button>
+                                    <Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Company 2</Card.Title>
+                                    <Card.Title className="home-card-title">{recruiter2.name}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Company 2 and info about it/job positions available
+                                        <strong>Gender:</strong> {recruiter2.gender}<br/>
+                                        <strong>Email:</strong> {recruiter2.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Company Profile</Button>
+                                    <Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Company 3</Card.Title>
+                                    <Card.Title className="home-card-title">{recruiter3.name}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Company 3 and info about it/job positions available
+                                        <strong>Gender:</strong> {recruiter3.gender}<br/>
+                                        <strong>Email:</strong> {recruiter3.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Company Profile</Button>
+                                    <Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>
                                 </Card.Body>
                             </Card>
                         </div>
