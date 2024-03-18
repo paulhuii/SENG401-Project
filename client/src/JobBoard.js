@@ -83,11 +83,12 @@ function JobBoard() {
   return (
     <div className='jbpage'>
       <div className="jbpage-container">
-        <h1 className="page-title">Available Jobs:</h1>
+        {filteredJobs.length > 0 && <h1 className="page-title">Available Jobs:</h1>}
         {/* <Button type="button" class="btn btn-dark" id="filter"> Test Filter </Button> */}
         <p/>
         <div className="content">
           <div class="card-columns" overflow-y="auto">
+            {filteredJobs.length === 0 && <h1>No jobs found</h1>}
             {filteredJobs.map(jobInfo => (
               <JobListing 
                 position={jobInfo.title} 
