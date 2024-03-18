@@ -21,17 +21,19 @@ function JobBoard() {
 
   // TODO: An example of how data should be formatted in the array. Once backend is connected, you can make this empty and update it when required.
   const[jobListingArray, updateJobListings] = useState([
-    {title:'Data Scientist', company:'Netflix', location:'Seattle, WA', contact:"netflix@gmail.com", description:"A data scientist is a professional who utilizes their expertise in statistics, mathematics, programming, and domain knowledge to analyze and interpret complex data sets. They employ various techniques, algorithms, and machine learning models to extract insights, patterns, and trends from data, which can be used to inform business decisions, solve problems, or drive innovation."},
-    {title:'Software Engineer I', company:'Facebook', location:'Seattle, WA', contact:"facebook@gmail.com", description:""},
-    {title:'Software Engineer II', company:'Facebook', location:'Seattle, WA', contact:"facebook@fb.com", description:""},
-    {title:'Software Engineer III', company:'Facebook', location:'Seattle, WA', contact:"software3@email.com", description:""},
-    {title:'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT ',
-    company: 'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT ',
-    location:'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST '}
+    // {title:'Data Scientist II', company:'Netflix', location:'Seattle, WA', contact:"netflix@gmail.com", description:"A data scientist is a professional who utilizes their expertise in statistics, mathematics, programming, and domain knowledge to analyze and interpret complex data sets. They employ various techniques, algorithms, and machine learning models to extract insights, patterns, and trends from data, which can be used to inform business decisions, solve problems, or drive innovation."},
+    // {title:'Data Scientist', company:'Netflix', location:'Seattle, WA', contact:"netflix@gmail.com", description:"A data scientist is a professional who utilizes their expertise in statistics, mathematics, programming, and domain knowledge to analyze and interpret complex data sets. They employ various techniques, algorithms, and machine learning models to extract insights, patterns, and trends from data, which can be used to inform business decisions, solve problems, or drive innovation."},
+    // {title:'Software Engineer I', company:'Google', location:'Seattle, WA', contact:"google@gmail.com", description:""},
+    // {title:'Software Engineer II', company:'Google', location:'Seattle, WA', contact:"google@gmail.com", description:""},
+    // {title:'Software Engineer I', company:'Facebook', location:'Seattle, WA', contact:"facebook@gmail.com", description:""},
+    // {title:'Software Engineer II', company:'Facebook', location:'Seattle, WA', contact:"facebook@fb.com", description:""},
+    // {title:'Software Engineer III', company:'Facebook', location:'Seattle, WA', contact:"software3@email.com", description:""},
+    // {title:'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT ',
+    // company: 'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT ',
+    // location:'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST '}
   ]);
 
   const filteredJobs = jobListingArray.filter(job => job.title.toLowerCase().includes(query.toLowerCase()) 
-            || job.company.toLowerCase().includes(query.toLowerCase()) 
             || job.location.toLowerCase().includes(query.toLowerCase()));
 
   // TODO: A function that updates the list of job listings from the database
@@ -49,7 +51,7 @@ function JobBoard() {
     const fetchJobListings = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('/api/jobs/list',{
+            const response = await fetch('/api/jobs/getList',{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -90,6 +92,8 @@ function JobBoard() {
                 location={jobInfo.location} 
                 description={jobInfo.description} 
                 email={jobInfo.contact}
+                salary={jobInfo.salary}
+                jobType={jobInfo.jobType}
               />
             ))}
           </div>

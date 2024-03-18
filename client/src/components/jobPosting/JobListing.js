@@ -14,6 +14,8 @@ const JobListing = (props) => {
         <div className="jlcard-body">
             <h3 className="jlcard-title">{props.position ? props.position : "No position given"}</h3>
             <h5>{props.company ? props.company : "No company given"} | <span className="text-muted">{props.location ? props.location : "No location given"}</span> </h5>
+            <h5>{props.jobType ? props.jobType : "No Type given"} | <span className="text-muted">{props.salary ? props.salary : "No salary information provided"}</span> </h5>
+
             <div className="description">
                 <p className="jlcard-text">{props.description ? String(props.description).slice(0,256) + "..." : "No description available"}</p>
                 <p className="jlcard-hover-text">{props.description ? props.description : "No description available"}</p>
