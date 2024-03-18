@@ -6,6 +6,9 @@ exports.list = async (req, res) => {
   try {
     // Fetch all jobs from the database
     const jobs = await Job.find();
+
+
+
     // Send the jobs back in the response
     res.status(200).json(jobs);
   } catch (error) {

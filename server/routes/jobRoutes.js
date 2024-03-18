@@ -17,4 +17,8 @@ router.post('/', (req, res, next) => {
 // Allow access to job count without token verification
 router.get('/count', jobsController.count);
 
+// Allow access to job list without token verification
+router.get('/getList', jobsController.list);
+
+
 module.exports = router;

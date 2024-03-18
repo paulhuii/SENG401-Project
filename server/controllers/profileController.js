@@ -45,7 +45,29 @@ const userCtrl = {
             console.error('Error fetching applicant count:', err);
             return res.status(500).json({ msg: 'Error fetching applicant count' });
         }
+    },
+
+
+    getApplicantList: async(req,res) => {
+        try {
+            // Query the database to find all users with role 'Jobseeker'
+            const jobSeekers = await User.find({ role: 'Jobseeker' });
+
+            // If no job seekers found, return an empty array
+            if (!jobSeekers || jobSeekers.length === 0) {
+                return res.json({ message: 'No job seekers found' });
+            }
+
+            // If job seekers found, return the list of job seekers
+            res.json({ jobSeekers });
+        } catch (err) {
+            console.error('Error fetching job seekers:', err);
+            return res.status(500).json({ msg: 'Error fetching job seekers' });
+        }
+
+
     }
+
 };
 
 
