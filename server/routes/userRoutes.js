@@ -22,6 +22,10 @@ router.put('/profile', verifyToken, userCtrl.updateUser);
 // Route to fetch user count
 router.get('/applicantCount', userCtrl.getApplicantCount);
 
+// Route to fetch recruiter list
+router.get('/recruiterCount', userCtrl.getRecruiterCount);
+
+
 // Route to fetch applicant list
 router.get('/getApplicantList', userCtrl.getApplicantList);
 

@@ -5,7 +5,7 @@ import axios from 'axios';
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 import {Button, Card} from "react-bootstrap";
-import app from "./App";
+
 
 
 function Home() {
@@ -14,6 +14,9 @@ function Home() {
 
     // constant and setter for the number of job seekers currently in the mongodb database
     const [applicantCount, setApplicantCount] = useState(0);
+
+    // constant and setter for the number of recruiters currently in the mongodb database
+    const [recruiterCount, setRecruiterCount] = useState(0);
 
     // job 1 for carousel
     const [job1, setJob1] = useState([]);
@@ -52,6 +55,16 @@ function Home() {
             })
             .catch(error => {
                 console.error('Error fetching Applicant count:', error);
+            });
+
+
+        // Fetch user count
+        axios.get('http://localhost:3000/api/recruiterCount')
+            .then(response => {
+                setRecruiterCount(response.data.count);
+            })
+            .catch(error => {
+                console.error('Error fetching Recruiter count:', error);
             });
 
         // fetch the job list, then shuffle to randomly get 3 jobs for the carousel cards
@@ -251,9 +264,9 @@ function Home() {
                 <Card>
                     <Card.Img variant="top" src="/building.png" style={{ height: "50px", width: "50px",  margin: "0 auto"}}/>
                     <Card.Body>
-                        <Card.Title className="home-card-title">Companies</Card.Title>
+                        <Card.Title className="home-card-title"><strong><span style={{fontWeight: 'bold', textDecoration: 'underline'}}>{recruiterCount}</span></strong>: Recruiters</Card.Title>
                         <Card.Text className="home-card-text">
-                            List number of companies hiring on job hub
+                            JobHub is bustling with the presence of a multitude of recruiters actively seeking talent, each bringing their unique opportunities to the platform.
                         </Card.Text>
                     </Card.Body>
                 </Card>

@@ -48,6 +48,19 @@ const userCtrl = {
     },
 
 
+    getRecruiterCount: async (req, res) => {
+        try {
+            console.log("Here!");
+
+            const recruiterCount = await User.countDocuments({ role: 'Recruiter' });
+            res.json({ count: recruiterCount });
+        } catch (err) {
+            console.error('Error fetching Recruiter count:', err);
+            return res.status(500).json({ msg: 'Error fetching Recruiter count' });
+        }
+    },
+
+
     getApplicantList: async(req,res) => {
         try {
             // Query the database to find all users with role 'Jobseeker'
