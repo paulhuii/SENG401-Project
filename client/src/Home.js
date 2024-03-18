@@ -5,6 +5,7 @@ import axios from 'axios';
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 import {Button, Card} from "react-bootstrap";
+import app from "./App";
 
 
 function Home() {
@@ -22,6 +23,17 @@ function Home() {
 
     // job 3 for carousel
     const [job3, setJob3] = useState([]);
+
+
+    // applicant 1 for carousel
+    const [applicant1, setApplicant1] = useState([]);
+
+    // applicant 2 for carousel
+    const [applicant2, setApplicant2] = useState([]);
+
+    // applicant 3 for carousel
+    const [applicant3, setApplicant3] = useState([]);
+
 
     useEffect(() => {
         // Fetch job count
@@ -59,6 +71,34 @@ function Home() {
             })
             .catch(error => {
                 console.error('Error fetching jobs:', error);
+            });
+
+
+
+        // fetch the applicant list, then shuffle to randomly get 3 jobs for the carousel cards
+        axios.get('http://localhost:5000/api/getApplicantList')
+            .then(response => {
+                const jobSeekers = response.data.jobSeekers; // Access the jobSeekers array
+
+                // Shuffle the applicants array
+                const shuffledApplicants = jobSeekers.sort(() => Math.random() - 0.5);
+
+                // Check if there are at least three applicants
+                if (shuffledApplicants.length >= 3) {
+                    // Set the first applicant to the first card
+                    setApplicant1(shuffledApplicants[0]);
+
+                    // Set the second applicant to the second card
+                    setApplicant2(shuffledApplicants[1]);
+
+                    // Set the third applicant to the third card
+                    setApplicant3(shuffledApplicants[2]);
+                } else {
+                    console.error('Less than three applicants fetched.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching applicants:', error);
             });
 
 
@@ -121,9 +161,10 @@ function Home() {
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Job Applicant 1</Card.Title>
+                                    <Card.Title className="home-card-title">{applicant1.name}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Job Applicant 1 and some info about then
+                                        <strong>Gender:</strong> {applicant1.gender}<br/>
+                                        <strong>Email:</strong> {applicant1.email}
                                     </Card.Text>
                                     <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
                                 </Card.Body>
@@ -132,9 +173,10 @@ function Home() {
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Job Applicant 2</Card.Title>
+                                    <Card.Title className="home-card-title">{applicant2.name}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Job Applicant 2 and some info about then
+                                        <strong>Gender:</strong> {applicant2.gender}<br/>
+                                        <strong>Email:</strong> {applicant2.email}
                                     </Card.Text>
                                     <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
                                 </Card.Body>
@@ -143,9 +185,10 @@ function Home() {
                             <Card>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title className="home-card-title">Job Applicant 3</Card.Title>
+                                    <Card.Title className="home-card-title">{applicant3.name}</Card.Title>
                                     <Card.Text className="home-card-text">
-                                        Job Applicant 3 and some info about then
+                                        <strong>Gender:</strong> {applicant3.gender}<br/>
+                                        <strong>Email:</strong> {applicant3.email}
                                     </Card.Text>
                                     <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
                                 </Card.Body>
