@@ -38,6 +38,16 @@ function Home() {
     const [applicant3, setApplicant3] = useState([]);
 
 
+    // recruiter 1 for carousel
+    const [recruiter1, setRecruiter1] = useState([]);
+
+    // recruiter 2 for carousel
+    const [recruiter2, setRecruiter2] = useState([]);
+
+    // recruiter 3 for carousel
+    const [recruiter3, setRecruiter3] = useState([]);
+
+
     useEffect(() => {
         // Fetch job count
         axios.get('http://localhost:3000/api/jobs/count')
@@ -88,7 +98,34 @@ function Home() {
 
 
 
-        // fetch the applicant list, then shuffle to randomly get 3 jobs for the carousel cards
+        // fetch the applicant list, then shuffle to randomly get 3 applicants for the carousel cards
+        axios.get('http://localhost:5000/api/getApplicantList')
+            .then(response => {
+                const jobSeekers = response.data.jobSeekers; // Access the jobSeekers array
+
+                // Shuffle the applicants array
+                const shuffledApplicants = jobSeekers.sort(() => Math.random() - 0.5);
+
+                // Check if there are at least three applicants
+                if (shuffledApplicants.length >= 3) {
+                    // Set the first applicant to the first card
+                    setApplicant1(shuffledApplicants[0]);
+
+                    // Set the second applicant to the second card
+                    setApplicant2(shuffledApplicants[1]);
+
+                    // Set the third applicant to the third card
+                    setApplicant3(shuffledApplicants[2]);
+                } else {
+                    console.error('Less than three applicants fetched.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching applicants:', error);
+            });
+
+
+        // fetch the recruiter list, then shuffle to randomly get 3 recruiters for the carousel cards
         axios.get('http://localhost:5000/api/getApplicantList')
             .then(response => {
                 const jobSeekers = response.data.jobSeekers; // Access the jobSeekers array
