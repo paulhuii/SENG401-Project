@@ -34,7 +34,10 @@ function JobBoard() {
   ]);
 
   const filteredJobs = jobListingArray.filter(job => job.title.toLowerCase().includes(query.toLowerCase()) 
-            || job.location.toLowerCase().includes(query.toLowerCase()));
+            || job.location.toLowerCase().includes(query.toLowerCase())
+            || job.description.toLowerCase().includes(query.toLowerCase()) 
+            || job.jobType.toLowerCase().includes(query.toLowerCase()));
+
 
   // TODO: A function that updates the list of job listings from the database
   // You should only fetch jobs that the applicant has not applied to
