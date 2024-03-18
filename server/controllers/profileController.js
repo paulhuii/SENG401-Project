@@ -77,9 +77,26 @@ const userCtrl = {
             console.error('Error fetching job seekers:', err);
             return res.status(500).json({ msg: 'Error fetching job seekers' });
         }
+    },
 
 
-    }
+    getRecruiterList: async(req,res) => {
+        try {
+            // Query the database to find all users with role 'Jobseeker'
+            const Recruiters = await User.find({ role: 'Recruiter' });
+
+            // If no Recruiters found, return an empty array
+            if (!Recruiters || Recruiters.length === 0) {
+                return res.json({ message: 'No job Recruiters found' });
+            }
+
+            // If Recruiters found, return the list of Recruiters
+            res.json({ Recruiters });
+        } catch (err) {
+            console.error('Error fetching Recruiters:', err);
+            return res.status(500).json({ msg: 'Error fetching Recruiters' });
+        }
+    },
 
 };
 
