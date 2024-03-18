@@ -84,7 +84,13 @@ function JobBoard() {
         <div className="content">
           <div class="card-columns" overflow-y="auto">
             {filteredJobs.map(jobInfo => (
-              <JobListing position={jobInfo.title} company={jobInfo.company} location={jobInfo.location} description={jobInfo.description} email={jobInfo.contact}/>
+              <JobListing 
+                position={jobInfo.title} 
+                company={jobInfo.company} 
+                location={jobInfo.location} 
+                description={jobInfo.description} 
+                email={jobInfo.contact}
+              />
             ))}
           </div>
         </div>
