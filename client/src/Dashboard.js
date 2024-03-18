@@ -190,7 +190,7 @@ function Dashboard() {
                     email={job.contact}
                     salary={job.salary}
                     jobType={job.jobType}
-                />
+                  />
                 )}
               </div>
               <div className="pagination">

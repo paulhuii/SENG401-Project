@@ -88,7 +88,7 @@ function JobBoard() {
         <p/>
         <div className="content">
           <div class="card-columns" overflow-y="auto">
-            {filteredJobs.length === 0 && <h1>No jobs found for "{query}"</h1>}
+            {filteredJobs.length === 0 && <h1>No match found for "{query}"</h1>}
             {filteredJobs.map(jobInfo => (
               <JobListing 
                 position={jobInfo.title} 
