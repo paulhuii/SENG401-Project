@@ -1,0 +1,12 @@
+.underdevelopment-wrapper {
+    min-height: calc(100vh - 62px);
+    background: url("../public/rocket.jpg") no-repeat center;
+    background-size: cover;
+}
+
+@media screen and (min-width: 761px) {
+    .underdevelopment-wrapper {
+        min-height: calc(100vh - 71px);
+    }
+}
+
