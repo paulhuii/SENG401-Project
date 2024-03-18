@@ -181,7 +181,17 @@ function Dashboard() {
             {selectedMenuItem === 'Browse Available Jobs' && 
             <div className="content-item-db">
               <div className="card-columns job-listing">
-                {currentJobs.map(job => <JobListing key={job.id} job={job} />)}
+                {currentJobs.map(job => 
+                  <JobListing 
+                    position={job.title} 
+                    company={job.company} 
+                    location={job.location} 
+                    description={job.description} 
+                    email={job.contact}
+                    salary={job.salary}
+                    jobType={job.jobType}
+                />
+                )}
               </div>
               <div className="pagination">
                 <div className="pagination-button-placeholder">
