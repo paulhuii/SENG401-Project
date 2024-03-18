@@ -168,7 +168,6 @@ function Home() {
                     <Carousel.Item key={job1._id}>
                         <div className="home-carousel-card-container">
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{job1.title}</Card.Title>
                                     <Card.Text className="home-card-text">
@@ -181,7 +180,6 @@ function Home() {
                             </Card>
 
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{job2.title}</Card.Title>
                                     <Card.Text className="home-card-text">
@@ -194,7 +192,6 @@ function Home() {
                             </Card>
 
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{job3.title}</Card.Title>
                                     <Card.Text className="home-card-text">
@@ -211,7 +208,6 @@ function Home() {
                     <Carousel.Item>
                         <div className="home-carousel-card-container">
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{applicant1.name}</Card.Title>
                                     <Card.Text className="home-card-text">
@@ -223,7 +219,6 @@ function Home() {
                             </Card>
 
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{applicant2.name}</Card.Title>
                                     <Card.Text className="home-card-text">
@@ -235,7 +230,6 @@ function Home() {
                             </Card>
 
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{applicant3.name}</Card.Title>
                                     <Card.Text className="home-card-text">
@@ -251,7 +245,6 @@ function Home() {
                     <Carousel.Item>
                         <div className="home-carousel-card-container">
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{recruiter1.name}</Card.Title>
                                     <Card.Text className="home-card-text">
@@ -263,7 +256,6 @@ function Home() {
                             </Card>
 
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{recruiter2.name}</Card.Title>
                                     <Card.Text className="home-card-text">
@@ -275,7 +267,6 @@ function Home() {
                             </Card>
 
                             <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
                                     <Card.Title className="home-card-title">{recruiter3.name}</Card.Title>
                                     <Card.Text className="home-card-text">
