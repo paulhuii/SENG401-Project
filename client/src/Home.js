@@ -126,29 +126,29 @@ function Home() {
 
 
         // fetch the recruiter list, then shuffle to randomly get 3 recruiters for the carousel cards
-        axios.get('http://localhost:5000/api/getApplicantList')
+        axios.get('http://localhost:5000/api/getRecruiterList')
             .then(response => {
-                const jobSeekers = response.data.jobSeekers; // Access the jobSeekers array
+                const Recruiters = response.data.jobSeekers; // Access the jobSeekers array
 
                 // Shuffle the applicants array
-                const shuffledApplicants = jobSeekers.sort(() => Math.random() - 0.5);
+                const shuffledRecruiters= Recruiters.sort(() => Math.random() - 0.5);
 
                 // Check if there are at least three applicants
-                if (shuffledApplicants.length >= 3) {
-                    // Set the first applicant to the first card
-                    setApplicant1(shuffledApplicants[0]);
+                if (shuffledRecruiters.length >= 3) {
+                    // Set the first Recruiters to the first card
+                    setApplicant1(shuffledRecruiters[0]);
 
-                    // Set the second applicant to the second card
-                    setApplicant2(shuffledApplicants[1]);
+                    // Set the second Recruiters to the second card
+                    setApplicant2(shuffledRecruiters[1]);
 
-                    // Set the third applicant to the third card
-                    setApplicant3(shuffledApplicants[2]);
+                    // Set the third Recruiters to the third card
+                    setApplicant3(shuffledRecruiters[2]);
                 } else {
-                    console.error('Less than three applicants fetched.');
+                    console.error('Less than three Recruiters fetched.');
                 }
             })
             .catch(error => {
-                console.error('Error fetching applicants:', error);
+                console.error('Error fetching Recruiters:', error);
             });
 
 
