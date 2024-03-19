@@ -4,23 +4,38 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import JobListing from "./components/jobPosting/JobListing.js";
 import "./JobBoard.css"
 import { useState, useEffect} from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function JobBoard() {
-
-  // const { query = ''} = useParams();
   const location = useLocation();
   const search = location.search;
   const params = new URLSearchParams(search);
   const query = params.get('query');
   const category = params.get('category');
 
-  // Intended use: multiply by 25 to get which jobs from DB to put into jobListingArray
-  // 0-24, 25-49, etc.
-  var queryCounter = 0;
-
   const[jobListingArray, updateJobListings] = useState([]);
+  const [searchPage, setSearchPage] = useState(1);
+  const itemsPerPage = 3; // Number of job listings to display per page
 
+  
+  // handling pagination
+  const handleSearchPageClick = (pageNumber) => {
+    setSearchPage(pageNumber);
+  };
+
+  const handleSearchPreviousClick = () => {
+    if (searchPage > 1) {
+      setSearchPage(searchPage - 1);
+    }
+  };
+  
+  const handleSearchNextClick = () => {
+    if (searchPage < totalSearchPages) {
+      setSearchPage(searchPage + 1);
+    }
+  };
+
+  // filtering job listings
   const filteredJobs = query === "" ? jobListingArray :
           jobListingArray.filter(job => 
             job.title.toLowerCase().includes(query.toLowerCase()) 
@@ -28,17 +43,9 @@ function JobBoard() {
             || job.description.toLowerCase().includes(query.toLowerCase()) 
             || job.jobType.toLowerCase().includes(query.toLowerCase()));
 
+  const totalSearchPages = Math.ceil(filteredJobs.length / itemsPerPage); // Total number of pages of search results
 
-  // TODO: A function that updates the list of job listings from the database
-  // You should only fetch jobs that the applicant has not applied to
-  // const fetchJobListings = () =>{
-  //   try {
-  //     // Get job listings from database that match query. My suggestion is to load a max of 25 job listings then have a "Next" button at the end of the list that will query the db again for the next 25
-  //     // updateJobListings([an array containing jobListings as formatted above])
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+  const currentFilteredJobs = filteredJobs.slice((searchPage - 1) * itemsPerPage, searchPage * itemsPerPage); // Job listings to display on the current page
 
   useEffect(() => {
     const fetchJobListings = async () => {
@@ -60,27 +67,20 @@ function JobBoard() {
         }
     };
 
-      fetchJobListings();
-    }, []);
+    fetchJobListings();
+  }, []);
 
-
-  // Once a user enters the room, load the first 25 queries
-  // window.addEventListener("load", function(){
-  //   fetchJobListings();
-  //   queryCounter++;
-  // })
   
   return (
     <div className='jbpage'>
       <div className="jbpage-container">
         {filteredJobs.length > 0 && <h1 className="page-title">{query === "" ? "Available Jobs: ":'Available Jobs for "' + query + '"'}</h1>}
-        {/* <Button type="button" class="btn btn-dark" id="filter"> Test Filter </Button> */}
         <p/>
         <div className="content">
           <div class="card-columns" overflow-y="auto">
             {filteredJobs.length === 0 && query!== "" && <h1>No match found for "{query}"</h1>}
             <p style={{fontSize: '0.8em'}}>Total search results: {filteredJobs.length}</p>
-            {filteredJobs.map(jobInfo => (
+            {currentFilteredJobs.map(jobInfo => (
               <JobListing 
                 position={jobInfo.title} 
                 company={jobInfo.company} 
@@ -92,6 +92,31 @@ function JobBoard() {
               />
             ))}
           </div>
+          <div className="pagination">
+                <div className="pagination-button-placeholder">
+                  {searchPage > 1 && (
+                    <button className="pagination-button prev-next-button" onClick={handleSearchPreviousClick}>
+                      Previous
+                    </button>
+                  )}
+                </div>
+                {[...Array(totalSearchPages)].map((_, index) => (
+                  <button 
+                    className={`pagination-button ${searchPage === index + 1 ? 'active-page' : ''}`} 
+                    key={index} 
+                    onClick={() => handleSearchPageClick(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+                <div className="pagination-button-placeholder">
+                  {searchPage < totalSearchPages && (
+                    <button className="pagination-button prev-next-button" onClick={handleSearchNextClick}>
+                      Next
+                    </button>
+                  )}
+                </div>
+              </div>
         </div>
       </div>
     </div>
