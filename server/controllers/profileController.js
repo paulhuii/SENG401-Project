@@ -90,7 +90,59 @@ const userCtrl = {
             console.error('Error uploading profile photo:', error);
             res.status(500).json({ message: 'Internal server error while updating profile photo.' });
         }
-}
+},
+
+
+    getRecruiterCount: async (req, res) => {
+        try {
+            console.log("Here!");
+
+            const recruiterCount = await User.countDocuments({ role: 'Recruiter' });
+            res.json({ count: recruiterCount });
+        } catch (err) {
+            console.error('Error fetching Recruiter count:', err);
+            return res.status(500).json({ msg: 'Error fetching Recruiter count' });
+        }
+    },
+
+
+    getApplicantList: async(req,res) => {
+        try {
+            // Query the database to find all users with role 'Jobseeker'
+            const jobSeekers = await User.find({ role: 'Jobseeker' });
+
+            // If no job seekers found, return an empty array
+            if (!jobSeekers || jobSeekers.length === 0) {
+                return res.json({ message: 'No job seekers found' });
+            }
+
+            // If job seekers found, return the list of job seekers
+            res.json({ jobSeekers });
+        } catch (err) {
+            console.error('Error fetching job seekers:', err);
+            return res.status(500).json({ msg: 'Error fetching job seekers' });
+        }
+    },
+
+
+    getRecruiterList: async(req,res) => {
+        try {
+            // Query the database to find all users with role 'Jobseeker'
+            const Recruiters = await User.find({ role: 'Recruiter' });
+
+            // If no Recruiters found, return an empty array
+            if (!Recruiters || Recruiters.length === 0) {
+                return res.json({ message: 'No job Recruiters found' });
+            }
+
+            // If Recruiters found, return the list of Recruiters
+            res.json({ Recruiters });
+        } catch (err) {
+            console.error('Error fetching Recruiters:', err);
+            return res.status(500).json({ msg: 'Error fetching Recruiters' });
+        }
+    },
+
 };
 module.exports = userCtrl
 

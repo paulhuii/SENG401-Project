@@ -44,12 +44,15 @@ import './App.css';
 
 import CompanyPost from "./CompanyPost";
 import CompanyDashboard from "./CompanyDashboard";
-import {Button, Dropdown, DropdownButton, FormControl, InputGroup} from "react-bootstrap";
+import {Button, Dropdown, DropdownButton, Form, FormControl, InputGroup} from "react-bootstrap";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
 
   const [selectedCategory, setSelectedCategory] = useState("Search All"); // State to store the selected category
+
+  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
+  const [error, setError] = useState(''); // State to store the error message
 
   // Function to handle dropdown item selection
   const handleDropdownSelect = (category) => {
@@ -84,6 +87,22 @@ function App() {
   const user = JSON.parse(localStorage.getItem('user'));
   const role = user ? user.role.toLowerCase() : ''; 
 
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  }
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    window.location.href = '/JobBoard/search?query=' + searchQuery + '&category=' + selectedCategory.toLowerCase().split(' ').join('_');
+    // if(searchQuery === "") {
+    //   setError("Please enter a search query");
+    // } else {
+    //   setError("");
+    // }
+    console.log(searchQuery); 
+    // TODO: Implement search functionality
+  }
+
   return (
     <Router>
       <div className="App">
@@ -114,8 +133,19 @@ function App() {
                         <Dropdown.Item eventKey="Search Companies">Search Companies</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-                    <FormControl placeholder="Search" aria-label="Search" />
-                    <Button variant="success">Search</Button>
+                    <FormControl 
+                      placeholder="Search" 
+                      aria-label="Search" 
+                      value= {searchQuery}
+                      onChange={handleSearch}
+                    />
+                    <Button 
+                      variant="success"
+                      type="submit"
+                      onClick={handleSearchSubmit}
+                      >Search
+                    </Button>
+                    {error && <div className="text-danger">{error}</div>}
                   </InputGroup>
                 </div>
               </ul>
@@ -162,7 +192,7 @@ function App() {
             {/* Render the Profile component only when logged in */}
             {isLoggedIn && <Route path="/profile" element={<Profile />} />}
             <Route path="/CompanyPost" element={<CompanyPost/>}/>
-            <Route path="/JobBoard" element={<JobBoard />}/>
+            <Route path="/JobBoard/:query" element={<JobBoard/>}/>
             <Route path="/CompanyDashboard" element={<CompanyDashboard/>}/>
             <Route path="/underdevelopment" element={<UnderDevelopment/>}/>
           </Routes>
