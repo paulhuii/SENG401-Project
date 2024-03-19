@@ -93,12 +93,12 @@ function App() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    if(searchQuery === "") {
-      setError("Please enter a search query");
-    } else {
-      setError("");
-      window.location.href = '/JobBoard/search?query=' + searchQuery + '&category=' + selectedCategory.toLowerCase().split(' ').join('_');
-    }
+    window.location.href = '/JobBoard/search?query=' + searchQuery + '&category=' + selectedCategory.toLowerCase().split(' ').join('_');
+    // if(searchQuery === "") {
+    //   setError("Please enter a search query");
+    // } else {
+    //   setError("");
+    // }
     console.log(searchQuery); 
     // TODO: Implement search functionality
   }

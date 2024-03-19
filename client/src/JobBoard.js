@@ -19,19 +19,7 @@ function JobBoard() {
   // 0-24, 25-49, etc.
   var queryCounter = 0;
 
-  // TODO: An example of how data should be formatted in the array. Once backend is connected, you can make this empty and update it when required.
-  const[jobListingArray, updateJobListings] = useState([
-    // {title:'Data Scientist II', company:'Netflix', location:'Seattle, WA', contact:"netflix@gmail.com", description:"A data scientist is a professional who utilizes their expertise in statistics, mathematics, programming, and domain knowledge to analyze and interpret complex data sets. They employ various techniques, algorithms, and machine learning models to extract insights, patterns, and trends from data, which can be used to inform business decisions, solve problems, or drive innovation."},
-    // {title:'Data Scientist', company:'Netflix', location:'Seattle, WA', contact:"netflix@gmail.com", description:"A data scientist is a professional who utilizes their expertise in statistics, mathematics, programming, and domain knowledge to analyze and interpret complex data sets. They employ various techniques, algorithms, and machine learning models to extract insights, patterns, and trends from data, which can be used to inform business decisions, solve problems, or drive innovation."},
-    // {title:'Software Engineer I', company:'Google', location:'Seattle, WA', contact:"google@gmail.com", description:""},
-    // {title:'Software Engineer II', company:'Google', location:'Seattle, WA', contact:"google@gmail.com", description:""},
-    // {title:'Software Engineer I', company:'Facebook', location:'Seattle, WA', contact:"facebook@gmail.com", description:""},
-    // {title:'Software Engineer II', company:'Facebook', location:'Seattle, WA', contact:"facebook@fb.com", description:""},
-    // {title:'Software Engineer III', company:'Facebook', location:'Seattle, WA', contact:"software3@email.com", description:""},
-    // {title:'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT ',
-    // company: 'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT ',
-    // location:'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST '}
-  ]);
+  const[jobListingArray, updateJobListings] = useState([]);
 
   const filteredJobs = jobListingArray.filter(job => job.title.toLowerCase().includes(query.toLowerCase()) 
             || job.location.toLowerCase().includes(query.toLowerCase())
@@ -83,7 +71,7 @@ function JobBoard() {
   return (
     <div className='jbpage'>
       <div className="jbpage-container">
-        {filteredJobs.length > 0 && <h1 className="page-title">Available Jobs for "{query}":</h1>}
+        {filteredJobs.length > 0 && <h1 className="page-title">{query === "" ? "Available Jobs: ": "Available Jobs for " + query}</h1>}
         {/* <Button type="button" class="btn btn-dark" id="filter"> Test Filter </Button> */}
         <p/>
         <div className="content">
