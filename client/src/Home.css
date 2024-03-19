@@ -60,7 +60,7 @@
 .home-stats .card {
     margin: 1vw;
     width: 300px; /* Set a fixed width */
-    height: 220px; /* Set a fixed height */
+    max-height: 220px; /* Set a fixed height */
     flex-shrink: 1;
 }
 
