@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import './Dashboard.css';
 import JobListing from "./components/jobPosting/JobListing";
 import CompanyCard from "./components/Cards/CompanyCard";
@@ -19,10 +19,49 @@ function Dashboard() {
   }));
 
   // replace with actual data
-  const jobs = Array.from({ length: 20 }, (_, index) => ({
-    id: index + 1,
-    // Add more fields as needed
-  }));
+  // const jobs = Array.from({ length: 20 }, (_, index) => ({
+  //   id: index + 1,
+  //   // Add more fields as needed
+  // }));
+
+    // TODO: An example of how data should be formatted in the array. Once backend is connected, you can make this empty and update it when required.
+  const[jobs, updateJobListings] = useState([ ]);
+    
+  
+    // TODO: A function that updates the list of job listings from the database
+    // You should only fetch jobs that the applicant has not applied to
+    // const fetchJobListings = () =>{
+    //   try {
+    //     // Get job listings from database that match query. My suggestion is to load a max of 25 job listings then have a "Next" button at the end of the list that will query the db again for the next 25
+    //     // updateJobListings([an array containing jobListings as formatted above])
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+  
+    useEffect(() => {
+      const fetchJobListings = async () => {
+          try {
+              const token = localStorage.getItem('token');
+              const response = await fetch('/api/jobs/getList',{
+                  headers: {
+                      'Authorization': `Bearer ${token}`
+                  }
+              });
+              console.log("Overall response:", response); // Prints the response status code
+      
+              if (!response.ok) throw new Error('Hello Failed to fetch job listings');
+              const data = await response.json();
+              console.log("Fetched job listings:", data); // Check fetched data
+              updateJobListings(data);
+          } catch (error) {
+              console.error("Error fetching job listings:", error);
+          }
+      };
+  
+        fetchJobListings();
+      }, []);
+  
 
   // replace with actual data
   const applications = Array.from({ length: 20 }, (_, index) => ({ 
@@ -96,10 +135,10 @@ function Dashboard() {
 
   return (
     <div className="page-container">
-      <h1 className="page-title">Your Dashboard</h1>
+      <h1 className="page-title">My Dashboard</h1>
       
       <div className="content">
-        <p>Welcome to the dashboard page!</p>
+        {/* <p>Welcome to the dashboard page!</p> */}
         <div className="divider">
           <div className="menu">  
             <div className={`menu-item ${selectedMenuItem === 'My Network' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Network')}>My Network</div>
@@ -142,7 +181,17 @@ function Dashboard() {
             {selectedMenuItem === 'Browse Available Jobs' && 
             <div className="content-item-db">
               <div className="card-columns job-listing">
-                {currentJobs.map(job => <JobListing key={job.id} job={job} />)}
+                {currentJobs.map(job => 
+                  <JobListing 
+                    position={job.title} 
+                    company={job.company} 
+                    location={job.location} 
+                    description={job.description} 
+                    email={job.contact}
+                    salary={job.salary}
+                    jobType={job.jobType}
+                  />
+                )}
               </div>
               <div className="pagination">
                 <div className="pagination-button-placeholder">
