@@ -1,5 +1,6 @@
 const readline = require('readline');
 const seedUsers = require('./seedUsers.js');
+const seedJobs = require('./seedJob.js');
 
 // Create readline interface to read the user's input from the terminal
 const rl = readline.createInterface({
@@ -11,8 +12,9 @@ const rl = readline.createInterface({
 async function seedAll() {
     try {
         await seedUsers();
+        await seedJobs();
     } catch (error) {
-        console.error('Error seeding user data:', error);
+        console.error('Error seeding data:', error);
     } finally {
         rl.close();
     }
@@ -29,11 +31,24 @@ async function seedUsersOnly() {
     }
 }
 
+
+// Function to seed user data only
+async function seedJobsOnly() {
+    try {
+        await seedJobs();
+    } catch (error) {
+        console.error('Error seeding user data:', error);
+    } finally {
+        rl.close();
+    }
+}
+
 // Function to choose whether to seed all data, user data only, or cancel
 const seedDB = async () => {
     console.log("Select an option:");
     console.log("1. Seed all schemas");
     console.log("2. Seed User schemas");
+    console.log("3. Seed Job schemas");
     console.log("0. Cancel");
 
     rl.question("\nEnter your choice: ", async (choice) => {
@@ -47,6 +62,9 @@ const seedDB = async () => {
                 break;
             case '2':
                 await seedUsersOnly();
+                break;
+            case '3':
+                await seedJobsOnly();
                 break;
             default:
                 console.log("Invalid choice");

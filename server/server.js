@@ -34,12 +34,18 @@ app.use((req, res, next) => {
 });
 
 // Connect to MongoDB
+
+mongoose.connect(process.env.MONGO, {
+}).then(() => console.log('Universal connection to MongoDB established'))
+    .catch(err => console.error('Connection error:', err));
+
+
 const db = mongoose.createConnection(process.env.MONGO);
 
 //Catch connection error for db
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Connected to MongoDB db2');
+  console.log('Connected to MongoDB db');
 });
 
 const createJobModel = require('./models/Job');
