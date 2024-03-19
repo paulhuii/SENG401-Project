@@ -17,7 +17,7 @@ function CompanyCard({ company }) {
   return (
     <div className="card-db" id='dashboard-card'>
         <div className="card-body recruiter">
-            <h4 className="card-title-db">{company.name}</h4>
+            <h5 className="card-title-db">{company.name}</h5>
             <p className="card-text-db">{company.location}</p>
             <p className="card-text-db">Email: {company.email}</p>
             <button type="button" className="btn btn-primary"onClick={handleViewJobs}>View Profile</button>

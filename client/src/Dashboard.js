@@ -149,8 +149,6 @@ function Dashboard() {
           <div className="menu-content">
             {selectedMenuItem === 'My Network' && 
             <div className="content-item-db">
-              <h2>My Network</h2>
-              <h5 className="mb-3">View and connect with companies in your network!</h5>
               <div className='card-columns companies'> 
                 {currentCompanies.map(company => <CompanyCard key={company.id} company={company} />)}
               </div>
@@ -182,8 +180,6 @@ function Dashboard() {
             </div>}
             {selectedMenuItem === 'Browse Available Jobs' && 
             <div className="content-item-db">
-              <h2>Browse Available Jobs</h2>
-              <h5 className="mb-3">View and apply to available jobs!</h5>
               <div className="card-columns job-listing">
                 {currentJobs.map(job => 
                   <JobListing 
@@ -226,8 +222,6 @@ function Dashboard() {
             </div>}
             {selectedMenuItem === 'My Applications' && 
             <div className="content-item-db">
-              <h2>My Applications</h2>
-              <h5 className="mb-3">View your previous applications!</h5>
               <div className='card-columns applications'> 
                 {currentApplications.map(application => <ApplicationCard key={application.id} application={application} />)}
               </div>

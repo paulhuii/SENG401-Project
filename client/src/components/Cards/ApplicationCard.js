@@ -14,7 +14,7 @@ function ApplicationCard({ application }) {
   return (
     <div className="card-db" id='dashboard-card'>
         <div className="card-body applied-job"> 
-            <h4 className="card-title-db">{application.jobTitle}</h4>
+            <h5 className="card-title-db">{application.jobTitle}</h5>
             <p className="card-text-db">{application.companyName}</p>
             <p className="card-text-db">{application.location}</p>
             <p className="card-text-db">Date Applied: {application.dateApplied}</p>
