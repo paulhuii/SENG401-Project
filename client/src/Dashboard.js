@@ -135,10 +135,10 @@ function Dashboard() {
 
   return (
     <div className="page-container">
-      <h1 className="page-title">Your Dashboard</h1>
+      <h1 className="page-title">My Dashboard</h1>
       
       <div className="content">
-        <p>Welcome to the dashboard page!</p>
+        {/* <p>Welcome to the dashboard page!</p> */}
         <div className="divider">
           <div className="menu">  
             <div className={`menu-item ${selectedMenuItem === 'My Network' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Network')}>My Network</div>
@@ -149,6 +149,8 @@ function Dashboard() {
           <div className="menu-content">
             {selectedMenuItem === 'My Network' && 
             <div className="content-item-db">
+              <h1>My Network</h1>
+              <h5 className="mb-3">View and connect with companies in your network!</h5>
               <div className='card-columns companies'> 
                 {currentCompanies.map(company => <CompanyCard key={company.id} company={company} />)}
               </div>
@@ -180,6 +182,8 @@ function Dashboard() {
             </div>}
             {selectedMenuItem === 'Browse Available Jobs' && 
             <div className="content-item-db">
+              <h1>Browse Available Jobs</h1>
+              <h5 className="mb-3">View and apply to available jobs!</h5>
               <div className="card-columns job-listing">
                 {currentJobs.map(job => 
                   <JobListing 
@@ -222,6 +226,8 @@ function Dashboard() {
             </div>}
             {selectedMenuItem === 'My Applications' && 
             <div className="content-item-db">
+              <h1>My Applications</h1>
+              <h5 className="mb-3">View your previous applications!</h5>
               <div className='card-columns applications'> 
                 {currentApplications.map(application => <ApplicationCard key={application.id} application={application} />)}
               </div>
