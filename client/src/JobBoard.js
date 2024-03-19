@@ -73,12 +73,13 @@ function JobBoard() {
   return (
     <div className='jbpage'>
       <div className="jbpage-container">
-        {filteredJobs.length > 0 && <h1 className="page-title">{query === "" ? "Available Jobs: ": "Available Jobs for " + query}</h1>}
+        {filteredJobs.length > 0 && <h1 className="page-title">{query === "" ? "Available Jobs: ":'Available Jobs for "' + query + '"'}</h1>}
         {/* <Button type="button" class="btn btn-dark" id="filter"> Test Filter </Button> */}
         <p/>
         <div className="content">
           <div class="card-columns" overflow-y="auto">
             {filteredJobs.length === 0 && query!== "" && <h1>No match found for "{query}"</h1>}
+            <p style={{fontSize: '0.8em'}}>Total search results: {filteredJobs.length}</p>
             {filteredJobs.map(jobInfo => (
               <JobListing 
                 position={jobInfo.title} 
