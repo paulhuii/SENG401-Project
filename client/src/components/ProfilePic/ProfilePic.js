@@ -7,7 +7,7 @@ const ProfilePic = ({ userProfilePhotoUrl, onUpdate }) => {
 
   useEffect(() => {
     // Update component state when userProfilePhotoUrl prop changes
-    setPicSrc(userProfilePhotoUrl);
+    setPicSrc(userProfilePhotoUrl || "/profileDefault.png");
   }, [userProfilePhotoUrl]);
 
   async function uploadPhoto(file) {
