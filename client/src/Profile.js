@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import './Profile.css';
 import EditProfile from './components/EditProfile';
 import ProfilePic from './components/ProfilePic/ProfilePic.js';
@@ -25,15 +25,33 @@ function Profile() {
   
   const fetchProfileData = async () => {
     try {
-      const response = await fetch('/api/profile');
-      if (!response.ok) throw new Error('Failed to fetch profile data');
-      const data = await response.json();
-      setProfileData(data);
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('Authentication token not found. Please login again.');
+        return;
+      }
+  
+      const response = await fetch('/api/profile/info', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include the authentication token
+          'Content-Type': 'application/json'
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch profile data.');
+      }
+  
+      const profileData = await response.json();
+      setProfileData(profileData); // Update state with fetched profile data
+      localStorage.setItem('user', JSON.stringify(profileData)); // Update localStorage with new profile data, including photo URL
+      console.log("Profile data: ", profileData);
     } catch (error) {
-      console.error("Fetch error:", error.message);
+      console.error("Fetch error:", error);
+      setError(error.toString());
     }
   };
-
   useEffect(() => {
     fetchProfileData();
   }, []); // D
@@ -79,7 +97,16 @@ function Profile() {
   return (
     <div className="profile-container">
       <h2 className="profile-title">User Profile</h2>
-      <ProfilePic/>
+      <ProfilePic 
+        userProfilePhotoUrl={profileData.profile_photo} 
+        onUpdate={(newPhotoUrl) => {
+        const updatedProfileData = { ...profileData, profile_photo: newPhotoUrl };
+        setProfileData(updatedProfileData);
+        localStorage.setItem('user', JSON.stringify(updatedProfileData)); // Update local storage
+        console.log("updatedProfileData:", updatedProfileData);
+        }} 
+      />
+
       
       {editing ? (
         <EditProfile profileData={profileData} onSave={handleSave} setEditing={setEditing} />

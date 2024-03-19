@@ -10,11 +10,12 @@ const EditProfile = ({ profileData, onSave, setEditing }) => {
     role: profileData.role || '',
     gender: profileData.gender || '',
     description: profileData.description || '',
+    profile_photo: profileData.profile_photo || "/profileDefault.png"
   });
 
   // State to store validation errors
   const [errors, setErrors] = useState({});
-
+  
   // Email validation pattern
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
