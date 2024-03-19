@@ -21,7 +21,9 @@ function JobBoard() {
 
   const[jobListingArray, updateJobListings] = useState([]);
 
-  const filteredJobs = jobListingArray.filter(job => job.title.toLowerCase().includes(query.toLowerCase()) 
+  const filteredJobs = query === "" ? jobListingArray :
+          jobListingArray.filter(job => 
+            job.title.toLowerCase().includes(query.toLowerCase()) 
             || job.location.toLowerCase().includes(query.toLowerCase())
             || job.description.toLowerCase().includes(query.toLowerCase()) 
             || job.jobType.toLowerCase().includes(query.toLowerCase()));
@@ -76,7 +78,7 @@ function JobBoard() {
         <p/>
         <div className="content">
           <div class="card-columns" overflow-y="auto">
-            {filteredJobs.length === 0 && <h1>No match found for "{query}"</h1>}
+            {filteredJobs.length === 0 && query!== "" && <h1>No match found for "{query}"</h1>}
             {filteredJobs.map(jobInfo => (
               <JobListing 
                 position={jobInfo.title} 
