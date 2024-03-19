@@ -27,6 +27,9 @@ const app = express();
 app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
 app.use(express.json()); // Parse incoming request bodies as JSON
 
+// Middleware to serve static files from 'uploads' directory
+app.use('/uploads', express.static('uploads'));
+
 // Middleware to log each incoming request
 app.use((req, res, next) => {
   console.log(`Received ${req.method} request for ${req.url}`);

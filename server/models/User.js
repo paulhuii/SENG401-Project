@@ -72,7 +72,11 @@ const userSchema = new mongoose.Schema({
   jobs: [{ 
     type: Schema.Types.ObjectId, 
     ref: 'Job' // Reference to the Job model
-  }]
+  }],
+  profile_photo: {
+    type: String,
+    required: false
+  }
 });
 
 // Create and export the User model
