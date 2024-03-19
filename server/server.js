@@ -1,8 +1,8 @@
 /**
  * Express Server Setup
- * 
+ *
  * This file sets up an Express server with middleware, routes, and MongoDB connection.
- * 
+ *
  * @requires express
  * @requires mongoose
  * @requires cors
@@ -33,32 +33,29 @@ app.use((req, res, next) => {
   next(); // Call the next middleware in the chain
 });
 
-// Connect to MongoDB db1 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('Connected to MongoDB db'))
-  .catch(err => console.error('Connection error:', err));
+// Connect to MongoDB
 
-const db2 = mongoose.createConnection(process.env.MONGO_URI_1, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(process.env.MONGO, {
+}).then(() => console.log('Universal connection to MongoDB established'))
+    .catch(err => console.error('Connection error:', err));
 
-//Catch connection error for db2 (Mai's MongoDB)
-db2.on('error', console.error.bind(console, 'connection error:'));
-db2.once('open', () => {
-  console.log('Connected to MongoDB db2');
+
+const db = mongoose.createConnection(process.env.MONGO);
+
+//Catch connection error for db
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB db');
 });
 
 const createJobModel = require('./models/Job');
-const Job = createJobModel(db2); // Now Job is a model that uses the db2 connection
+const Job = createJobModel(db); // Now Job is a model that uses the db connection
 app.locals.Job = Job; // Attach the Job model to the app object
 
 
 // Use the authentication routes
 app.use('/api', authRoutes);
-app.use('/api', userRoutes); 
+app.use('/api', userRoutes);
 app.use('/api/jobs', jobRoutes);
 
 // Start the server

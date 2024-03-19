@@ -24,6 +24,7 @@
  */
 
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 // Define the job schema outside the exported function
 const jobSchema = new mongoose.Schema({
@@ -59,10 +60,16 @@ const jobSchema = new mongoose.Schema({
   },
 }, { timestamps: true }); // Including timestamps to track when jobs are created or updated
 
+// Create and export the User model
+const Job = mongoose.model('Job', jobSchema);
+module.exports = Job;
+
+
 // Export a function that accepts a connection and returns a Job model bound to that connection
 module.exports = function(connection) {
   // Use the connection argument to create and return the model
   // This ensures that the model is associated with the specified connection, not the default connection
   return connection.model('Job', jobSchema);
 };
+
 
