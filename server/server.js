@@ -51,9 +51,10 @@ db.once('open', () => {
   console.log('Connected to MongoDB db');
 });
 
-const createJobModel = require('./models/Job');
-const Job = createJobModel(db); // Now Job is a model that uses the db connection
-app.locals.Job = Job; // Attach the Job model to the app object
+// const createJobModel = require('./models/Job');
+// const Job = createJobModel(db); // Now Job is a model that uses the db connection
+// console.log("Server.js", Job)
+// app.locals.Job = Job; // Attach the Job model to the app object
 
 
 // Use the authentication routes

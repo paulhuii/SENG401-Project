@@ -1,13 +1,20 @@
+
+
+
+const Job = require('../models/Job');
+
+
 // Function to list all jobs
 exports.list = async (req, res) => {
   // Accessing the Job model from app.locals
-  const Job = req.app.locals.Job;
+  // const Job = req.app.locals.Job;
   
   try {
     // Fetch all jobs from the database
-    const jobs = await Job.find();
-
-
+    console.log(Job)
+    const jobs = await Job.find({});
+    console.log(jobs)
+    // const Job = req.app.locals.Job;
 
     // Send the jobs back in the response
     res.status(200).json(jobs);
@@ -20,7 +27,7 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res) => {
     // Access the Job model directly from app.locals
-    const Job = req.app.locals.Job;
+    // const Job = req.app.locals.Job;
   
     try {
       console.log("Received request body:", req.body); // Log the received request body
@@ -60,7 +67,7 @@ exports.create = async (req, res) => {
 // function to count the number of jobs in the database
 exports.count = async (req, res) => {
   // Accessing the Job model from app.locals
-  const Job = req.app.locals.Job;
+  // const Job = req.app.locals.Job;
 
   try {
     // Count the number of jobs in the database
