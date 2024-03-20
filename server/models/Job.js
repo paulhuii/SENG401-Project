@@ -11,7 +11,9 @@
  * - salary: String (required) - The salary for the job.
  * - contact: String (required) - Contact information for the job listing.
  * - description: String (required) - A detailed description of the job.
- * - postedBy: ObjectId (required) - References the User who posted the job listing.
+ * - postedBy: ObjectId (optional) - References the User who posted the job listing.
+ * - applicants: Array of ObjectIds (optional) - References to Users who have applied for the job listing.
+ * - jobID: ObjectId (required) - Unique identifier for the job listing.
  * 
  * @typedef {Object} Job
  * @property {string} title - The title of the job listing.
@@ -20,7 +22,9 @@
  * @property {string} salary - The salary for the job.
  * @property {string} contact - Contact information for the job listing.
  * @property {string} description - A detailed description of the job.
- * @property {ObjectId} postedBy - The user who posted the job listing.
+ * @property {ObjectId} [postedBy] - The user who posted the job listing.
+ * @property {ObjectId[]} [applicants] - Users who have applied for the job listing.
+ * @property {ObjectId} jobID - Unique identifier for the job listing.
  */
 
 const mongoose = require('mongoose');
@@ -58,6 +62,15 @@ const jobSchema = new mongoose.Schema({
     ref: 'User', // Ensure this matches your User model's name
     required: false
   },
+  applicants: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', // Reference to User model
+    required: false
+  }],
+  jobID: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
+  }
 }, { timestamps: true }); // Including timestamps to track when jobs are created or updated
 
 // Create and export the User model
@@ -65,11 +78,9 @@ const Job = mongoose.model('Job', jobSchema);
 module.exports = Job;
 
 
-// Export a function that accepts a connection and returns a Job model bound to that connection
-module.exports = function(connection) {
-  // Use the connection argument to create and return the model
-  // This ensures that the model is associated with the specified connection, not the default connection
-  return connection.model('Job', jobSchema);
-};
-
-
+// // Export a function that accepts a connection and returns a Job model bound to that connection
+// module.exports = function(connection) {
+//   // Use the connection argument to create and return the model
+//   // This ensures that the model is associated with the specified connection, not the default connection
+//   return connection.model('Job', jobSchema);
+// };

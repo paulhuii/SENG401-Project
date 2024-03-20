@@ -16,7 +16,9 @@ const data = [
         password: 'Recruiter1!',
         role: 'Recruiter',
         gender: 'Female',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Liam Johnson',
@@ -24,7 +26,9 @@ const data = [
         email: 'LiamJohnson@email.com',
         password: 'Recruiter2!',
         role: 'Recruiter',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Sophia Martinez',
@@ -32,7 +36,9 @@ const data = [
         email: 'SophiaMartinez@email.com',
         password: 'Recruiter3!',
         role: 'Recruiter',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Noah Brown',
@@ -40,7 +46,9 @@ const data = [
         email: 'NoahBrown@email.com',
         password: 'Recruiter4!',
         role: 'Recruiter',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Olivia Taylor',
@@ -48,7 +56,9 @@ const data = [
         email: 'Olivia Taylor@email.com',
         password: 'Recruiter5!',
         role: 'Recruiter',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'William Thomas',
@@ -56,7 +66,9 @@ const data = [
         email: 'WilliamThomas@email.com',
         password: 'Recruiter6!',
         role: 'Recruiter',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Emma Brown',
@@ -64,7 +76,9 @@ const data = [
         email: 'EmmaBrown@email.com',
         password: 'Recruiter7!',
         role: 'Recruiter',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'James Hall',
@@ -72,7 +86,9 @@ const data = [
         email: 'JamesHall@email.com',
         password: 'Recruiter8!',
         role: 'Recruiter',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Ava White',
@@ -80,7 +96,9 @@ const data = [
         email: 'AvaWhite@email.com',
         password: 'Recruiter9!',
         role: 'Recruiter',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Benjamin Perez',
@@ -88,7 +106,9 @@ const data = [
         email: 'BenjaminPerez@email.com',
         password: 'Recruiter10!',
         role: 'Recruiter',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
 
     // Job Seekers
@@ -98,7 +118,9 @@ const data = [
         email: 'EvelynTurner@email.com',
         password: 'Jobseeker1!',
         role: 'Jobseeker',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Oliver Martinez',
@@ -106,7 +128,9 @@ const data = [
         email: 'OliverMartinez@email.com',
         password: 'Jobseeker2!',
         role: 'Jobseeker',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Isabella Clark',
@@ -114,7 +138,9 @@ const data = [
         email: 'IsabellaClark@email.com',
         password: 'Jobseeker3!',
         role: 'Jobseeker',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Elijah Wilson',
@@ -122,7 +148,9 @@ const data = [
         email: 'ElijahWilson@email.com',
         password: 'Jobseeker4!',
         role: 'Jobseeker',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Mia Lewis',
@@ -130,7 +158,9 @@ const data = [
         email: 'MiaLewis@email.com',
         password: 'Jobseeker5!',
         role: 'Jobseeker',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Lucas Anderson',
@@ -138,7 +168,9 @@ const data = [
         email: 'LucasAnderson@email.com',
         password: 'Jobseeker6!',
         role: 'Jobseeker',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Amelia Rodriguez',
@@ -146,7 +178,9 @@ const data = [
         email: 'AmeliaRodriguez@email.com',
         password: 'Jobseeker7!',
         role: 'Jobseeker',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Mason Wright',
@@ -154,7 +188,9 @@ const data = [
         email: 'MasonWright@email.com',
         password: 'Jobseeker8!',
         role: 'Jobseeker',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Harper Carter',
@@ -162,7 +198,9 @@ const data = [
         email: 'HarperCarter@email.com',
         password: 'Jobseeker9!',
         role: 'Jobseeker',
-        gender: 'Female'
+        gender: 'Female',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
     {
         name: 'Ethan Moore',
@@ -170,7 +208,9 @@ const data = [
         email: 'EthanMoore@email.com',
         password: 'Jobseeker10!',
         role: 'Jobseeker',
-        gender: 'Male'
+        gender: 'Male',
+        uniqueID: new mongoose.Types.ObjectId(), // Generate unique ObjectId
+        jobs: []
     },
 ];
 

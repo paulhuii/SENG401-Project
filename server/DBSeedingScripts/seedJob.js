@@ -13,6 +13,9 @@ const jobData = [
         salary: '$100,000 - $120,000',
         contact: 'john.doe@example.com',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        postedBy: '5f760dad3e3f8b3d2f22b8f4', // Replace with actual recruiter ObjectId
+        jobID: new mongoose.Types.ObjectId(),
+        applicants: [] // Replace with actual applicant ObjectIds
     },
     {
         title: 'Marketing Manager',
@@ -21,6 +24,9 @@ const jobData = [
         salary: '$80,000 - $90,000',
         contact: 'jane.smith@example.com',
         description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        postedBy: '5f760dad3e3f8b3d2f22b8f4', // Replace with actual recruiter ObjectId
+        jobID: new mongoose.Types.ObjectId(),
+        applicants: [] // Replace with actual applicant ObjectIds
     },
     {
         title: 'Data Scientist',
@@ -29,6 +35,9 @@ const jobData = [
         salary: '$120,000 - $150,000',
         contact: 'alex.jones@example.com',
         description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+        postedBy: '5f760dad3e3f8b3d2f22b8f4', // Replace with actual recruiter ObjectId
+        jobID: new mongoose.Types.ObjectId(),
+        applicants: [] // Replace with actual applicant ObjectIds
     },
     {
         title: 'Graphic Designer',
@@ -37,6 +46,9 @@ const jobData = [
         salary: '$60,000 - $70,000',
         contact: 'emily.wilson@example.com',
         description: 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.',
+        postedBy: '5f760dad3e3f8b3d2f22b8f4', // Replace with actual recruiter ObjectId
+        jobID: new mongoose.Types.ObjectId(),
+        applicants: [] // Replace with actual applicant ObjectIds
     },
     {
         title: 'Project Manager',
@@ -45,6 +57,9 @@ const jobData = [
         salary: '$90,000 - $110,000',
         contact: 'david.brown@example.com',
         description: 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in.',
+        postedBy: '5f760dad3e3f8b3d2f22b8f4', // Replace with actual recruiter ObjectId
+        jobID: new mongoose.Types.ObjectId(),
+        applicants: [] // Replace with actual applicant ObjectIds
     },
     {
         title: 'Customer Service Representative',
@@ -53,6 +68,9 @@ const jobData = [
         salary: '$40,000 - $50,000',
         contact: 'sarah.wilson@example.com',
         description: 'Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor.',
+        postedBy: '5f760dad3e3f8b3d2f22b8f4', // Replace with actual recruiter ObjectId
+        jobID: new mongoose.Types.ObjectId(),
+        applicants: [] // Replace with actual applicant ObjectIds
     }
 
 ];
