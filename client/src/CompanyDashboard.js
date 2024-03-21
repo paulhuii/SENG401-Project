@@ -7,27 +7,41 @@ const CompanyDashboard = () => {
     const [jobListings, setJobListings] = useState([]);
 
     useEffect(() => {
-        const fetchJobListings = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await fetch('/api/jobs/list',{
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                console.log("Overall response:", response); // Prints the response status code
-        
-                if (!response.ok) throw new Error('Hello Failed to fetch job listings');
-                const data = await response.json();
-                console.log("Fetched job listings:", data); // Check fetched data
-                setJobListings(data);
-            } catch (error) {
-                console.error("Error fetching job listings:", error);
-            }
-        };
-
         fetchJobListings();
     }, []);
+
+    const fetchJobListings = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch('/api/jobs/list',{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (!response.ok) throw new Error('Failed to fetch job listings');
+            const data = await response.json();
+            setJobListings(data);
+        } catch (error) {
+            console.error("Error fetching job listings:", error);
+        }
+    };
+
+    const deleteJob = async (jobId) => {
+        try {
+            const token = localStorage.getItem('token');
+            console.log(jobId);
+            const response = await fetch(`/api/jobs/deleteJob/${jobId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (!response.ok) throw new Error('Failed to delete job');
+            fetchJobListings(); // Refresh job listings after deletion
+        } catch (error) {
+            console.error("Error deleting job:", error);
+        }
+    };
 
     return (
         <div className="container-fluid">
@@ -64,6 +78,11 @@ const CompanyDashboard = () => {
                                                 description={job.description}
                                                 jobType={job.jobType}
                                                 salary={job.salary}
+
+                                                // things required to delete a job listing
+                                                key={job._id.toString()}
+                                                job={job}
+                                                deleteJob={deleteJob}
                                             />
                                         );
                                     })}
