@@ -15,7 +15,7 @@ function JobBoard() {
 
   const[jobListingArray, updateJobListings] = useState([]);
   const [searchPage, setSearchPage] = useState(1);
-  const itemsPerPage = 3; // Number of job listings to display per page
+  const itemsPerPage = 5; // Number of job listings to display per page
 
   
   // handling pagination

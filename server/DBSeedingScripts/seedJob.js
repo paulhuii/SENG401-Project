@@ -16,6 +16,7 @@ const jobData = [
         postedBy: '5f760dad3e3f8b3d2f22b8f4', // Replace with actual recruiter ObjectId
         jobID: new mongoose.Types.ObjectId(),
         applicants: [] // Replace with actual applicant ObjectIds
+        
     },
     {
         title: 'Marketing Manager',
