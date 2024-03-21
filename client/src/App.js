@@ -75,6 +75,7 @@ function App() {
   // Function to clear the authentication token and handle logout
   const handleLogout = () => {
     clearAuthToken(); // Clear the authentication token
+    localStorage.removeItem('user'); // Remove user-related data in the local storage - for security purposes
     setIsLoggedIn(false); // Update the authentication status
   };
 
