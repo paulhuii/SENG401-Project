@@ -94,13 +94,14 @@ function App() {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     window.location.href = '/JobBoard/search?query=' + searchQuery + '&category=' + selectedCategory.toLowerCase().split(' ').join('_');
-    // if(searchQuery === "") {
-    //   setError("Please enter a search query");
-    // } else {
-    //   setError("");
-    // }
-    console.log(searchQuery); 
-    // TODO: Implement search functionality
+    // Clear the error message if there was one
+    setError("");
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      handleSearchSubmit(event);
+    }
   }
 
   return (
@@ -138,6 +139,7 @@ function App() {
                       aria-label="Search" 
                       value= {searchQuery}
                       onChange={handleSearch}
+                      onKeyDown={handleKeyDown}
                     />
                     <Button 
                       variant="success"
