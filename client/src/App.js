@@ -99,7 +99,9 @@ function App() {
     setError("");
   }
 
-  const handleKeyDown = (event) => {
+  // handles the enter key being pressed when we are performing a search
+  const handleEnterSearch = (event) => {
+    // key 13 is the enter key
     if (event.keyCode === 13) {
       handleSearchSubmit(event);
     }
@@ -140,12 +142,12 @@ function App() {
                       aria-label="Search" 
                       value= {searchQuery}
                       onChange={handleSearch}
-                      onKeyDown={handleKeyDown}
+                      onKeyDown={handleEnterSearch}
                     />
                     <Button 
                       variant="success"
                       type="submit"
-                      onClick={handleSearchSubmit}
+                      onClick={handleSearchSubmit} // we are making this an onclick event b/c we only want enter key to work when the search bar is selected
                       >Search
                     </Button>
                     {error && <div className="text-danger">{error}</div>}
