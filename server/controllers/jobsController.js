@@ -1,11 +1,21 @@
+
+
+
+const Job = require('../models/Job');
+
+
 // Function to list all jobs
 exports.list = async (req, res) => {
   // Accessing the Job model from app.locals
-  const Job = req.app.locals.Job;
+  // const Job = req.app.locals.Job;
   
   try {
     // Fetch all jobs from the database
-    const jobs = await Job.find();
+    console.log(Job)
+    const jobs = await Job.find({});
+    console.log(jobs)
+    // const Job = req.app.locals.Job;
+
     // Send the jobs back in the response
     res.status(200).json(jobs);
   } catch (error) {
@@ -17,7 +27,7 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res) => {
     // Access the Job model directly from app.locals
-    const Job = req.app.locals.Job;
+    // const Job = req.app.locals.Job;
   
     try {
       console.log("Received request body:", req.body); // Log the received request body
@@ -57,7 +67,7 @@ exports.create = async (req, res) => {
 // function to count the number of jobs in the database
 exports.count = async (req, res) => {
   // Accessing the Job model from app.locals
-  const Job = req.app.locals.Job;
+  // const Job = req.app.locals.Job;
 
   try {
     // Count the number of jobs in the database
@@ -68,6 +78,28 @@ exports.count = async (req, res) => {
     // Log and send back error message if something goes wrong
     console.error('Error counting jobs:', error);
     res.status(500).send('Failed to count jobs');
+  }
+};
+
+exports.deleteJob = async (req, res) => {
+  try {
+    // Extract the job ID from the request parameters
+    const { jobId } = req.params;
+
+    // Use the Job model to find and remove the job by its ID
+    const deletedJob = await Job.findByIdAndDelete(jobId);
+
+    // Check if the job was found and deleted successfully
+    if (!deletedJob) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    // Send a success message back in the response
+    res.status(200).json({ message: 'Job deleted successfully', deletedJob });
+  } catch (error) {
+    // Log and send back error message if something goes wrong
+    console.error('Error deleting job:', error);
+    res.status(500).json({ message: 'Failed to delete job', error: error.message });
   }
 };
 

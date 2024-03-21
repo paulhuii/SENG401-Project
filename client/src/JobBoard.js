@@ -3,52 +3,120 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import JobListing from "./components/jobPosting/JobListing.js";
 import "./JobBoard.css"
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
 
 function JobBoard() {
+  const location = useLocation();
+  const search = location.search;
+  const params = new URLSearchParams(search);
+  const query = params.get('query');
+  const category = params.get('category');
 
-  // Intended use: multiply by 25 to get which jobs from DB to put into jobListingArray
-  // 0-24, 25-49, etc.
-  var queryCounter = 0;
+  const[jobListingArray, updateJobListings] = useState([]);
+  const [searchPage, setSearchPage] = useState(1);
+  const itemsPerPage = 5; // Number of job listings to display per page
 
-  // TODO: An example of how data should be formatted in the array. Once backend is connected, you can make this empty and update it when required.
-  const[jobListingArray, updateJobListings] = useState([
-    {position:'Data Scientist', company:'Netflix', location:'Seattle, WA', email:"netflix@gmail.com", description:"A data scientist is a professional who utilizes their expertise in statistics, mathematics, programming, and domain knowledge to analyze and interpret complex data sets. They employ various techniques, algorithms, and machine learning models to extract insights, patterns, and trends from data, which can be used to inform business decisions, solve problems, or drive innovation."},
-    {position:'Software Engineer I', company:'Facebook', location:'Seattle, WA', email:"facebook@gmail.com", description:""},
-    {description:"ASDFASDFASDFASDF "},
-    {position:'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT ',
-    company: 'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT ',
-    location:'LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST LIMIT TEST '}])
+  
+  // handling pagination
+  const handleSearchPageClick = (pageNumber) => {
+    setSearchPage(pageNumber);
+  };
 
-  // TODO: A function that updates the list of job listings from the database
-  // You should only fetch jobs that the applicant has not applied to
-  const fetchJobListings = () =>{
-    try {
-      // Get job listings from database that match query. My suggestion is to load a max of 25 job listings then have a "Next" button at the end of the list that will query the db again for the next 25
-      // updateJobListings([an array containing jobListings as formatted above])
-    } catch (err) {
-      console.log(err);
+  const handleSearchPreviousClick = () => {
+    if (searchPage > 1) {
+      setSearchPage(searchPage - 1);
     }
-  }
+  };
+  
+  const handleSearchNextClick = () => {
+    if (searchPage < totalSearchPages) {
+      setSearchPage(searchPage + 1);
+    }
+  };
 
-  // Once a user enters the room, load the first 25 queries
-  window.addEventListener("load", function(){
+  // filtering job listings
+  const filteredJobs = query === "" ? jobListingArray :
+          jobListingArray.filter(job => 
+            job.title.toLowerCase().includes(query.toLowerCase()) 
+            || job.location.toLowerCase().includes(query.toLowerCase())
+            || job.description.toLowerCase().includes(query.toLowerCase()) 
+            || job.jobType.toLowerCase().includes(query.toLowerCase()));
+
+  const totalSearchPages = Math.ceil(filteredJobs.length / itemsPerPage); // Total number of pages of search results
+
+  const currentFilteredJobs = filteredJobs.slice((searchPage - 1) * itemsPerPage, searchPage * itemsPerPage); // Job listings to display on the current page
+
+  useEffect(() => {
+    const fetchJobListings = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch('/api/jobs/getList',{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            console.log("Overall response:", response); // Prints the response status code
+    
+            if (!response.ok) throw new Error('Hello Failed to fetch job listings');
+            const data = await response.json();
+            console.log("Fetched job listings:", data); // Check fetched data
+            updateJobListings(data);
+        } catch (error) {
+            console.error("Error fetching job listings:", error);
+        }
+    };
+
     fetchJobListings();
-    queryCounter++;
-  })
+  }, []);
+
   
   return (
     <div className='jbpage'>
       <div className="jbpage-container">
-        <h1 className="page-title">Available Jobs:</h1>
-        {/* <Button type="button" class="btn btn-dark" id="filter"> Test Filter </Button> */}
+        {filteredJobs.length > 0 && <h1 className="page-title">{query === "" ? "Available Jobs: ":'Available Jobs for "' + query + '"'}</h1>}
         <p/>
         <div className="content">
           <div class="card-columns" overflow-y="auto">
-            {jobListingArray.map(jobInfo => (
-            <JobListing position={jobInfo.position} company={jobInfo.company} location={jobInfo.location} description={jobInfo.description} email={jobInfo.email}/>
+            {filteredJobs.length === 0 && query!== "" && <h1>No match found for "{query}"</h1>}
+            <p style={{fontSize: '0.8em'}}>Total search results: {filteredJobs.length}</p>
+            {currentFilteredJobs.map(jobInfo => (
+              <JobListing 
+                position={jobInfo.title} 
+                company={jobInfo.company} 
+                location={jobInfo.location} 
+                description={jobInfo.description} 
+                email={jobInfo.contact}
+                salary={jobInfo.salary}
+                jobType={jobInfo.jobType}
+              />
             ))}
           </div>
+          <div className="pagination">
+                <div className="pagination-button-placeholder">
+                  {searchPage > 1 && (
+                    <button className="pagination-button prev-next-button" onClick={handleSearchPreviousClick}>
+                      Previous
+                    </button>
+                  )}
+                </div>
+                {[...Array(totalSearchPages)].map((_, index) => (
+                  <button 
+                    className={`pagination-button ${searchPage === index + 1 ? 'active-page' : ''}`} 
+                    key={index} 
+                    onClick={() => handleSearchPageClick(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+                <div className="pagination-button-placeholder">
+                  {searchPage < totalSearchPages && (
+                    <button className="pagination-button prev-next-button" onClick={handleSearchNextClick}>
+                      Next
+                    </button>
+                  )}
+                </div>
+              </div>
         </div>
       </div>
     </div>

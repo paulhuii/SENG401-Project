@@ -4,11 +4,16 @@ import { FaEdit } from "react-icons/fa";
 import {Button, Modal} from "react-bootstrap";
 import ViewApplicants from "../ViewApplicants/ViewApplicants";
 
-const JobListingCard = ({ position, company, location, description, email, jobType, salary }) => {
+const JobListingCard = ({ position, company, location, description, email, jobType, salary, job, deleteJob }) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleDeleteJob = () => {
+        // Call deleteJob function and pass job ID as argument
+        deleteJob(job._id);
+    };
 
     return (
         <div className="container-fluid shadow rounded p-3 mb-3">
@@ -48,7 +53,7 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                                 <FaEdit/>
                             </Button>
 
-                            <Button className="mb-2" variant="outline-danger" href="/underdevelopment">
+                            <Button className="mb-2" variant="outline-danger" onClick={handleDeleteJob}>
                                 <BsTrash3Fill/>
                             </Button>
                         </div>

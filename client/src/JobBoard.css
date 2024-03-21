@@ -1,5 +1,5 @@
 .jbpage-container {
-    max-width: 40%;
+    max-width: 1000px;  
     height: fit-content; /* Set height to 100% of viewport height */
     margin: 20px auto;
     padding: 20px;
