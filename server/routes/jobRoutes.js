@@ -5,7 +5,7 @@ const jobsController = require('../controllers/jobsController'); // Adjust path 
 
 const router = express.Router();
 
-// Protect routes
+// Protect routes to make sure only recruiter get to view the jobs they posted when logged in as a recruiter
 router.post('/', (req, res, next) => {
     console.log('Request received for job creation');
     next();
@@ -22,6 +22,13 @@ router.get('/getList', jobsController.list);
 
 // allow access to delete jobs
 router.delete('/deleteJob/:jobId', verifyToken, authorizeRole('Recruiter'), jobsController.deleteJob);
+
+//Apply to job
+router.post('/api/jobs/apply/:jobID', jobsController.applyToJob);
+
+//View applicants for a job
+router.get('/api/jobs/:jobID/applicants', jobsController.getApplicantsForJob);
+
 
 
 module.exports = router;
