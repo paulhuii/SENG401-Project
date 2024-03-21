@@ -12,7 +12,7 @@ router.post('/', (req, res, next) => {
   }, verifyToken, authorizeRole('Recruiter'), jobsController.create);
 
 
-  router.get('/list', verifyToken, authorizeRole('Recruiter'), jobsController.list);
+router.get('/list', verifyToken, authorizeRole('Recruiter'), jobsController.list);
 
 // Allow access to job count without token verification
 router.get('/count', jobsController.count);
@@ -24,7 +24,10 @@ router.get('/getList', jobsController.list);
 router.post('/apply/:jobID', verifyToken, jobsController.applyToJob);
 
 //View applicants for a job
-router.get('/:jobID/applicants', jobsController.getApplicantsForJob);
+router.get('/:jobID/applicants', verifyToken, authorizeRole('Recruiter'), jobsController.getApplicantsForJob);
+
+// allow access to delete jobs
+router.delete('/deleteJob/:jobId', verifyToken, authorizeRole('Recruiter'), jobsController.deleteJob);
 
 
 module.exports = router;

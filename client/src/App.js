@@ -75,6 +75,7 @@ function App() {
   // Function to clear the authentication token and handle logout
   const handleLogout = () => {
     clearAuthToken(); // Clear the authentication token
+    localStorage.removeItem('user'); // Remove user-related data in the local storage - for security purposes
     setIsLoggedIn(false); // Update the authentication status
   };
 
@@ -94,13 +95,16 @@ function App() {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     window.location.href = '/JobBoard/search?query=' + searchQuery + '&category=' + selectedCategory.toLowerCase().split(' ').join('_');
-    // if(searchQuery === "") {
-    //   setError("Please enter a search query");
-    // } else {
-    //   setError("");
-    // }
-    console.log(searchQuery); 
-    // TODO: Implement search functionality
+    // Clear the error message if there was one
+    setError("");
+  }
+
+  // handles the enter key being pressed when we are performing a search
+  const handleEnterSearch = (event) => {
+    // key 13 is the enter key
+    if (event.keyCode === 13) {
+      handleSearchSubmit(event);
+    }
   }
 
   return (
@@ -138,11 +142,12 @@ function App() {
                       aria-label="Search" 
                       value= {searchQuery}
                       onChange={handleSearch}
+                      onKeyDown={handleEnterSearch}
                     />
                     <Button 
                       variant="success"
                       type="submit"
-                      onClick={handleSearchSubmit}
+                      onClick={handleSearchSubmit} // we are making this an onclick event b/c we only want enter key to work when the search bar is selected
                       >Search
                     </Button>
                     {error && <div className="text-danger">{error}</div>}

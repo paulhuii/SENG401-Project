@@ -112,6 +112,28 @@ exports.getApplicantsForJob = async (req, res) => {
     res.json(jobWithApplicants.applicants);
   } catch (error) {
     res.status(500).send(error.message);
+
+  }
+};
+exports.deleteJob = async (req, res) => {
+  try {
+    // Extract the job ID from the request parameters
+    const { jobId } = req.params;
+
+    // Use the Job model to find and remove the job by its ID
+    const deletedJob = await Job.findByIdAndDelete(jobId);
+
+    // Check if the job was found and deleted successfully
+    if (!deletedJob) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    // Send a success message back in the response
+    res.status(200).json({ message: 'Job deleted successfully', deletedJob });
+  } catch (error) {
+    // Log and send back error message if something goes wrong
+    console.error('Error deleting job:', error);
+    res.status(500).json({ message: 'Failed to delete job', error: error.message });
   }
 };
 
