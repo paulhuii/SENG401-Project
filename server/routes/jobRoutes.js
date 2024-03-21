@@ -24,11 +24,10 @@ router.get('/getList', jobsController.list);
 router.delete('/deleteJob/:jobId', verifyToken, authorizeRole('Recruiter'), jobsController.deleteJob);
 
 //Apply to job
-router.post('/api/jobs/apply/:jobID', jobsController.applyToJob);
+router.post('/apply/:jobID', verifyToken, jobsController.applyToJob);
 
 //View applicants for a job
-router.get('/api/jobs/:jobID/applicants', jobsController.getApplicantsForJob);
-
+router.get('/:jobID/applicants', jobsController.getApplicantsForJob);
 
 
 module.exports = router;

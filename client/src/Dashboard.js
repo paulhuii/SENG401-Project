@@ -183,6 +183,8 @@ function Dashboard() {
               <div className="card-columns job-listing">
                 {currentJobs.map(job => 
                   <JobListing 
+                    key = {job._id}
+                    jobID = {job._id}
                     position={job.title} 
                     company={job.company} 
                     location={job.location} 
