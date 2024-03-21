@@ -71,4 +71,48 @@ exports.count = async (req, res) => {
   }
 };
 
+exports.applyToJob = async (req, res) => {
+  const { jobID } = req.params; 
+
+  console.log("jobID, ", jobID);
+  const userID = req.userId; // Extracted from authentication middleware
+  console.log("userID ", userID);
+
+  try {
+    // Add the user's _id to the Job's applicants array
+    const jobUpdate = await Job.findByIdAndUpdate(jobID, {
+      $push: { applicants: userID }
+    }, { new: true });
+
+    // Optionally, add the job's _id to the User's jobs array
+    const userUpdate = await User.findByIdAndUpdate(userID, {
+      $push: { jobs: jobID }
+    }, { new: true });
+
+    if (!jobUpdate || !userUpdate) {
+      return res.status(404).send('Job or User not found');
+    }
+
+    res.status(200).json({ message: 'Application successful', jobUpdate, userUpdate });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+// Controller for getting applicants for a job
+exports.getApplicantsForJob = async (req, res) => {
+  const { jobID } = req.params;
+
+  try {
+    const jobWithApplicants = await Job.findById(jobID).populate('applicants');
+    if (!jobWithApplicants) {
+      return res.status(404).send('Job not found');
+    }
+
+    res.json(jobWithApplicants.applicants);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 

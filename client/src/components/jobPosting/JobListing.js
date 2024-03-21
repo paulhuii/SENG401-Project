@@ -23,6 +23,7 @@ const JobListing = (props) => {
             {/* Contact Information */}
             <h5>Contact Information: {props.email ? props.email : "No contact information provided"}</h5>
             <ApplyPopup 
+                jobID = {props.jobID}
                 company={props.company ? props.company : "no company given"}
                 position={props.position ? props.position : "No position given"}
                 description={props.description ? props.description : "No description available."} 
