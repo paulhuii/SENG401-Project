@@ -20,5 +20,8 @@ router.get('/count', jobsController.count);
 // Allow access to job list without token verification
 router.get('/getList', jobsController.list);
 
+// allow access to delete jobs
+router.delete('/deleteJob/:jobId', verifyToken, authorizeRole('Recruiter'), jobsController.deleteJob);
+
 
 module.exports = router;
