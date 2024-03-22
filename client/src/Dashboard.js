@@ -10,6 +10,8 @@ function Dashboard() {
   const [jobPage, setJobPage] = useState(1);
   const [applicationPage, setApplicationPage] = useState(1);
   const itemsPerPage = 5; 
+  const [appliedJobs, setAppliedJobs] = useState([]);
+
 
   // replace with actual data
   const companies = Array.from({ length: 20 }, (_, index) => ({
@@ -63,6 +65,34 @@ function Dashboard() {
       }, []);
   
 
+
+      useEffect(() => {
+        if (selectedMenuItem === 'My Applications') {
+          const token = localStorage.getItem('token');
+          fetch('/api/appliedJobs', {  
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to fetch applied jobs');
+            }
+            return response.json();
+          })
+          .then(data => {
+                  // Logging each job ID for debugging purposes
+      data.forEach(job => {
+        console.log(`Job ID: ${job._id}`); // Make sure job._id is not undefined
+      });
+            setAppliedJobs(data);  // Store the applied jobs in the state
+          })
+          .catch(error => {
+            console.error("Error fetching applied jobs:", error);
+          });
+        }
+      }, [selectedMenuItem]);
+      
   // replace with actual data
   // const applications = Array.from({ length: 20 }, (_, index) => ({ 
   //   id: index + 1, 
@@ -183,6 +213,8 @@ function Dashboard() {
               <div className="card-columns job-listing">
                 {currentJobs.map(job => 
                   <JobListing 
+                    key = {job._id}
+                    jobID = {job._id}
                     position={job.title} 
                     company={job.company} 
                     location={job.location} 

@@ -23,12 +23,13 @@ const JobListing = (props) => {
             {/* Contact Information */}
             <h5>Contact Information: {props.email ? props.email : "No contact information provided"}</h5>
             <ApplyPopup 
+                jobID = {props.jobID}
                 company={props.company ? props.company : "no company given"}
                 position={props.position ? props.position : "No position given"}
                 description={props.description ? props.description : "No description available."} 
                 email={props.email ? props.email : null}
             />
-            <span class="p-2 text-secondary"> {daysPassed > 1 ? "Posted "+daysPassed+" Days Ago": "Posted "+daysPassed+" Day Ago"}</span>
+            <span className="p-2 text-secondary"> {daysPassed > 1 ? "Posted "+daysPassed+" Days Ago": "Posted "+daysPassed+" Day Ago"}</span>
         </div>
     </div>      
 </div>

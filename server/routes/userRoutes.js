@@ -52,4 +52,8 @@ router.get('/getApplicantList', userCtrl.getApplicantList);
 // Route to fetch applicant list
 router.get('/getRecruiterList', userCtrl.getRecruiterList);
 
+//Route to view applied jobs
+//View applied jobs for Job seeker
+router.get('/appliedJobs', verifyToken, userCtrl.getAppliedJobs);
+
 module.exports = router;

@@ -67,14 +67,14 @@ const jobSchema = new mongoose.Schema({
     ref: 'User', // Reference to User model
     required: false
   }],
-  jobID: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    default: mongoose.Types.ObjectId // Automatically generate ObjectId
+  // jobID: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   required: false,
+  //   default: mongoose.Types.ObjectId // Automatically generate ObjectId
 
-    // default: () => new mongoose.Types.ObjectId() // Automatically generate if not provided
+  //   // default: () => new mongoose.Types.ObjectId() // Automatically generate if not provided
 
-  }
+  // }
 }, { timestamps: true }); // Including timestamps to track when jobs are created or updated
 
 // Create and export the User model

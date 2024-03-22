@@ -38,6 +38,7 @@ const verifyToken = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
+        console.log("decoded.userId ", decoded.userId);
         // Query the database for the user to get the role
         const user = await User.findById(decoded.userId).select('role');
         if (!user) {
