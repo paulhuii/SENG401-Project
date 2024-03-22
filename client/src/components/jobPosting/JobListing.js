@@ -28,7 +28,7 @@ const JobListing = (props) => {
                 description={props.description ? props.description : "No description available."} 
                 email={props.email ? props.email : null}
             />
-            <span class="p-2 text-secondary"> {daysPassed > 1 ? "Posted "+daysPassed+" Days Ago": "Posted "+daysPassed+" Day Ago"}</span>
+            <span className="p-2 text-secondary"> {daysPassed > 1 ? "Posted "+daysPassed+" Days Ago": "Posted "+daysPassed+" Day Ago"}</span>
         </div>
     </div>      
 </div>
