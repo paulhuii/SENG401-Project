@@ -255,21 +255,39 @@ function Dashboard() {
             {selectedMenuItem === 'My Applications' && 
             <div className="content-item-db">
               <div className='card-columns applications'> 
-              {currentApplications.map(job => (
-                <ApplicationCard 
-                key={job._id} 
-                application={{
-                jobID: job._id,
-                jobTitle: job.title,
-                companyName: job.company,
-                location: job.location,
-                dateApplied: job.dateApplied, 
-                description: job.description,
-                salary: job.salary,
-                jobType: job.jobType,
-                contact: job.contact,
-          }}
-          />
+              {appliedJobs.length === 0 && (
+                <div>
+                  <h2 className='no-application'>You have not applied for any job</h2>
+                  <button className='start-applying-btn' onClick={() => setSelectedMenuItem('Browse Available Jobs')}>
+                    Browse Available Jobs
+                  </button>
+                </div>
+              )}
+              {
+              // appliedJobs.length === 0 ? (
+              //   <div>
+              //     <h2>You have not applied for any jobs</h2>
+              //     <button className='start-applying-btn' onClick={() => setSelectedMenuItem('Browse Available Jobs')}>
+              //       Browse Available Jobs
+              //     </button>
+              //   </div>
+              // ) : (
+                currentApplications.map(job => (
+                  <ApplicationCard 
+                  key={job._id} 
+                  application={{
+                  jobID: job._id,
+                  jobTitle: job.title,
+                  companyName: job.company,
+                  location: job.location,
+                  dateApplied: job.dateApplied, 
+                  description: job.description,
+                  salary: job.salary,
+                  jobType: job.jobType,
+                  contact: job.contact,
+            }}
+            />
+                // )
               ))}
               </div>
               <div className="pagination">
