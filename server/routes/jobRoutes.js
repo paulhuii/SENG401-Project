@@ -20,14 +20,17 @@ router.get('/count', jobsController.count);
 // Allow access to job list without token verification
 router.get('/getList', jobsController.list);
 
-// allow access to delete jobs
-router.delete('/deleteJob/:jobId', verifyToken, authorizeRole('Recruiter'), jobsController.deleteJob);
-
-//Apply to job
+//Apply to job - Job seeker
 router.post('/apply/:jobID', verifyToken, jobsController.applyToJob);
 
 //View applicants for a job
-router.get('/:jobID/applicants', jobsController.getApplicantsForJob);
+router.get('/:jobID/applicants', verifyToken, authorizeRole('Recruiter'), jobsController.getApplicantsForJob);
+
+// allow access to delete jobs
+router.delete('/deleteJob/:jobId', verifyToken, authorizeRole('Recruiter'), jobsController.deleteJob);
+
+//Apply to job - Job seeker
+router.post('/apply/:jobID', verifyToken, jobsController.applyToJob);
 
 
 module.exports = router;
