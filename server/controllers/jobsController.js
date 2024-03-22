@@ -71,6 +71,71 @@ exports.count = async (req, res) => {
   }
 };
 
+exports.applyToJob = async (req, res) => {
+  const { jobID } = req.params;
+  const userID = req.userId; // Extracted from authentication middleware
+  console.log("jobID, ", jobID);
+  console.log("userID ", userID);
+
+  try {
+    // Check if the user has already applied to the job
+    let job = await Job.findById(jobID);
+    if (!job) {
+      return res.status(404).send('Job not found');
+    }
+
+    // Check if the userID is already in the job's applicants array
+    const hasApplied = job.applicants.some(applicantId => applicantId.toString() === userID);
+
+    if (!hasApplied) {
+      // If the user hasn't applied, add them to the applicants array
+      await Job.findByIdAndUpdate(jobID, {
+        $push: { applicants: userID }
+      }, { new: true });
+    }
+
+    // Optionally, check if the job is already in the User's jobs array and add if not
+    const user = await User.findById(userID);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    const hasJob = user.jobs.some(jobId => jobId.toString() === jobID);
+    if (!hasJob) {
+      await User.findByIdAndUpdate(userID, {
+        $push: { jobs: jobID }
+      }, { new: true });
+    }
+
+    // Respond with a message indicating whether the application was updated or a new application was created
+    res.status(200).json({ 
+      message: hasApplied ? 'Application updated' : 'Application successful', 
+      jobUpdate: job, 
+      userUpdate: user 
+    });
+  } catch (error) {
+    console.error('Error applying to job:', error);
+    res.status(500).send(error.message);
+  }
+};
+
+
+// Controller for getting applicants for a job
+exports.getApplicantsForJob = async (req, res) => {
+  const { jobID } = req.params;
+
+  try {
+    const jobWithApplicants = await Job.findById(jobID).populate('applicants');
+    if (!jobWithApplicants) {
+      return res.status(404).send('Job not found');
+    }
+
+    res.json(jobWithApplicants.applicants);
+  } catch (error) {
+    res.status(500).send(error.message);
+
+  }
+};
 exports.deleteJob = async (req, res) => {
   try {
     // Extract the job ID from the request parameters

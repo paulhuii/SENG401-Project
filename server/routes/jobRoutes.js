@@ -12,7 +12,7 @@ router.post('/', (req, res, next) => {
   }, verifyToken, authorizeRole('Recruiter'), jobsController.create);
 
 
-  router.get('/list', verifyToken, authorizeRole('Recruiter'), jobsController.list);
+router.get('/list', verifyToken, authorizeRole('Recruiter'), jobsController.list);
 
 // Allow access to job count without token verification
 router.get('/count', jobsController.count);
