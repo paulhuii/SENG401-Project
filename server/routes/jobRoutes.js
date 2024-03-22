@@ -20,7 +20,7 @@ router.get('/count', jobsController.count);
 // Allow access to job list without token verification
 router.get('/getList', jobsController.list);
 
-//Apply to job
+//Apply to job - Job seeker
 router.post('/apply/:jobID', verifyToken, jobsController.applyToJob);
 
 //View applicants for a job
