@@ -264,6 +264,10 @@ function Dashboard() {
                 companyName: job.company,
                 location: job.location,
                 dateApplied: job.dateApplied, 
+                description: job.description,
+                salary: job.salary,
+                jobType: job.jobType,
+                contact: job.contact,
           }}
           />
               ))}
