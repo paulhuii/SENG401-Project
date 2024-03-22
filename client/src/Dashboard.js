@@ -64,18 +64,18 @@ function Dashboard() {
   
 
   // replace with actual data
-  const applications = Array.from({ length: 20 }, (_, index) => ({ 
-    id: index + 1, 
-    jobTitle: `Job ${index + 1}`,
-    companyName: `Company ${index + 1}`, 
-    location: `Location ${index + 1}`,
-    dateApplied: new Date(Date.now() - (20 - index) * 86400000).toLocaleDateString(),
-    salary: `$${index * 10000}`,
-  }));
+  // const applications = Array.from({ length: 20 }, (_, index) => ({ 
+  //   id: index + 1, 
+  //   jobTitle: `Job ${index + 1}`,
+  //   companyName: `Company ${index + 1}`, 
+  //   location: `Location ${index + 1}`,
+  //   dateApplied: new Date(Date.now() - (20 - index) * 86400000).toLocaleDateString(),
+  //   salary: `$${index * 10000}`,
+  // }));
 
   const totalCompanyPages = Math.ceil(companies.length / itemsPerPage);
   const totalJobPages = Math.ceil(jobs.length / itemsPerPage);
-  const totalApplicationPages = Math.ceil(applications.length / itemsPerPage);
+  const totalApplicationPages = Math.ceil(appliedJobs.length / itemsPerPage);
 
   const handleMenuItemClick = (menuItem) => {
     setSelectedMenuItem(menuItem);
@@ -131,7 +131,7 @@ function Dashboard() {
 
   const currentCompanies = companies.slice((companyPage - 1) * itemsPerPage, companyPage * itemsPerPage);
   const currentJobs = jobs.slice((jobPage - 1) * itemsPerPage, jobPage * itemsPerPage);
-  const currentApplications = applications.slice((applicationPage - 1) * itemsPerPage, applicationPage * itemsPerPage);
+  const currentApplications = appliedJobs.slice((applicationPage - 1) * itemsPerPage, applicationPage * itemsPerPage);
 
   return (
     <div className="page-container">
@@ -223,7 +223,18 @@ function Dashboard() {
             {selectedMenuItem === 'My Applications' && 
             <div className="content-item-db">
               <div className='card-columns applications'> 
-                {currentApplications.map(application => <ApplicationCard key={application.id} application={application} />)}
+              {currentApplications.map(job => (
+                <ApplicationCard 
+                key={job._id} 
+                application={{
+                jobID: job._id,
+                jobTitle: job.title,
+                companyName: job.company,
+                location: job.location,
+                dateApplied: job.dateApplied, 
+          }}
+          />
+              ))}
               </div>
               <div className="pagination">
                 <div className="pagination-button-placeholder">
