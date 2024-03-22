@@ -69,11 +69,11 @@ const jobSchema = new mongoose.Schema({
   }],
   // jobID: {
   //   type: mongoose.Schema.Types.ObjectId,
-  //   required: true,
+  //   required: false,
   //   default: mongoose.Types.ObjectId // Automatically generate ObjectId
-  //
+
   //   // default: () => new mongoose.Types.ObjectId() // Automatically generate if not provided
-  //
+
   // }
 }, { timestamps: true }); // Including timestamps to track when jobs are created or updated
 

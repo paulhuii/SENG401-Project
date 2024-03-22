@@ -35,7 +35,7 @@ const { Schema } = mongoose;
 const userSchema = new mongoose.Schema({
   // uniqueID: {
   //   type: Schema.Types.ObjectId,
-  //   default: mongoose.Types.ObjectId // Automatically generate ObjectId
+  //   default: mongoose.Types.ObjectId,
   // },
   name: {
     type: String,

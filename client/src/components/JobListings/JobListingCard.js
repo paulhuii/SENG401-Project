@@ -31,7 +31,7 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                                 <Modal.Title>View Applicants</Modal.Title>
                             </Modal.Header>
 
-                            <Modal.Body style={{ maxHeight: 'calc(100vh - 25vh)', overflowY: 'auto' }}>
+                            {/* <Modal.Body style={{ maxHeight: 'calc(100vh - 25vh)', overflowY: 'auto' }}>
                                 <h5 className="mb-3">View all prospective applicants!</h5>
                                 <ViewApplicants/>
                                 <ViewApplicants/>
@@ -39,6 +39,11 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                                 <ViewApplicants/>
                                 <ViewApplicants/>
                                 <ViewApplicants/>
+                            </Modal.Body> */}
+
+                            <Modal.Body style={{ maxHeight: 'calc(100vh - 210px)', overflowY: 'auto' }}>
+                                {/* Pass job._id as a prop to ViewApplicants */}
+                                <ViewApplicants jobID={job._id} />
                             </Modal.Body>
 
                             <Modal.Footer>

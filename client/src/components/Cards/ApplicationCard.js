@@ -4,6 +4,7 @@ import "./DashboardCard.css"
 
 function ApplicationCard({ application }) {
   const [isViewingApplication, setIsViewingApplication] = useState(false);
+  const [jobDetails, setJobDetails] = useState(null);
 
   const handleViewApplication = () => {
     setIsViewingApplication(!isViewingApplication);
@@ -49,6 +50,7 @@ ApplicationCard.propTypes = {
 
 ApplicationCard.defaultProps = {
   application: {
+    jobID: 'Job ID',
     jobTitle: 'Job Title',
     companyName: 'Company Name',
     location: 'Location',

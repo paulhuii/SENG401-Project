@@ -59,6 +59,7 @@ exports.register = async (req, res) => {
             token: token
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
