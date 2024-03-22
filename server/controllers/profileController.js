@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Job = require('../models/Job');
 
 const userCtrl = {
     searchUser: async (req, res) => {
@@ -143,6 +144,27 @@ const userCtrl = {
         }
     },
 
+    getAppliedJobs: async (req, res) => {
+        try {
+          const userID = req.userId; // Extracted from authentication middleware
+          console.log("userID: ", userID);
+          const user = await User.findById(userID);
+      
+          if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+          }
+      
+          // Assuming the user model has an array of job IDs the user has applied to
+          const appliedJobs = await Job.find({ '_id': { $in: user.jobs } });
+      
+          res.json(appliedJobs);
+        } catch (error) {
+          console.error('Error fetching applied jobs:', error);
+          res.status(500).send('Failed to fetch applied jobs');
+        }
+      }
+
 };
+
 module.exports = userCtrl
 
