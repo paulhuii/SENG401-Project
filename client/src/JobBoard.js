@@ -82,6 +82,8 @@ function JobBoard() {
             <p style={{fontSize: '0.8em'}}>Total search results: {filteredJobs.length}</p>
             {currentFilteredJobs.map(jobInfo => (
               <JobListing 
+                key = {jobInfo._id}
+                jobID = {jobInfo._id}
                 position={jobInfo.title} 
                 company={jobInfo.company} 
                 location={jobInfo.location} 
