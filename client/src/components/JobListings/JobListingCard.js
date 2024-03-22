@@ -66,12 +66,13 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                 </div>
             </div>
 
-            <h5>{location}</h5>
             <div className="row">
                 <div className="col d-flex">
-                    <h6 className="shadow-sm p-2 rounded bg-primary me-2 text-white">{jobType}</h6>
+                    <h6 className="shadow-sm p-2 rounded bg-secondary me-2 text-white">{jobType}</h6>
                 </div>
             </div>
+
+            <h5>{location}</h5>
 
             <h5>Salary: {salary}</h5>
 
