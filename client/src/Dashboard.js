@@ -11,6 +11,8 @@ function Dashboard() {
   const [applicationPage, setApplicationPage] = useState(1);
   const itemsPerPage = 5; 
   const [appliedJobs, setAppliedJobs] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
+  
 
 
   // replace with actual data
@@ -222,6 +224,7 @@ function Dashboard() {
                     email={job.contact}
                     salary={job.salary}
                     jobType={job.jobType}
+                    applied={job['applicants'].indexOf(user['_id']) !== -1? true : false}
                   />
                 )}
               </div>

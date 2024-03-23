@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { useState } from 'react';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from 'axios'
 
@@ -8,11 +7,12 @@ import axios from 'axios'
 
 
 // ApplyPopup.js
-function ApplyPopup({ jobID, company, position, description, email }) {
+function ApplyPopup({ jobID, company, position, description, email, applied, user}) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [applicationSent, setApplicationSent]  = useState(false);
+    const [applicationSent, setApplicationSent]  = useState(applied);
+    const isRecruiter = (user ? (user.role === "Recruiter" ? true : false) : true) // Disable application if they are a recruiter or not signed in
 
     const sendApply = () => {
         const token = localStorage.getItem('token');
@@ -48,8 +48,8 @@ function ApplyPopup({ jobID, company, position, description, email }) {
     return (
         <>
             {/* The button component returned */}
-            <Button variant={applicationSent ? "success" : "primary"} onClick={handleShow}>
-                {applicationSent ? "Applied" : "Apply"}
+            <Button data-testid="ApplyPopup" variant={applicationSent ? "success" : "primary"} onClick={handleShow} disabled={isRecruiter}>
+                {isRecruiter ? "Log in as a Job Seeker to apply!" : applicationSent ? "Applied" : "Apply"}
             </Button>
             
             {/* The popup */}
@@ -58,18 +58,19 @@ function ApplyPopup({ jobID, company, position, description, email }) {
                     <Modal.Title>Apply for {position}</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body>
-                    <p>Are you sure you want to apply for the position of <strong>{position}</strong> at <strong>{company}</strong>?</p>
+                <Modal.Body data-testid="ApplyPopupBody">
+                    <p>Are you sure you want to apply for the position of <strong>{position}</strong>?</p> 
+                    {/*  at <strong>{company}</strong>? */}
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => {
+                    <Button data-testid="ApplyPopupSendButton" variant="primary" onClick={() => {
                         sendApply();
                         handleClose(); // Close the modal after applying
                     }} disabled={applicationSent}>
                         {applicationSent ? "Application Sent!" : "Confirm Application"}
                     </Button>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button data-testid="ApplyPopupCancelButton" variant="secondary" onClick={handleClose}>
                         Cancel
                     </Button>
                 </Modal.Footer>
