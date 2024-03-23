@@ -7,12 +7,11 @@ import axios from 'axios'
 
 
 // ApplyPopup.js
-function ApplyPopup({ jobID, company, position, description, email, applied }) {
+function ApplyPopup({ jobID, company, position, description, email, applied, user}) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [applicationSent, setApplicationSent]  = useState(applied);
-    const user = JSON.parse(localStorage.getItem('user'));
     const isRecruiter = (user ? (user.role === "Recruiter" ? true : false) : true) // Disable application if they are a recruiter or not signed in
 
     const sendApply = () => {
@@ -49,8 +48,8 @@ function ApplyPopup({ jobID, company, position, description, email, applied }) {
     return (
         <>
             {/* The button component returned */}
-            <Button variant={applicationSent ? "success" : "primary"} onClick={handleShow} disabled={isRecruiter}>
-                {isRecruiter ? "Log in as an applicant to apply!" : applicationSent ? "Applied" : "Apply"}
+            <Button data-testid="ApplyPopup" variant={applicationSent ? "success" : "primary"} onClick={handleShow} disabled={isRecruiter}>
+                {isRecruiter ? "Log in as a Job Seeker to apply!" : applicationSent ? "Applied" : "Apply"}
             </Button>
             
             {/* The popup */}
