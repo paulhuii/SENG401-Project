@@ -58,18 +58,19 @@ function ApplyPopup({ jobID, company, position, description, email, applied, use
                     <Modal.Title>Apply for {position}</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body>
-                    <p>Are you sure you want to apply for the position of <strong>{position}</strong> at <strong>{company}</strong>?</p>
+                <Modal.Body data-testid="ApplyPopupBody">
+                    <p>Are you sure you want to apply for the position of <strong>{position}</strong>?</p> 
+                    {/*  at <strong>{company}</strong>? */}
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => {
+                    <Button data-testid="ApplyPopupSendButton" variant="primary" onClick={() => {
                         sendApply();
                         handleClose(); // Close the modal after applying
                     }} disabled={applicationSent}>
                         {applicationSent ? "Application Sent!" : "Confirm Application"}
                     </Button>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button data-testid="ApplyPopupCancelButton" variant="secondary" onClick={handleClose}>
                         Cancel
                     </Button>
                 </Modal.Footer>
