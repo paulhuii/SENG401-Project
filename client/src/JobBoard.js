@@ -75,7 +75,7 @@ function JobBoard() {
         {filteredJobs.length > 0 && <h1 className="page-title">{query === "" ? "Available Jobs: ":'Available Jobs for "' + query + '"'}</h1>}
         <p/>
         <div className="content">
-          <div class="card-columns" overflow-y="auto">
+          <div className="card-columns" overflow-y="auto">
             {filteredJobs.length === 0 && query!== "" && <h1>No match found for "{query}"</h1>}
             <p style={{fontSize: '0.8em'}}>Total search results: {filteredJobs.length}</p>
             {currentFilteredJobs.map(jobInfo => (
