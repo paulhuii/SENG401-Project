@@ -12,11 +12,10 @@ function JobBoard() {
   const params = new URLSearchParams(search);
   const query = params.get('query');
   const category = params.get('category');
-
   const[jobListingArray, updateJobListings] = useState([]);
   const [searchPage, setSearchPage] = useState(1);
   const itemsPerPage = 5; // Number of job listings to display per page
-
+  const user = JSON.parse(localStorage.getItem('user'));
   
   // handling pagination
   const handleSearchPageClick = (pageNumber) => {
@@ -46,7 +45,6 @@ function JobBoard() {
   const totalSearchPages = Math.ceil(filteredJobs.length / itemsPerPage); // Total number of pages of search results
 
   const currentFilteredJobs = filteredJobs.slice((searchPage - 1) * itemsPerPage, searchPage * itemsPerPage); // Job listings to display on the current page
-
   useEffect(() => {
     const fetchJobListings = async () => {
         try {
@@ -91,6 +89,7 @@ function JobBoard() {
                 email={jobInfo.contact}
                 salary={jobInfo.salary}
                 jobType={jobInfo.jobType}
+                applied={user ? (jobInfo['applicants'].indexOf(user['_id']) !== -1? true : false) : false}
               />
             ))}
           </div>
