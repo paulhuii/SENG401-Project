@@ -185,7 +185,7 @@ function Dashboard() {
               <div className="pagination">
                 <div className="pagination-button-placeholder">
                   {companyPage > 1 && (
-                    <button className="pagination-button prev-next-button" onClick={handleCompanyPreviousClick}>
+                    <button className="pagination-button prev-next-button prev" onClick={handleCompanyPreviousClick}>
                       Previous
                     </button>
                   )}
@@ -201,7 +201,7 @@ function Dashboard() {
                 ))}
                 <div className="pagination-button-placeholder">
                 {companyPage < totalCompanyPages && (
-                  <button className="pagination-button prev-next-button" onClick={handleCompanyNextClick}>
+                  <button className="pagination-button prev-next-button next" onClick={handleCompanyNextClick}>
                     Next
                   </button>
                 )}
@@ -212,7 +212,7 @@ function Dashboard() {
             <div className="content-item-db">
               <div className="card-columns job-listing">
                 {currentJobs.map(job => 
-                  <JobListing 
+                  <JobListing
                     key = {job._id}
                     jobID = {job._id}
                     position={job.title} 
@@ -228,7 +228,7 @@ function Dashboard() {
               <div className="pagination">
                 <div className="pagination-button-placeholder">
                   {jobPage > 1 && (
-                    <button className="pagination-button prev-next-button" onClick={handleJobPreviousClick}>
+                    <button className="pagination-button prev-next-button prev" onClick={handleJobPreviousClick}>
                       Previous
                     </button>
                   )}
@@ -244,7 +244,7 @@ function Dashboard() {
                 ))}
                 <div className="pagination-button-placeholder">
                   {jobPage < totalJobPages && (
-                    <button className="pagination-button prev-next-button" onClick={handleJobNextClick}>
+                    <button className="pagination-button prev-next-button next" onClick={handleJobNextClick}>
                       Next
                     </button>
                   )}
@@ -293,7 +293,7 @@ function Dashboard() {
               <div className="pagination">
                 <div className="pagination-button-placeholder">
                   {applicationPage > 1 && (
-                    <button className="pagination-button prev-next-button" onClick={handleApplicationPreviousClick}>
+                    <button className="pagination-button prev-next-button prev" onClick={handleApplicationPreviousClick}>
                       Previous
                     </button>
                   )}
@@ -309,7 +309,7 @@ function Dashboard() {
                 ))}
                 <div className="pagination-button-placeholder">
                   {applicationPage < totalApplicationPages && (
-                    <button className="pagination-button prev-next-button" onClick={handleApplicationNextClick}>
+                    <button className="pagination-button prev-next-button next" onClick={handleApplicationNextClick}>
                       Next
                     </button>
                   )}
