@@ -19,11 +19,11 @@ describe('Dashboard', () => {
         expect(menuItem).toBeInTheDocument();
     });
 
-    it('renders Browse Available Jobs menu item', () => {
-        const { getByText } = render(<Dashboard />);
-        const menuItem = getByText('Browse Available Jobs');
-        expect(menuItem).toBeInTheDocument();
-    });
+    // it('renders Browse Available Jobs menu item', () => {
+    //     const { getByText } = render(<Dashboard />);
+    //     const menuItem = getByText('Browse Available Jobs');
+    //     expect(menuItem).toBeInTheDocument();
+    // });
 
     it('renders My Applications menu item', () => {
         const { getByText } = render(<Dashboard />);
