@@ -20,7 +20,6 @@ function Dashboard() {
     location: `Location ${index + 1}`,
   }));
 
-    // TODO: An example of how data should be formatted in the array. Once backend is connected, you can make this empty and update it when required.
   const[jobs, updateJobListings] = useState([ ]);
   
     useEffect(() => {
@@ -144,39 +143,39 @@ function Dashboard() {
         <div className="divider">
           <div className="menu">  
             <div className={`menu-item ${selectedMenuItem === 'My Applications' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Applications')}>My Applications</div>
+            {/* <div className={`menu-item ${selectedMenuItem === 'Browse Available Jobs' ? 'active' : ''}`} onClick={() => handleMenuItemClick('Browse Available Jobs')}>Browse Available Jobs</div> */}
             <div className={`menu-item ${selectedMenuItem === 'My Network' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Network')}>My Network</div>
-            <div className={`menu-item ${selectedMenuItem === 'Browse Available Jobs' ? 'active' : ''}`} onClick={() => handleMenuItemClick('Browse Available Jobs')}>Browse Available Jobs</div>
           </div>
 
           <div className="menu-content">
           {selectedMenuItem === 'My Applications' && 
             <div className="content-item-db">
               <div className='card-columns applications'> 
-              {appliedJobs.length === 0 && (
+              {appliedJobs.length === 0 ? (
                 <div>
                   <h2 className='no-application'>You have not applied for any job</h2>
                   <button className='start-applying-btn' onClick={() => setSelectedMenuItem('Browse Available Jobs')}>
                     Browse Available Jobs
                   </button>
                 </div>
-              )}
-              {
+              ) : (
                 currentApplications.map(job => (
                   <ApplicationCard 
-                  key={job._id} 
-                  application={{
-                  jobID: job._id,
-                  jobTitle: job.title,
-                  companyName: job.company,
-                  location: job.location,
-                  dateApplied: job.dateApplied, 
-                  description: job.description,
-                  salary: job.salary,
-                  jobType: job.jobType,
-                  contact: job.contact,
-            }}
-            />
-              ))}
+                    key={job._id} 
+                    application={{
+                      jobID: job._id,
+                      jobTitle: job.title,
+                      companyName: job.company,
+                      location: job.location,
+                      dateApplied: job.dateApplied, 
+                      description: job.description,
+                      salary: job.salary,
+                      jobType: job.jobType,
+                      contact: job.contact,
+                    }}
+                  />
+                ))
+              )}
               </div>
               <div className="pagination">
                 <div className="pagination-button-placeholder">
@@ -203,7 +202,8 @@ function Dashboard() {
                   )}
                 </div>
               </div>
-            </div>}
+            </div>
+          }
             {selectedMenuItem === 'My Network' && 
             <div className="content-item-db">
               <div className='card-columns companies'> 
