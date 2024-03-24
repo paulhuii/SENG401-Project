@@ -82,6 +82,8 @@ function Signup() {
       if (data.token) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user)); // Save user data to localStorage
+        localStorage.setItem('userId', data.user._id);
+
         window.location.href = '/';
       } else {
         throw new Error('Token not found in response');
