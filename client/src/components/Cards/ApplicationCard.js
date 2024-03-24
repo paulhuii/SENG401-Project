@@ -47,7 +47,6 @@ ApplicationCard.propTypes = {
     jobType: PropTypes.string,
     description: PropTypes.string,
     contact: PropTypes.string,
-
   }),
 };
 
@@ -59,6 +58,7 @@ ApplicationCard.defaultProps = {
     location: 'Location',
     dateApplied: 'Date Applied',
     salary: '$$$$$$',
+    jobType: 'Type',
     description: "No description given",
     contact: "No contact information given",
   },
