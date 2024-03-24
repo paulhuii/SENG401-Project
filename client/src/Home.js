@@ -69,7 +69,7 @@ function Home() {
 
 
         // Fetch user count
-        axios.get('http://localhost:3000/api/recruiterCount')
+        axios.get('https://jobhub.company/api/recruiterCount')
             .then(response => {
                 setRecruiterCount(response.data.count);
             })
