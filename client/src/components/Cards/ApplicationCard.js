@@ -4,6 +4,7 @@ import "./DashboardCard.css"
 
 function ApplicationCard({ application }) {
   const [isViewingApplication, setIsViewingApplication] = useState(false);
+  const [jobDetails, setJobDetails] = useState(null);
 
   const handleViewApplication = () => {
     setIsViewingApplication(!isViewingApplication);
@@ -24,13 +25,12 @@ function ApplicationCard({ application }) {
         </div>
         {isViewingApplication && (
           <div className="application-details">
-            <p>Salary: {application.salary}</p>
+            <p> {application.jobType} | {application.salary}</p>
+            <p> Contact: {application.contact}</p>
             <div className="description">
                 <p className="jlcard-text">{application.description ? String(application.description).slice(0,256) + "..." : "No description available"}</p>
                 <p className="jlcard-hover-text">{application.description ? application.description : "No description available"}</p>
             </div>
-            
-            <p>Requirements: {application.requirements}</p>
           </div>
         )}
     </div>
@@ -44,16 +44,23 @@ ApplicationCard.propTypes = {
     location: PropTypes.string,
     dateApplied: PropTypes.string,
     salary: PropTypes.string,
+    jobType: PropTypes.string,
+    description: PropTypes.string,
+    contact: PropTypes.string,
   }),
 };
 
 ApplicationCard.defaultProps = {
   application: {
+    jobID: 'Job ID',
     jobTitle: 'Job Title',
     companyName: 'Company Name',
     location: 'Location',
     dateApplied: 'Date Applied',
     salary: '$$$$$$',
+    jobType: 'Type',
+    description: "No description given",
+    contact: "No contact information given",
   },
 };
 

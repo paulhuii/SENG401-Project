@@ -57,18 +57,22 @@ function Login({ setIsLoggedIn }) {
       const data = await response.json(); // Parse JSON response
       
       // Extract username, email, and role from the response data
-      const { username, email, role, name, gender, description } = data.user;
+      const { username, email, role, name, gender, description, profile_photo, _id } = data.user;
       console.log('Username:', username);
       console.log('Email:', email);
       console.log('Role:', role);
       console.log('Name:', name);
       console.log('Gender:', gender);
       console.log('Description', description);
+      console.log('Profile photo:', profile_photo);
+      console.log('User ID:', _id);
 
       // Assuming the token is sent back in the response under a property named 'token'
       if (data.token) {
         localStorage.setItem('token', data.token); // Save the token to localStorage
         localStorage.setItem('user', JSON.stringify(data.user)); // Save the user data to localStorage
+        localStorage.setItem('userId', data.user._id);
+
         setIsLoggedIn(true); // Update isLoggedIn state to true
         
         const role = data.user.role;

@@ -1,91 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { useState } from 'react';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from 'axios'
 
 
 
 
-function ApplyPopup({ company, position, description, email }) {
-    const [show, setShow] = React.useState(false);
+// ApplyPopup.js
+function ApplyPopup({ jobID, company, position, description, email, applied, user}) {
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    var emailProvided = email ? true : false;
-    const [applicationSent, sent]  = useState(false);
-    const [hasResume, choseResume] = useState(false);
-  // File input constant
-  const [file, setFile] = useState();
+    const [applicationSent, setApplicationSent]  = useState(applied);
+    const isRecruiter = (user ? (user.role === "Recruiter" ? true : false) : true) // Disable application if they are a recruiter or not signed in
 
-    // TODO: Upload a resume to the backend using Axios and Multer: https://www.youtube.com/watch?v=-7w2KtfiMEM
-    const upload = () => {
-        // Check if there was an upload
-        if (document.getElementById("resume").value !== ''){
-        const formData = new FormData();
-        formData.append('file', file);
-        axios.post('PATHTOCHANGE', formData)
-        .then( res => {})
-        .catch( er => console.log(er));
-        }
-    }
+    const sendApply = () => {
+        const token = localStorage.getItem('token');
 
-    // Executes when the applicant hits 'Apply'
-    function sendApply() {
-        console.log("Your application was sent to " + email); // TODO: Delete after implementing backend
-        // TODO: Send application to company on the backend
-        upload(); // Upload resume
-        sent(true); // Flip boolean and change the apply button
-    }
+        fetch(`/api/jobs/apply/${jobID}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // Include other headers like authorization tokens if necessary
+                'Authorization': `Bearer ${token}`
 
-    
+            },
+            // If you need to send a body with the POST request, uncomment the following line
+            // body: JSON.stringify({ /* your body data */ }), //*****MUST FILL OUT IF NEEDED************** */
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();  // or 'response.text()' if the response is not in JSON format
+        })
+        .then(data => {
+            // Handle the successful application
+            setApplicationSent(true); // Set the application sent state to true
+            console.log("Your application was sent", data);
+        })
+        .catch(error => {
+            // Handle errors here
+            console.error("An error occurred during the application process", error);
+        });
+    };
 
     return (
         <>
             {/* The button component returned */}
-            <Button variant={applicationSent ? "success" : "primary"} onClick={handleShow}>
-                {applicationSent ? <span ><i style={{margin: '5px'}} class="bi bi-check2-circle"></i>Applied</span> : "Apply"}
+            <Button data-testid="ApplyPopup" variant={applicationSent ? "success" : "primary"} onClick={handleShow} disabled={isRecruiter}>
+                {isRecruiter ? "Log in as a Job Seeker to apply!" : applicationSent ? "Applied" : "Apply"}
             </Button>
             
-
             {/* The popup */}
-            <Modal show={show} onHide={handleClose} centered size="xl">
+            <Modal show={show} onHide={handleClose} centered size="lg">
                 <Modal.Header closeButton>
-                    <Modal.Title><h2>{position} at {company}</h2></Modal.Title>
+                    <Modal.Title>Apply for {position}</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body style={{ maxHeight: 'calc(100vh - 210px)', overflowY: 'auto',fontSize:'22px' }}>
-                    {description}
+                <Modal.Body data-testid="ApplyPopupBody">
+                    <p>Are you sure you want to apply for the position of <strong>{position}</strong>?</p> 
+                    {/*  at <strong>{company}</strong>? */}
                 </Modal.Body>
 
-                <Modal.Footer >
-                    <input type="file" id="resume" accept='.docx, .doc, .pdf' disabled={applicationSent} onChange={(e) => {
-
-                        // Check if our file has the appropriate extension:
-                        var name = document.getElementById("resume").value;
-                        if (name.slice(-4) === (".pdf") || name.slice(-4) === (".doc") || name.slice(-4) === (".docx")){
-                        setFile(e.target.files[0]);
-                        console.log("Resume set to " + name);
-                        choseResume(true);
-                        // Upload was moved to sendApply
-                        } else {
-                        // Rest if not what was expected
-                        document.getElementById("resume").value = '';
-                        console.log("Invalid file type selected...");
-                        }
-
-                        if (document.getElementById("resume").value === ''){
-                            choseResume(false);
-                        }
-                    }}/>
-
-                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title={hasResume ? "" : emailProvided ? "Choose a resume before applying" : "Company has no email to send resumes to!"}>
-                    <Button variant={emailProvided ? applicationSent ? "success btn-lg":"primary btn-lg" : "secondary btn-lg"} onClick={sendApply} disabled={!hasResume || !emailProvided || applicationSent}>
-                        {emailProvided ? applicationSent ? "Application sent!" :"Send Application" : "Company did not provide email!"}
+                <Modal.Footer>
+                    <Button data-testid="ApplyPopupSendButton" variant="primary" onClick={() => {
+                        sendApply();
+                        handleClose(); // Close the modal after applying
+                    }} disabled={applicationSent}>
+                        {applicationSent ? "Application Sent!" : "Confirm Application"}
                     </Button>
-                    </span>
-
-                    <Button variant="outline-dark btn-lg" onClick={handleClose}>
-                        Close
+                    <Button data-testid="ApplyPopupCancelButton" variant="secondary" onClick={handleClose}>
+                        Cancel
                     </Button>
                 </Modal.Footer>
             </Modal>

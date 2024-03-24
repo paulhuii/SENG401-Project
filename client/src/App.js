@@ -44,12 +44,15 @@ import './App.css';
 
 import CompanyPost from "./CompanyPost";
 import CompanyDashboard from "./CompanyDashboard";
-import {Button, Dropdown, DropdownButton, FormControl, InputGroup} from "react-bootstrap";
+import {Button, Dropdown, DropdownButton, Form, FormControl, InputGroup} from "react-bootstrap";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
 
   const [selectedCategory, setSelectedCategory] = useState("Search All"); // State to store the selected category
+
+  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
+  const [error, setError] = useState(''); // State to store the error message
 
   // Function to handle dropdown item selection
   const handleDropdownSelect = (category) => {
@@ -72,6 +75,7 @@ function App() {
   // Function to clear the authentication token and handle logout
   const handleLogout = () => {
     clearAuthToken(); // Clear the authentication token
+    localStorage.removeItem('user'); // Remove user-related data in the local storage - for security purposes
     setIsLoggedIn(false); // Update the authentication status
   };
 
@@ -83,6 +87,25 @@ function App() {
   // Get the user role from local storage
   const user = JSON.parse(localStorage.getItem('user'));
   const role = user ? user.role.toLowerCase() : ''; 
+
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  }
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    window.location.href = '/JobBoard/search?query=' + searchQuery + '&category=' + selectedCategory.toLowerCase().split(' ').join('_');
+    // Clear the error message if there was one
+    setError("");
+  }
+
+  // handles the enter key being pressed when we are performing a search
+  const handleEnterSearch = (event) => {
+    // key 13 is the enter key
+    if (event.keyCode === 13) {
+      handleSearchSubmit(event);
+    }
+  }
 
   return (
     <Router>
@@ -114,8 +137,20 @@ function App() {
                         <Dropdown.Item eventKey="Search Companies">Search Companies</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-                    <FormControl placeholder="Search" aria-label="Search" />
-                    <Button variant="success">Search</Button>
+                    <FormControl 
+                      placeholder="Search" 
+                      aria-label="Search" 
+                      value= {searchQuery}
+                      onChange={handleSearch}
+                      onKeyDown={handleEnterSearch}
+                    />
+                    <Button 
+                      variant="success"
+                      type="submit"
+                      onClick={handleSearchSubmit} // we are making this an onclick event b/c we only want enter key to work when the search bar is selected
+                      >Search
+                    </Button>
+                    {error && <div className="text-danger">{error}</div>}
                   </InputGroup>
                 </div>
               </ul>
@@ -162,7 +197,7 @@ function App() {
             {/* Render the Profile component only when logged in */}
             {isLoggedIn && <Route path="/profile" element={<Profile />} />}
             <Route path="/CompanyPost" element={<CompanyPost/>}/>
-            <Route path="/JobBoard" element={<JobBoard />}/>
+            <Route path="/JobBoard/:query" element={<JobBoard/>}/>
             <Route path="/CompanyDashboard" element={<CompanyDashboard/>}/>
             <Route path="/underdevelopment" element={<UnderDevelopment/>}/>
           </Routes>
