@@ -4,9 +4,9 @@ import ApplyPopup from "./ApplyPopup";
 // Props fields so far: position:'', company:'', location:'', description:"", email:""
 const JobListing = (props) => {
     
-    const user = JSON.parse(localStorage.getItem('user'));
+const user = JSON.parse(localStorage.getItem('user'));
 
-    return(
+return(
 
 <div className="row-lg-4 d-flex align-items-stretch">
     <div className="jlcard w-100">
