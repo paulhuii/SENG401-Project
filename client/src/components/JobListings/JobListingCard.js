@@ -54,9 +54,9 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                         </Modal>
 
                         <div>
-                            <Button className="me-2 mb-2" variant="outline-warning" href="/underdevelopment">
-                                <FaEdit/>
-                            </Button>
+                            {/*<Button className="me-2 mb-2" variant="outline-warning" href="/underdevelopment">*/}
+                            {/*    <FaEdit/>*/}
+                            {/*</Button>*/}
 
                             <Button className="mb-2" variant="outline-danger" onClick={handleDeleteJob}>
                                 <BsTrash3Fill/>
