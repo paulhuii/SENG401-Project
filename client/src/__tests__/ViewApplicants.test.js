@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
 import ViewApplicants from '../components/ViewApplicants/ViewApplicants';
@@ -86,15 +87,11 @@ describe('ViewApplicants', () => {
         await waitFor(() => {
             const genderElement =
                 screen.getByRole('heading', { name: "Gender: " + dummyApplicants[0].gender});
-
             expect(genderElement).toBeInTheDocument();
         });
-
-
         await waitFor(() => {
             const genderElement =
                 screen.getByRole('heading', { name: "Gender: " + dummyApplicants[1].gender});
-
             expect(genderElement).toBeInTheDocument();
         });
     });
