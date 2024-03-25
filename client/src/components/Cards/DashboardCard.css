@@ -19,3 +19,8 @@
     cursor: pointer;
     margin: 10px 10px 10px 0;
 }
+
+.description{
+    white-space:pre-wrap;
+    overflow: auto;
+}
