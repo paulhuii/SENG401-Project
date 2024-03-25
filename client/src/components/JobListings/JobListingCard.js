@@ -3,6 +3,7 @@ import { BsTrash3Fill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import {Button, Modal} from "react-bootstrap";
 import ViewApplicants from "../ViewApplicants/ViewApplicants";
+import './JobListingCard.css'
 
 const JobListingCard = ({ position, company, location, description, email, jobType, salary, job, deleteJob }) => {
 
