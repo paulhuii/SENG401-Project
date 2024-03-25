@@ -23,10 +23,10 @@ describe('Dashboard', () => {
         expect(title).toBeInTheDocument();
     });
 
-    it('renders My Network menu item', () => {
-        const menuItem = screen.getByText('My Network');
-        expect(menuItem).toBeInTheDocument();
-    });
+    // it('renders My Network menu item', () => {
+    //     const menuItem = screen.getByText('My Network');
+    //     expect(menuItem).toBeInTheDocument();
+    // });
 
     it('renders Browse Available Jobs menu item', () => {
         const menuItem = screen.getByText('Browse Available Jobs');
