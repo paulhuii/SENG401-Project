@@ -3,11 +3,11 @@ import "./ProfilePic.css"
 
 const ProfilePic = ({ userProfilePhotoUrl, onUpdate }) => {
   // Use userProfilePhotoUrl prop for the initial photo URL
-  const [picSrc, setPicSrc] = useState(userProfilePhotoUrl || "/profileDefault.png");
+  const [picSrc, setPicSrc] = useState("/profileDefault.png"); // userProfilePhotoUrl || 
 
   useEffect(() => {
     // Update component state when userProfilePhotoUrl prop changes
-    setPicSrc(userProfilePhotoUrl || "/profileDefault.png");
+    setPicSrc("/profileDefault.png"); //userProfilePhotoUrl || 
   }, [userProfilePhotoUrl]);
 
   async function uploadPhoto(file) {
@@ -54,7 +54,8 @@ const ProfilePic = ({ userProfilePhotoUrl, onUpdate }) => {
   return (
     <div className="profilepic">
       <img id="content" className="profilepic__image" src={picSrc} width="150" height="150" alt="Profile" />
-      <div className="profilepic__content" onClick={onButtonClicked}>
+      <div className="profilepic__content">
+        {/* onClick={onButtonClicked} */}
         <span className="profilepic__icon"><i className="fas fa-camera"></i></span>
         <span className="profilepic__text">Change Picture</span>
       </div>

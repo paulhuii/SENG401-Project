@@ -24,7 +24,7 @@ exports.create = async (req, res) => {
     try {
       console.log("Received request body:", req.body); // Log the received request body
 
-      const { title, jobType, location, salary, contact, description } = req.body;
+      const { title, jobType, location, salary, contact, description, id } = req.body;
       
       // Log the destructured values to ensure they're what we expect
       console.log("Destructured data:", { title, jobType, location, salary, contact, description });
@@ -39,7 +39,7 @@ exports.create = async (req, res) => {
         salary,
         contact,
         description,
-        // postedBy: req.user._id // Assumes req.user is populated by the auth middleware
+        postedBy: id // Assumes req.user is populated by the auth middleware
       });
 
       console.log("New job created:", newJob); // Log the created job document

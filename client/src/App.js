@@ -126,7 +126,7 @@ function App() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                   {/* Search bar with dropdown */}
                   <InputGroup className="mx-auto" style={{ maxWidth: '400px' }}>
-                    <Dropdown onSelect={handleDropdownSelect}>
+                    {/* <Dropdown onSelect={handleDropdownSelect}>
                       <Dropdown.Toggle variant="outline-secondary">
                         {selectedCategory}
                       </Dropdown.Toggle>
@@ -136,7 +136,7 @@ function App() {
                         <Dropdown.Item eventKey="Search Job Seekers">Search Job Seekers</Dropdown.Item>
                         <Dropdown.Item eventKey="Search Companies">Search Companies</Dropdown.Item>
                       </Dropdown.Menu>
-                    </Dropdown>
+                    </Dropdown> */}
                     <FormControl 
                       placeholder="Search" 
                       aria-label="Search" 

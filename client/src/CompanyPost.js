@@ -15,7 +15,8 @@ const CompanyPost = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior
-
+        const user = JSON.parse(localStorage.getItem('user'));
+        
         const jobData = {
             title: titleRef.current.value,
             jobType: typeRef.current.value,
@@ -23,11 +24,13 @@ const CompanyPost = () => {
             salary: salaryRef.current.value,
             contact: contactRef.current.value,
             description: jobDescription,
+            id: user._id
         };
         const token = localStorage.getItem('token');
         console.log('Sending request to /api/jobs with data:', jobData);
         console.log('Authorization Token:', token);
         console.log(`Bearer ${localStorage.getItem('token')}`);
+        console.log('Recruiter ID: ', user._id)
 
         try {
             console.log(token); // This should output the token to the console
