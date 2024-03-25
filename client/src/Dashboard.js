@@ -147,7 +147,7 @@ function Dashboard() {
           <div className="menu">  
             <div className={`menu-item ${selectedMenuItem === 'My Applications' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Applications')}>My Applications</div>
             {/* <div className={`menu-item ${selectedMenuItem === 'Browse Available Jobs' ? 'active' : ''}`} onClick={() => handleMenuItemClick('Browse Available Jobs')}>Browse Available Jobs</div> */}
-            <div className={`menu-item ${selectedMenuItem === 'My Network' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Network')}>My Network</div>
+            {/*<div className={`menu-item ${selectedMenuItem === 'My Network' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Network')}>My Network</div>*/}
           </div>
 
           <div className="menu-content">
@@ -173,7 +173,7 @@ function Dashboard() {
                       jobTitle: job.title,
                       companyName: job.company,
                       location: job.location,
-                      dateApplied: job.dateApplied, 
+                      dateApplied: job.dateApplied,
                       description: job.description,
                       salary: job.salary,
                       jobType: job.jobType,
@@ -210,7 +210,7 @@ function Dashboard() {
               </div>
             </div>
           }
-            {selectedMenuItem === 'My Network' && 
+            {selectedMenuItem === 'My Network' &&
             <div className="content-item-db">
               <div className='card-columns companies'> 
                 {currentCompanies.map(company => <CompanyCard key={company.id} company={company} />)}
