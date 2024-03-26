@@ -136,6 +136,7 @@ exports.getApplicantsForJob = async (req, res) => {
 
   }
 };
+
 exports.deleteJob = async (req, res) => {
   try {
     // Extract the job ID from the request parameters
@@ -202,23 +203,6 @@ exports.applyToJob = async (req, res) => {
     });
   } catch (error) {
     console.error('Error applying to job:', error);
-    res.status(500).send(error.message);
-  }
-};
-
-
-// Controller for getting applicants for a job
-exports.getApplicantsForJob = async (req, res) => {
-  const { jobID } = req.params;
-
-  try {
-    const jobWithApplicants = await Job.findById(jobID).populate('applicants');
-    if (!jobWithApplicants) {
-      return res.status(404).send('Job not found');
-    }
-
-    res.json(jobWithApplicants.applicants);
-  } catch (error) {
     res.status(500).send(error.message);
   }
 };
