@@ -90,16 +90,16 @@ const CompanyPost = () => {
                     <p/>
 
                     <label htmlFor="location" className="form-label">Location</label>
-                    <input type="text" className="form-control" id="location" ref={locationRef} />
+                    <input type="text" className="form-control" id="location" ref={locationRef} required/>
 
                     <label htmlFor="salary" className="form-label">Salary</label>
-                    <input type="text" className="form-control" id="salary" ref={salaryRef} placeholder='"Market Rate", "$120,000 to $150,000", etc.'/>
+                    <input type="text" className="form-control" id="salary" ref={salaryRef} placeholder='"Market Rate", "$120,000 to $150,000", etc.' required/>
 
                     <label htmlFor="contact" className="form-label">Contact Information</label>
                     <input type="text" className="form-control" placeholder="Phone number or email address" id="contact" ref={contactRef} required/>
 
-                    <label htmlFor="job-description" className="description-label mb-2">Description</label>
-                    <textarea id="job-description" placeholder='Optional' value={jobDescription} onChange={(e) => setJobDescription(e.target.value)}
+                    <label htmlFor="job-description" className="description-label mb-2" >Description</label>
+                    <textarea required id="job-description" placeholder='Required' value={jobDescription} onChange={(e) => setJobDescription(e.target.value)}
                         className="form-control" // Assuming you're using Bootstrap or a similar CSS framework
                         rows="4" // Sets the initial visible number of lines in the textarea
                         ></textarea>
