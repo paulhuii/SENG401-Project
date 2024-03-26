@@ -80,7 +80,7 @@ describe('Authenticated API endpoint testing', () => {
     const response = await request(app).get('/api/recruiterCount');
     expect(response.statusCode).toBe(200);
     expect(typeof response.body.count).toBe('number');
-    expect(response.body.count).toBeGreaterThanOrEqual(10); // Based on seeded data
+    expect(response.body.count).toBeGreaterThanOrEqual(10);
   });
 
   afterAll(async () => {
