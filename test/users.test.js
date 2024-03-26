@@ -82,9 +82,58 @@ describe('Authenticated API endpoint testing', () => {
     expect(typeof response.body.count).toBe('number');
     expect(response.body.count).toBeGreaterThanOrEqual(10);
   });
+  test('Search for users', async () => {
+    // Add a search query as per your API's implementation
+    const searchQuery = 'John Doe';
+    const response = await request(app)
+      .get(`/api/search?query=${searchQuery}`)
+      .set('Authorization', `Bearer ${recruiterToken}`);
+    
+    expect(response.statusCode).toBe(200);
+    expect(Array.isArray(response.body.users)).toBeTruthy();
+    expect(response.body.users).toHaveLength(1); // Assuming the search returns one result
+  });
 
+  test('Upload profile photo', async () => {
+    const response = await request(app)
+      .post('/api/profile/photo')
+      .set('Authorization', `Bearer ${jobseekerToken}`)
+      .attach('profilePhoto', 'path/to/photo.jpg'); // Update the path to an actual image file
+    
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('message', 'Photo uploaded successfully');
+    expect(response.body.user).toHaveProperty('profilePhoto');
+  });
+
+  test('Get list of recruiters', async () => {
+    const response = await request(app)
+      .get('/api/getRecruiterList')
+      .set('Authorization', `Bearer ${recruiterToken}`);
+    
+    expect(response.statusCode).toBe(200);
+    expect(Array.isArray(response.body.recruiters)).toBeTruthy();
+  });
+
+  test('Get list of applicants', async () => {
+    const response = await request(app)
+      .get('/api/getApplicantList')
+      .set('Authorization', `Bearer ${recruiterToken}`);
+    
+    expect(response.statusCode).toBe(200);
+    expect(Array.isArray(response.body.applicants)).toBeTruthy();
+  });
+
+  test('Get applied jobs for a job seeker', async () => {
+    const response = await request(app)
+      .get('/api/getAppliedJobs')
+      .set('Authorization', `Bearer ${jobseekerToken}`);
+    
+    expect(response.statusCode).toBe(200);
+    expect(Array.isArray(response.body.jobs)).toBeTruthy();
+  });
   afterAll(async () => {
     await mongoose.connection.close();
-    closeServer();
+    await mongoose.disconnect();
+    await closeServer();
   });
 });
