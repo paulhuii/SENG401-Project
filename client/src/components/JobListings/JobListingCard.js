@@ -3,6 +3,7 @@ import { BsTrash3Fill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import {Button, Modal} from "react-bootstrap";
 import ViewApplicants from "../ViewApplicants/ViewApplicants";
+import './JobListingCard.css'
 
 const JobListingCard = ({ position, company, location, description, email, jobType, salary, job, deleteJob }) => {
 
@@ -31,7 +32,7 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                                 <Modal.Title>View Applicants</Modal.Title>
                             </Modal.Header>
 
-                            <Modal.Body style={{ maxHeight: 'calc(100vh - 25vh)', overflowY: 'auto' }}>
+                            {/* <Modal.Body style={{ maxHeight: 'calc(100vh - 25vh)', overflowY: 'auto' }}>
                                 <h5 className="mb-3">View all prospective applicants!</h5>
                                 <ViewApplicants/>
                                 <ViewApplicants/>
@@ -39,6 +40,11 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                                 <ViewApplicants/>
                                 <ViewApplicants/>
                                 <ViewApplicants/>
+                            </Modal.Body> */}
+
+                            <Modal.Body style={{ maxHeight: 'calc(100vh - 210px)', overflowY: 'auto' }}>
+                                {/* Pass job._id as a prop to ViewApplicants */}
+                                <ViewApplicants jobID={job._id} />
                             </Modal.Body>
 
                             <Modal.Footer>
@@ -49,9 +55,9 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                         </Modal>
 
                         <div>
-                            <Button className="me-2 mb-2" variant="outline-warning" href="/underdevelopment">
-                                <FaEdit/>
-                            </Button>
+                            {/*<Button className="me-2 mb-2" variant="outline-warning" href="/underdevelopment">*/}
+                            {/*    <FaEdit/>*/}
+                            {/*</Button>*/}
 
                             <Button className="mb-2" variant="outline-danger" onClick={handleDeleteJob}>
                                 <BsTrash3Fill/>
@@ -61,12 +67,13 @@ const JobListingCard = ({ position, company, location, description, email, jobTy
                 </div>
             </div>
 
-            <h5>{location}</h5>
             <div className="row">
                 <div className="col d-flex">
-                    <h6 className="shadow-sm p-2 rounded bg-primary me-2 text-white">{jobType}</h6>
+                    <h6 className="shadow-sm p-2 rounded bg-secondary me-2 text-white">{jobType}</h6>
                 </div>
             </div>
+
+            <h5>{location}</h5>
 
             <h5>Salary: {salary}</h5>
 

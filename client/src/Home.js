@@ -169,37 +169,43 @@ function Home() {
                         <div className="home-carousel-card-container">
                             <Card>
                                 <Card.Body>
+                                    <h2>Job Listing</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{job1.title}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Job Type:</strong> {job1.jobType}<br/>
                                         <strong>Location:</strong> {job1.location}<br/>
                                         <strong>Salary:</strong> {job1.salary}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Job Listing</Button>*/}
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Body>
+                                    <h2>Job Listing</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{job2.title}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Job Type:</strong> {job2.jobType}<br/>
                                         <strong>Location:</strong> {job2.location}<br/>
                                         <strong>Salary:</strong> {job2.salary}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Job Listing</Button>*/}
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Body>
+                                    <h2>Job Listing</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{job3.title}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Job Type:</strong> {job3.jobType}<br/>
                                         <strong>Location:</strong> {job3.location}<br/>
                                         <strong>Salary:</strong> {job3.salary}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Job Listing</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Job Listing</Button>*/}
                                 </Card.Body>
                             </Card>
                         </div>
@@ -209,34 +215,40 @@ function Home() {
                         <div className="home-carousel-card-container">
                             <Card>
                                 <Card.Body>
+                                    <h2>Applicant</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{applicant1.name}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Gender:</strong> {applicant1.gender}<br/>
                                         <strong>Email:</strong> {applicant1.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>*/}
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Body>
+                                    <h2>Applicant</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{applicant2.name}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Gender:</strong> {applicant2.gender}<br/>
                                         <strong>Email:</strong> {applicant2.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>*/}
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Body>
+                                    <h2>Applicant</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{applicant3.name}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Gender:</strong> {applicant3.gender}<br/>
                                         <strong>Email:</strong> {applicant3.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Applicant Profile</Button>*/}
                                 </Card.Body>
                             </Card>
                         </div>
@@ -246,34 +258,40 @@ function Home() {
                         <div className="home-carousel-card-container">
                             <Card>
                                 <Card.Body>
+                                    <h2>Recruiter</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{recruiter1.name}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Gender:</strong> {recruiter1.gender}<br/>
                                         <strong>Email:</strong> {recruiter1.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>*/}
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Body>
+                                    <h2>Recruiter</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{recruiter2.name}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Gender:</strong> {recruiter2.gender}<br/>
                                         <strong>Email:</strong> {recruiter2.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>*/}
                                 </Card.Body>
                             </Card>
 
                             <Card>
                                 <Card.Body>
+                                    <h2>Recruiter</h2>
+                                    <hr/>
                                     <Card.Title className="home-card-title">{recruiter3.name}</Card.Title>
                                     <Card.Text className="home-card-text">
                                         <strong>Gender:</strong> {recruiter3.gender}<br/>
                                         <strong>Email:</strong> {recruiter3.email}
                                     </Card.Text>
-                                    <Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>
+                                    {/*<Button variant="primary" className="home-card-button">Go to Recruiter Profile</Button>*/}
                                 </Card.Body>
                             </Card>
                         </div>
@@ -289,8 +307,6 @@ function Home() {
                         <Card.Text className="home-card-text">
                             Explore countless job opportunities with Job Hub or showcase your company's openings and connect with our vibrant community of career seekers!
                         </Card.Text>
-
-
                     </Card.Body>
                 </Card>
 
@@ -321,7 +337,6 @@ function Home() {
                 <a href="https://www.flaticon.com/free-icons/people" title="people icons" style={{ color: "black", marginRight: "30px" }}>People icons created by Freepik - Flaticon</a>
                 <a href="https://www.flaticon.com/free-icons/company" title="company icons" style={{ color: "black" }}>Company icons created by Freepik - Flaticon</a>
             </footer>
-
 
         </div>
     );

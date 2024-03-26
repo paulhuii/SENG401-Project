@@ -33,10 +33,10 @@ const { Schema } = mongoose;
 
 // Define the schema for the User model
 const userSchema = new mongoose.Schema({
-  uniqueID: {
-    type: Schema.Types.ObjectId,
-    default: mongoose.Types.ObjectId // Automatically generate ObjectId
-  },
+  // uniqueID: {
+  //   type: Schema.Types.ObjectId,
+  //   default: mongoose.Types.ObjectId,
+  // },
   name: {
     type: String,
     required: true

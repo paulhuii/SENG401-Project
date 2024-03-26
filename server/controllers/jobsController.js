@@ -1,20 +1,14 @@
 
-
-
 const Job = require('../models/Job');
-
+const User = require('../models/User');
 
 // Function to list all jobs
 exports.list = async (req, res) => {
-  // Accessing the Job model from app.locals
-  // const Job = req.app.locals.Job;
   
   try {
     // Fetch all jobs from the database
-    console.log(Job)
     const jobs = await Job.find({});
     console.log(jobs)
-    // const Job = req.app.locals.Job;
 
     // Send the jobs back in the response
     res.status(200).json(jobs);
@@ -25,14 +19,12 @@ exports.list = async (req, res) => {
   }
 };
 
+//Function to create jobs - recruiter only
 exports.create = async (req, res) => {
-    // Access the Job model directly from app.locals
-    // const Job = req.app.locals.Job;
-  
     try {
       console.log("Received request body:", req.body); // Log the received request body
 
-      const { title, jobType, location, salary, contact, description } = req.body;
+      const { title, jobType, location, salary, contact, description, id } = req.body;
       
       // Log the destructured values to ensure they're what we expect
       console.log("Destructured data:", { title, jobType, location, salary, contact, description });
@@ -47,7 +39,7 @@ exports.create = async (req, res) => {
         salary,
         contact,
         description,
-        // postedBy: req.user._id // Assumes req.user is populated by the auth middleware
+        postedBy: id // Assumes req.user is populated by the auth middleware
       });
 
       console.log("New job created:", newJob); // Log the created job document
@@ -66,8 +58,6 @@ exports.create = async (req, res) => {
 
 // function to count the number of jobs in the database
 exports.count = async (req, res) => {
-  // Accessing the Job model from app.locals
-  // const Job = req.app.locals.Job;
 
   try {
     // Count the number of jobs in the database
@@ -78,6 +68,72 @@ exports.count = async (req, res) => {
     // Log and send back error message if something goes wrong
     console.error('Error counting jobs:', error);
     res.status(500).send('Failed to count jobs');
+  }
+};
+
+exports.applyToJob = async (req, res) => {
+  const { jobID } = req.params;
+  const userID = req.userId; // Extracted from authentication middleware
+  console.log("jobID, ", jobID);
+  console.log("userID ", userID);
+
+  try {
+    // Check if the user has already applied to the job
+    let job = await Job.findById(jobID);
+    if (!job) {
+      return res.status(404).send('Job not found');
+    }
+
+    // Check if the userID is already in the job's applicants array
+    const hasApplied = job.applicants.some(applicantId => applicantId.toString() === userID);
+
+    if (!hasApplied) {
+      // If the user hasn't applied, add them to the applicants array
+      await Job.findByIdAndUpdate(jobID, {
+        $push: { applicants: userID }
+      }, { new: true });
+    }
+
+    // Optionally, check if the job is already in the User's jobs array and add if not
+    const user = await User.findById(userID);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    const hasJob = user.jobs.some(jobId => jobId.toString() === jobID);
+    if (!hasJob) {
+      await User.findByIdAndUpdate(userID, {
+        $push: { jobs: jobID }
+      }, { new: true });
+    }
+
+    // Respond with a message indicating whether the application was updated or a new application was created
+    res.status(200).json({ 
+      message: hasApplied ? 'Application updated' : 'Application successful', 
+      jobUpdate: job, 
+      userUpdate: user 
+    });
+  } catch (error) {
+    console.error('Error applying to job:', error);
+    res.status(500).send(error.message);
+  }
+};
+
+
+// Controller for getting applicants for a job
+exports.getApplicantsForJob = async (req, res) => {
+  const { jobID } = req.params;
+
+  try {
+    const jobWithApplicants = await Job.findById(jobID).populate('applicants');
+    if (!jobWithApplicants) {
+      return res.status(404).send('Job not found');
+    }
+
+    res.json(jobWithApplicants.applicants);
+  } catch (error) {
+    res.status(500).send(error.message);
+
   }
 };
 
@@ -100,6 +156,54 @@ exports.deleteJob = async (req, res) => {
     // Log and send back error message if something goes wrong
     console.error('Error deleting job:', error);
     res.status(500).json({ message: 'Failed to delete job', error: error.message });
+  }
+};
+
+exports.applyToJob = async (req, res) => {
+  const { jobID } = req.params;
+  const userID = req.userId; // Extracted from authentication middleware
+  console.log("jobID, ", jobID);
+  console.log("userID ", userID);
+
+  try {
+    // Check if the user has already applied to the job
+    let job = await Job.findById(jobID);
+    if (!job) {
+      return res.status(404).send('Job not found');
+    }
+
+    // Check if the userID is already in the job's applicants array
+    const hasApplied = job.applicants.some(applicantId => applicantId.toString() === userID);
+
+    if (!hasApplied) {
+      // If the user hasn't applied, add them to the applicants array
+      await Job.findByIdAndUpdate(jobID, {
+        $push: { applicants: userID }
+      }, { new: true });
+    }
+
+    // Optionally, check if the job is already in the User's jobs array and add if not
+    const user = await User.findById(userID);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    const hasJob = user.jobs.some(jobId => jobId.toString() === jobID);
+    if (!hasJob) {
+      await User.findByIdAndUpdate(userID, {
+        $push: { jobs: jobID }
+      }, { new: true });
+    }
+
+    // Respond with a message indicating whether the application was updated or a new application was created
+    res.status(200).json({ 
+      message: hasApplied ? 'Application updated' : 'Application successful', 
+      jobUpdate: job, 
+      userUpdate: user 
+    });
+  } catch (error) {
+    console.error('Error applying to job:', error);
+    res.status(500).send(error.message);
   }
 };
 

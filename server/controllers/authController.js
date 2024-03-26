@@ -54,11 +54,13 @@ exports.register = async (req, res) => {
                 role: newUser.role, 
                 name: newUser.name,
                 gender: newUser.gender,
-                description: newUser.description
+                description: newUser.description,
+                _id: newUser._id.toString()
             },
             token: token
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -97,7 +99,8 @@ exports.login = async (req, res) => {
                 role: user.role,
                 name: user.name,
                 gender: user.gender,
-                description: user.description
+                description: user.description,
+                _id: user._id.toString(),
             },
             token: token
         });

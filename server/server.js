@@ -28,6 +28,8 @@ db.once('open', () => {
   console.log('Connected to MongoDB db');
 });
 
+
+// Use the authentication routes
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api/jobs', jobRoutes);
