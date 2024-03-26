@@ -30,7 +30,7 @@ const CompanyPost = () => {
         console.log('Sending request to /api/jobs with data:', jobData);
         console.log('Authorization Token:', token);
         console.log(`Bearer ${localStorage.getItem('token')}`);
-        console.log('Recruiter ID: ', user._id)
+        // console.log('Recruiter ID: ', user._id)
 
         try {
             console.log(token); // This should output the token to the console

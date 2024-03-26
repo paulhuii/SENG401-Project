@@ -3,6 +3,8 @@ import {render, screen, waitFor, within} from '@testing-library/react';
 import CompanyPost from "../CompanyPost";
 import { BrowserRouter as Router } from 'react-router-dom';
 import user from '@testing-library/user-event'
+import { act } from 'react-dom/test-utils'; // Import act from react-dom/test-utils
+
 
 const dummyJobData = {
     title: 'Software Engineer',
@@ -11,6 +13,7 @@ const dummyJobData = {
     salary: '100,000',
     contact: 'James@company.com',
     description: 'Software engineer role',
+    postedBy: ''
 };
 
 function getJobTitle() {
@@ -59,18 +62,23 @@ jest.mock('react-router-dom', () => ({
 
 describe('CompanyPost', () => {
     beforeEach(() => {
+        window.localStorage.clear();
         // eslint-disable-next-line testing-library/no-render-in-setup
         render(
             <Router>
                 <CompanyPost/>
             </Router>
         );
+        
     });
 
     it('onSubmit when all correct fields are entered should pass', async () => {
 
         const navigate = jest.fn();
         jest.spyOn(require('react-router-dom'), 'useNavigate').mockReturnValue(navigate);
+
+        const data = {"username":"Nines","email":"testUser@gmail.com","role":"Jobseeker","name":"Nines","gender":"Male","_id":"6603595d86c8672453b281b9"};
+        localStorage.setItem('user', JSON.stringify(data));
 
         global.fetch = jest.fn().mockResolvedValue({
             ok: true,
