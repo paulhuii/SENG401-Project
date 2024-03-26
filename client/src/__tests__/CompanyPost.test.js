@@ -3,7 +3,6 @@ import {render, screen, waitFor, within} from '@testing-library/react';
 import CompanyPost from "../CompanyPost";
 import { BrowserRouter as Router } from 'react-router-dom';
 import user from '@testing-library/user-event'
-import { act } from 'react-dom/test-utils'; // Import act from react-dom/test-utils
 
 
 const dummyJobData = {
@@ -61,6 +60,8 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('CompanyPost', () => {
+    console.log("TestID: 5.2")
+
     beforeEach(() => {
         window.localStorage.clear();
         // eslint-disable-next-line testing-library/no-render-in-setup
@@ -77,7 +78,7 @@ describe('CompanyPost', () => {
         const navigate = jest.fn();
         jest.spyOn(require('react-router-dom'), 'useNavigate').mockReturnValue(navigate);
 
-        const data = {"username":"Nines","email":"testUser@gmail.com","role":"Jobseeker","name":"Nines","gender":"Male","_id":"6603595d86c8672453b281b9"};
+        const data = {"_id":"6603595d86c8672453b281b9"};
         localStorage.setItem('user', JSON.stringify(data));
 
         global.fetch = jest.fn().mockResolvedValue({

@@ -19,6 +19,7 @@ const dummyJobListing = {
 
 
 describe("JobListingCard", () => {
+    console.log("TestID: 18.1")
 
     it("should render same text passed into position prop", () => {
         render(<JobListingCard {...dummyJobListing} />);
