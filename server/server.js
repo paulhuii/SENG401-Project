@@ -64,4 +64,13 @@ app.use('/api/jobs', jobRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000; // Default port is 5000 if not specified in environment
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+require('dotenv').config({ 
+  path: process.env.NODE_ENV === 'test' ? './.env.test' : './.env'
+});
+
+// if (process.env.NODE_ENV !== 'test') {
+//   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// }
+
+// Export the app for testing purposes
+module.exports = app;
