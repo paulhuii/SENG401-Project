@@ -14,7 +14,7 @@ const CompanyDashboard = () => {
     const fetchJobListings = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('https://backend.jobhub.company/api/jobs/list',{
+            const response = await fetch('/api/jobs/list',{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -31,7 +31,7 @@ const CompanyDashboard = () => {
         try {
             const token = localStorage.getItem('token');
             console.log(jobId);
-            const response = await fetch(`https://backend.jobhub.company/api/jobs/deleteJob/${jobId}`, {
+            const response = await fetch(`/api/jobs/deleteJob/${jobId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

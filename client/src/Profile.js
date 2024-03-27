@@ -32,7 +32,7 @@ function Profile() {
         return;
       }
   
-      const response = await fetch('https://backend.jobhub.company/api/profile/info', {
+      const response = await fetch('/api/profile/info', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`, // Include the authentication token
@@ -66,7 +66,7 @@ function Profile() {
       const token = localStorage.getItem('token');
       console.log('Sending request to /api/profile with data:', updatedData);
       console.log('Authorization Token:', token);
-      const response = await fetch('https://backend.jobhub.company/api/profile', {
+      const response = await fetch('/api/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

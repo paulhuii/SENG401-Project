@@ -50,7 +50,7 @@ function Home() {
 
     useEffect(() => {
         // Fetch job count
-        axios.get('https://jobhub.company/api/jobs/count')
+        axios.get('http://localhost:3000/api/jobs/count')
             .then(response => {
                 setJobCount(response.data.count);
             })
@@ -59,8 +59,7 @@ function Home() {
             });
 
         // Fetch user count
-
-        axios.get('https://jobhub.company/api/applicantCount')
+        axios.get('http://localhost:3000/api/applicantCount')
             .then(response => {
                 setApplicantCount(response.data.count);
             })
@@ -70,8 +69,7 @@ function Home() {
 
 
         // Fetch user count
-        axios.get('https://jobhub.company/api/recruiterCount')
-
+        axios.get('http://localhost:3000/api/recruiterCount')
             .then(response => {
                 setRecruiterCount(response.data.count);
             })
@@ -80,7 +78,7 @@ function Home() {
             });
 
         // fetch the job list, then shuffle to randomly get 3 jobs for the carousel cards
-        axios.get('http://backend.jobhub.company/api/jobs/getList')
+        axios.get('http://localhost:5000/api/jobs/getList')
             .then(response => {
                 // Shuffle the jobs array
                 const shuffledJobs = response.data.sort(() => Math.random() - 0.5);
@@ -101,7 +99,7 @@ function Home() {
 
 
         // fetch the applicant list, then shuffle to randomly get 3 applicants for the carousel cards
-        axios.get('http://backend.jobhub.company/api/getApplicantList')
+        axios.get('http://localhost:5000/api/getApplicantList')
             .then(response => {
                 const jobSeekers = response.data.jobSeekers; // Access the jobSeekers array
 
@@ -128,7 +126,7 @@ function Home() {
 
 
         // fetch the recruiter list, then shuffle to randomly get 3 recruiters for the carousel cards
-        axios.get('http://backend.jobhub.company/api/getRecruiterList')
+        axios.get('http://localhost:5000/api/getRecruiterList')
             .then(response => {
 
                 const Recruiters = response.data.Recruiters; // Access the jobSeekers array
