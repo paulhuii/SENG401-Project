@@ -22,7 +22,6 @@ require("dotenv").config({ path: "../.env" });
 
 // Create an Express application
 const app = express();
-
 // Configure middleware'
 var whitelist = ['https://jobhub.company','http://www.jobhub.company','http://jobhub.company','http://www.jobhub.company'];
 var corsOptions = {

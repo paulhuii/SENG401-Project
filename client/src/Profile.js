@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import { Button } from "react-bootstrap";
 import './Profile.css';
 import EditProfile from './components/EditProfile';
 import ProfilePic from './components/ProfilePic/ProfilePic.js';
@@ -119,7 +120,7 @@ function Profile() {
           <p>Role: {profileData.role}</p>
           <p>Gender: {profileData.gender}</p>
           <p>Description: {profileData.description || 'Add a description to attract recruiters!'}</p>
-          <button onClick={handleEdit}>Edit Profile</button>
+          <Button onClick={handleEdit}>Edit Profile</Button>
         </div>
       )}
     </div>

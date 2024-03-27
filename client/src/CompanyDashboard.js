@@ -5,6 +5,7 @@ import JobListingCard from "./components/JobListings/JobListingCard";
 
 const CompanyDashboard = () => {
     const [jobListings, setJobListings] = useState([]);
+    const user = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
         fetchJobListings();
@@ -67,24 +68,30 @@ const CompanyDashboard = () => {
                                 <Tab.Pane eventKey="job_listings">
                                     <h1>Job Listings</h1>
                                     <h5 className="mb-3">View, delete, and edit your job listings here!</h5>
-                                    {jobListings.map((job, index) => {
-                                        console.log(`Rendering job ${index}`, job); // Check each job being rendered
-                                        return (
-                                            <JobListingCard
-                                                position={job.title}
-                                                company={job.company}
-                                                location={job.location}
-                                                email={job.contact} // Assuming 'email' is part of your data
-                                                description={job.description}
-                                                jobType={job.jobType}
-                                                salary={job.salary}
-
-                                                // things required to delete a job listing
-                                                key={job._id.toString()}
-                                                job={job}
-                                                deleteJob={deleteJob}
-                                            />
-                                        );
+                                    {
+                                    jobListings.map((job, index) => {
+                                        
+                                        console.log("Your ID is: ",user._id)
+                                        // console.log(`Rendering job ${index}`, job); // Check each job being rendered
+                                        if (user._id === job.postedBy) {
+                                            return (
+                                                <JobListingCard
+                                                    position={job.title}
+                                                    company={job.company}
+                                                    location={job.location}
+                                                    email={job.contact} // Assuming 'email' is part of your data
+                                                    description={job.description}
+                                                    jobType={job.jobType}
+                                                    salary={job.salary}
+    
+                                                    // things required to delete a job listing
+                                                    key={job._id.toString()}
+                                                    job={job}
+                                                    deleteJob={deleteJob}
+                                                />
+                                            );
+                                        }
+                                        
                                     })}
                                 </Tab.Pane>
                             </Tab.Content>

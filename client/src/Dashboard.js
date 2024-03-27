@@ -1,4 +1,5 @@
 import React, {useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 import JobListing from "./components/jobPosting/JobListing";
 import CompanyCard from "./components/Cards/CompanyCard";
@@ -12,6 +13,8 @@ function Dashboard() {
   const itemsPerPage = 5; 
   const [appliedJobs, setAppliedJobs] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
+
+  const navigate = useNavigate();
   
   // replace with actual data
   const companies = Array.from({ length: 20 }, (_, index) => ({
@@ -143,8 +146,8 @@ function Dashboard() {
         <div className="divider">
           <div className="menu">  
             <div className={`menu-item ${selectedMenuItem === 'My Applications' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Applications')}>My Applications</div>
-            <div className={`menu-item ${selectedMenuItem === 'Browse Available Jobs' ? 'active' : ''}`} onClick={() => handleMenuItemClick('Browse Available Jobs')}>Browse Available Jobs</div>
-            <div className={`menu-item ${selectedMenuItem === 'My Network' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Network')}>My Network</div>
+            {/* <div className={`menu-item ${selectedMenuItem === 'Browse Available Jobs' ? 'active' : ''}`} onClick={() => handleMenuItemClick('Browse Available Jobs')}>Browse Available Jobs</div> */}
+            {/*<div className={`menu-item ${selectedMenuItem === 'My Network' ? 'active' : ''}`} onClick={() => handleMenuItemClick('My Network')}>My Network</div>*/}
           </div>
 
           <div className="menu-content">
@@ -154,7 +157,10 @@ function Dashboard() {
               {appliedJobs.length === 0 ? (
                 <div>
                   <h2 className='no-application'>You have not applied for any job</h2>
-                  <button className='start-applying-btn' onClick={() => setSelectedMenuItem('Browse Available Jobs')}>
+                  <button 
+                    className='start-applying-btn' 
+                    onClick={() => navigate('../JobBoard/search?query=&category=search_all')}
+                  >
                     Browse Available Jobs
                   </button>
                 </div>
@@ -167,7 +173,7 @@ function Dashboard() {
                       jobTitle: job.title,
                       companyName: job.company,
                       location: job.location,
-                      dateApplied: job.dateApplied, 
+                      dateApplied: job.dateApplied,
                       description: job.description,
                       salary: job.salary,
                       jobType: job.jobType,
@@ -204,7 +210,7 @@ function Dashboard() {
               </div>
             </div>
           }
-            {selectedMenuItem === 'My Network' && 
+            {selectedMenuItem === 'My Network' &&
             <div className="content-item-db">
               <div className='card-columns companies'> 
                 {currentCompanies.map(company => <CompanyCard key={company.id} company={company} />)}

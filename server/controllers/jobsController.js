@@ -24,7 +24,7 @@ exports.create = async (req, res) => {
     try {
       console.log("Received request body:", req.body); // Log the received request body
 
-      const { title, jobType, location, salary, contact, description } = req.body;
+      const { title, jobType, location, salary, contact, description, id } = req.body;
       
       // Log the destructured values to ensure they're what we expect
       console.log("Destructured data:", { title, jobType, location, salary, contact, description });
@@ -39,7 +39,7 @@ exports.create = async (req, res) => {
         salary,
         contact,
         description,
-        // postedBy: req.user._id // Assumes req.user is populated by the auth middleware
+        postedBy: id // Assumes req.user is populated by the auth middleware
       });
 
       console.log("New job created:", newJob); // Log the created job document
@@ -136,6 +136,7 @@ exports.getApplicantsForJob = async (req, res) => {
 
   }
 };
+
 exports.deleteJob = async (req, res) => {
   try {
     // Extract the job ID from the request parameters
@@ -202,23 +203,6 @@ exports.applyToJob = async (req, res) => {
     });
   } catch (error) {
     console.error('Error applying to job:', error);
-    res.status(500).send(error.message);
-  }
-};
-
-
-// Controller for getting applicants for a job
-exports.getApplicantsForJob = async (req, res) => {
-  const { jobID } = req.params;
-
-  try {
-    const jobWithApplicants = await Job.findById(jobID).populate('applicants');
-    if (!jobWithApplicants) {
-      return res.status(404).send('Job not found');
-    }
-
-    res.json(jobWithApplicants.applicants);
-  } catch (error) {
     res.status(500).send(error.message);
   }
 };

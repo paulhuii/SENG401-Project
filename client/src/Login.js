@@ -10,6 +10,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
+import { Button } from "react-bootstrap";
 
 function Login({ setIsLoggedIn }) {
   // State variables
@@ -132,7 +133,7 @@ function Login({ setIsLoggedIn }) {
               required
             />
           </div>
-          <button type="submit">Login</button>
+          <Button className="mb-3" type="submit">Login</Button>
           {error && <div className="error-message">{error}</div>}
         </form>
         {/* Add Link to Signup page */}

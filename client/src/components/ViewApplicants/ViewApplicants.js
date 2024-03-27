@@ -45,6 +45,7 @@ const ViewApplicants = ({ jobID }) => {
                         <h6>Gender: {applicant.gender}</h6>
                         <h6>Description:</h6>
                         <p>{applicant.description}</p>
+                        <hr/>
                     </div>
                 </div>
             ))}
