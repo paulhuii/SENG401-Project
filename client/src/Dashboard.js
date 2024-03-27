@@ -29,7 +29,7 @@ function Dashboard() {
       const fetchJobListings = async () => {
           try {
               const token = localStorage.getItem('token');
-              const response = await fetch('/api/jobs/getList',{
+              const response = await fetch('https://backend.jobhub.company/api/jobs/getList',{
                   headers: {
                       'Authorization': `Bearer ${token}`
                   }
