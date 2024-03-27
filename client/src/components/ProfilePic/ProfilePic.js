@@ -17,7 +17,7 @@ const ProfilePic = ({ userProfilePhotoUrl, onUpdate }) => {
     try {
       const token = localStorage.getItem('token');
       console.log('Authorization Token:', token);
-      const response = await fetch('/api/profile/photo', {
+      const response = await fetch('https://backend.jobhub.company/api/profile/photo', {
         method: 'POST',
         body: formData,
         // Include authorization headers if needed
