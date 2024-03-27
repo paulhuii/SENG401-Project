@@ -61,7 +61,7 @@ jest.mock('react-router-dom', () => ({
 
 describe('CompanyPost', () => {
     console.log("TestID: 5.2")
-
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     beforeEach(() => {
         window.localStorage.clear();
         // eslint-disable-next-line testing-library/no-render-in-setup
@@ -70,10 +70,15 @@ describe('CompanyPost', () => {
                 <CompanyPost/>
             </Router>
         );
-        
+    });
+
+    afterAll(() =>{
+        errorSpy.mockRestore();
     });
 
     it('onSubmit when all correct fields are entered should pass', async () => {
+        // Spy on console.error to suppress specific warnings
+        
 
         const navigate = jest.fn();
         jest.spyOn(require('react-router-dom'), 'useNavigate').mockReturnValue(navigate);
