@@ -26,7 +26,7 @@ const app = express();
 // Configure middleware
 app.use(
   cors({
-    origin: "*"
+    origin: ["https://jobhub.company","https://www.jobhub.company"]
   })
 ); // Enable Cross-Origin Resource Sharing (CORS)
 app.use(express.json()); // Parse incoming request bodies as JSON
