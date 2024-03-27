@@ -53,7 +53,7 @@ function Dashboard() {
       useEffect(() => {
         if (selectedMenuItem === 'My Applications') {
           const token = localStorage.getItem('token');
-          fetch('/api/appliedJobs', {  
+          fetch('https://backend.jobhub.company/api/appliedJobs', {  
             headers: {
               'Authorization': `Bearer ${token}`,
             },
