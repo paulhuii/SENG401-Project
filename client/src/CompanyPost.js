@@ -34,7 +34,7 @@ const CompanyPost = () => {
 
         try {
             console.log(token); // This should output the token to the console
-            const response = await fetch('/api/jobs', {
+            const response = await fetch('https://backend.jobhub.company/api/jobs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
