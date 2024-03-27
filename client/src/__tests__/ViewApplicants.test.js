@@ -22,6 +22,7 @@ const dummyApplicants = [
 
 
 describe('ViewApplicants', () => {
+    console.log("TestID: 17.1")
 
     /**
      * Before each test mock the useEffect function, force the promise to resolve, and pass into setApplicants the

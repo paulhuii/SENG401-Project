@@ -4,6 +4,7 @@ import CompanyPost from "../CompanyPost";
 import { BrowserRouter as Router } from 'react-router-dom';
 import user from '@testing-library/user-event'
 
+
 const dummyJobData = {
     title: 'Software Engineer',
     jobType: 'Full-time',
@@ -11,6 +12,7 @@ const dummyJobData = {
     salary: '100,000',
     contact: 'James@company.com',
     description: 'Software engineer role',
+    postedBy: ''
 };
 
 function getJobTitle() {
@@ -58,7 +60,10 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('CompanyPost', () => {
+    console.log("TestID: 5.2")
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     beforeEach(() => {
+        window.localStorage.clear();
         // eslint-disable-next-line testing-library/no-render-in-setup
         render(
             <Router>
@@ -67,10 +72,19 @@ describe('CompanyPost', () => {
         );
     });
 
+    afterAll(() =>{
+        errorSpy.mockRestore();
+    });
+
     it('onSubmit when all correct fields are entered should pass', async () => {
+        // Spy on console.error to suppress specific warnings
+        
 
         const navigate = jest.fn();
         jest.spyOn(require('react-router-dom'), 'useNavigate').mockReturnValue(navigate);
+
+        const data = {"_id":"6603595d86c8672453b281b9"};
+        localStorage.setItem('user', JSON.stringify(data));
 
         global.fetch = jest.fn().mockResolvedValue({
             ok: true,
