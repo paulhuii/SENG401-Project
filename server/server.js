@@ -24,11 +24,7 @@ require("dotenv").config({ path: "../.env" });
 const app = express();
 
 // Configure middleware
-app.use(
-  cors({
-    origin: ["https://jobhub.company","https://www.jobhub.company"]
-  })
-); // Enable Cross-Origin Resource Sharing (CORS)
+app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
 app.use(express.json()); // Parse incoming request bodies as JSON
 
 // Middleware to serve static files from 'uploads' directory
