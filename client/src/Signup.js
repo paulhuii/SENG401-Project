@@ -29,6 +29,7 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { Button } from "react-bootstrap";
 import './Signup.css';
 
 function Signup() {
@@ -185,7 +186,7 @@ function Signup() {
 
             </select>
           </div>
-          <button type="submit">Signup</button>
+          <Button type="submit">Signup</Button>
           {error && <div className="error-message">{error}</div>}
         </form>
       </div>
