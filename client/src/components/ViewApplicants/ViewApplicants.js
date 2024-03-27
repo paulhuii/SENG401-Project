@@ -10,7 +10,7 @@ const ViewApplicants = ({ jobID }) => {
         // Assuming you have a way to include the authorization token
         const token = localStorage.getItem('token');
 
-        fetch(`/api/jobs/${jobID}/applicants`, {
+        fetch(`https://backend.jobhub.company/api/jobs/${jobID}/applicants`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
