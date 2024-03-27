@@ -23,8 +23,18 @@ require("dotenv").config({ path: "../.env" });
 // Create an Express application
 const app = express();
 
-// Configure middleware
-app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
+// Configure middleware'
+var whitelist = ['https://jobhub.company','http://www.jobhub.company','http://jobhub.company','http://www.jobhub.company'];
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+};
+app.use(cors(corsOptions)); // Enable Cross-Origin Resource Sharing (CORS)
 app.use(express.json()); // Parse incoming request bodies as JSON
 
 // Middleware to serve static files from 'uploads' directory
