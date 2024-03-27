@@ -64,7 +64,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/signup', {
+      const response = await fetch('https://backend.jobhub.company/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
