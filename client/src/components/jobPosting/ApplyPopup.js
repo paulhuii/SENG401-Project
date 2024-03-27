@@ -17,7 +17,7 @@ function ApplyPopup({ jobID, company, position, description, email, applied, use
     const sendApply = () => {
         const token = localStorage.getItem('token');
 
-        fetch(`/api/jobs/apply/${jobID}`, {
+        fetch(`https://backend.jobhub.company/api/jobs/apply/${jobID}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
