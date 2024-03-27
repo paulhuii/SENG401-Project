@@ -50,7 +50,7 @@ function Home() {
 
     useEffect(() => {
         // Fetch job count
-        axios.get('https://jobhub.company/api/jobs/count')
+        axios.get('https://backend.jobhub.company/api/jobs/count')
             .then(response => {
                 setJobCount(response.data.count);
             })
@@ -59,7 +59,7 @@ function Home() {
             });
 
         // Fetch user count
-        axios.get('https://jobhub.company/api/applicantCount')
+        axios.get('https://backend.jobhub.company/api/applicantCount')
             .then(response => {
                 setApplicantCount(response.data.count);
             })
@@ -69,7 +69,7 @@ function Home() {
 
 
         // Fetch user count
-        axios.get('https://jobhub.company/api/recruiterCount')
+        axios.get('https://backend.jobhub.company/api/recruiterCount')
             .then(response => {
                 setRecruiterCount(response.data.count);
             })
