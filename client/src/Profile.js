@@ -32,7 +32,7 @@ function Profile() {
         return;
       }
   
-      const response = await fetch('/api/profile/info', {
+      const response = await fetch('https://backend.jobhub.company/api/profile/info', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`, // Include the authentication token
