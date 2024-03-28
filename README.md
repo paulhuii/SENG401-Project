@@ -78,3 +78,23 @@ npm run dev
 ```
 control + c
 ```
+
+## Running Frontend Tests
+
+1. Go to the client directory
+
+```
+cd client
+```
+
+2. Run the tests
+
+```
+npm run test
+```
+
+3. There will be a menu of choices, to run all our tests press a
+
+```
+a
+```
